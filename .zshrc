@@ -15,6 +15,7 @@ DISABLE_AUTO_UPDATE="true"
 
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="mm/dd/yyyy"
+XDG_CONFIG_HOME=$HOME
 
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
@@ -24,3 +25,5 @@ export EDITOR='nvim'
 
 alias zshconfig="nvim ~/.zshrc"
 
+source ~/.alias
+source ~/.define

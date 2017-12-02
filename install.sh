@@ -7,3 +7,5 @@ do
 
     ln -sf "$HOME/dotfiles/$f" "$HOME/$f"
 done
+ln -sf "$HOME/.vim" "$HOME/.config/nvim"
+ln -sf "$HOME/dotfiles/.vimrc" "$HOME/.config/nvim/init.vim"
