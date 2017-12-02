@@ -64,9 +64,29 @@ set clipboard+=unnamedplus
 
 nnoremap j gj
 nnoremap k gk
+" replace ESC
+noremap <C-g> <esc>
+noremap! <C-g> <esc>
+noremap <C-h> <esc>
+noremap! <C-h> <esc>
 noremap <C-j> <esc>
 noremap! <C-j> <esc>
+noremap <C-k> <esc>
+noremap! <C-k> <esc>
+noremap <C-l> <esc>
+noremap! <C-l> <esc>
+
+" remap Denite
+noremap <C-x><C-x> <esc>:Denite
 noremap <C-x><C-f> <esc>:Denite file<Enter>
+noremap <C-x><C-r> <esc>:Denite file_old<Enter>
+noremap <C-x><C-b> <esc>:Denite buffer<Enter>
+noremap <C-x><C-t> <esc>:Denite tab<Enter>
+
+" remap split window
+noremap <C-x>0 <esc>:close<Enter>
+noremap <C-x>2 <esc>:split<Enter>
+noremap <C-x>3 <esc>:vsplit<Enter>
 
 set expandtab
 set shiftwidth=2
