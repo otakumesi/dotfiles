@@ -119,7 +119,7 @@ set autowrite
 autocmd CursorHold *  wall
 autocmd CursorHoldI *  wall
 
-"NeoComplete
+" NeoComplete:
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_min_syntax_length = 3
@@ -131,7 +131,7 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-" Syntastic
+" Syntastic:
 execute pathogen#infect()
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -140,19 +140,38 @@ set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1
 
-" Denite.vim
+" Denite:
 if executable('rg')
   call denite#custom#var('file_rec', 'command',
         \ ['rg', '--files', '--glob', '!.git'])
   call denite#custom#var('grep', 'command', ['rg'])
 endif
 
-" golang
-au BufWritePost *.go !goimports -w % call s:ExecuteEnter()
+" Golang:
+if $GOPATH != ''
+  execute "set rtp+=".globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
+  let g:syntastic_go_checkers = ['go', 'golint', 'govet']
+endif
 
-" Nyancat
+augroup Go
+  autocmd!
+  autocmd BufWritePre *.go GoFmt
+augroup END
+
+" Ruby:
+" TODO
+let g:syntastic_php_checkers = ['ruby', 'rubocop']
+
+" PHP:
+" TODO
+let g:syntastic_php_checkers = ['php']
+
+" Python:
+" TODO
+
+" Nyancat:
 set laststatus=2
 set statusline+=%{g:NyanModoki()}
 let g:nyan_modoki_select_cat_face_number = 1
