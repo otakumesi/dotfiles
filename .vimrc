@@ -17,14 +17,24 @@ if dein#load_state('/Users/otakumesi/.cache/dein')
   " Add or remove your plugins here:
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/denite.nvim')
-  call dein#add('tomasr/molokai')
   call dein#add('osyo-manga/vim-anzu')
-  call dein#add('Shougo/neocomplcache.vim')
+  call dein#add('Shougo/deoplete.nvim')
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+  endif
   call dein#add('tpope/vim-pathogen')
   call dein#add('vim-syntastic/syntastic')
   call dein#add('koron/nyancat-vim')
   call dein#add('nefo-mi/nyan-modoki.vim')
+  call dein#add('tpope/vim-bundler')
+  call dein#add('tpope/vim-dispatch')
+  call dein#add('tpope/vim-rails')
+  call dein#add('thinca/vim-ref')
+  call dein#add('tpope/vim-endwise')
+  call dein#add('jiangmiao/auto-pairs')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
@@ -67,6 +77,14 @@ set clipboard+=unnamedplus
 set nostartofline
 set matchtime=1
 
+set list
+set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+
+" molokai
+colorscheme molokai
+let g:molokai_original = 1
+let g:rehash256 = 1
+
 " statusline
 set statusline=%F
 set statusline+=%m
@@ -74,20 +92,24 @@ set statusline+=%r
 set statusline+=[%{&fileencoding}]
 set statusline+=(%l/%L)
 
+
+" keymap
 nnoremap j gj
 nnoremap k gk
 
 " replace ESC
 noremap <C-g> <esc>
 noremap! <C-g> <esc>
-noremap <C-h> <esc>
-noremap! <C-h> <esc>
-noremap <C-j> <esc>
-noremap! <C-j> <esc>
-noremap <C-k> <esc>
-noremap! <C-k> <esc>
-noremap <C-l> <esc>
-noremap! <C-l> <esc>
+inoremap <silent>hh <ESC>
+inoremap <silent>jj <ESC>
+inoremap <silent>kk <ESC>
+inoremap <silent>ll <ESC>
+
+" remap move
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <M-h> <Left>
+inoremap <M-l> <Right>
 
 " remap Denite
 noremap <C-x><C-x> <esc>:Denite 
@@ -119,17 +141,8 @@ set autowrite
 autocmd CursorHold *  wall
 autocmd CursorHoldI *  wall
 
-" NeoComplete:
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_min_syntax_length = 3
-let g:complcache_dictionary_filetype_lists = {'default' : '', 'vimshell' : $HOME.'/.vimshell_hist'}
-
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" deoplete
+let g:deoplete#enable_at_startup = 1
 
 " Syntastic:
 execute pathogen#infect()
@@ -147,6 +160,12 @@ if executable('rg')
   call denite#custom#var('file_rec', 'command',
         \ ['rg', '--files', '--glob', '!.git'])
   call denite#custom#var('grep', 'command', ['rg'])
+  call denite#custom#map('insert', '<esc>', '<denite:enter_mode:normal>', 'noremap')
+  call denite#custom#map('normal', '<esc>', '<denite:quit>', 'noremap')
+  call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
+  call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
+  call denite#custom#map('insert', '<C-x>3', '<denite:do_action:split>', 'noremap')
+  call denite#custom#map('insert', '<C-x>2', '<denite:do_action:vsplit>', 'noremap')
 endif
 
 " Golang:
@@ -176,3 +195,12 @@ set laststatus=2
 set statusline+=%{g:NyanModoki()}
 let g:nyan_modoki_select_cat_face_number = 1
 let g:nayn_modoki_animation_enabled= 1
+
+" Anzu:
+nmap n <Plug>(anzu-n-with-echo)
+nmap N <Plug>(anzu-N-with-echo)
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)
+nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
+set statusline=%{anzu#search_status()}
+
