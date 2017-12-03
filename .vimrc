@@ -35,6 +35,7 @@ if dein#load_state('/Users/otakumesi/.cache/dein')
   call dein#add('thinca/vim-ref')
   call dein#add('tpope/vim-endwise')
   call dein#add('jiangmiao/auto-pairs')
+  call dein#add('slim-template/vim-slim')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
@@ -96,10 +97,11 @@ set statusline+=(%l/%L)
 " keymap
 nnoremap j gj
 nnoremap k gk
+nnoremap <C-s> <ESC>:%s/
 
 " replace ESC
-noremap <C-g> <esc>
-noremap! <C-g> <esc>
+noremap <C-g> <ESC>
+noremap! <C-g> <ESC>
 inoremap <silent>hh <ESC>
 inoremap <silent>jj <ESC>
 inoremap <silent>kk <ESC>
@@ -112,19 +114,20 @@ inoremap <M-h> <Left>
 inoremap <M-l> <Right>
 
 " remap Denite
-noremap <C-x><C-x> <esc>:Denite 
-noremap <C-x><C-f> <esc>:DeniteBufferDir file_rec<Enter>
-noremap <C-x><C-r> <esc>:Denite file_old<Enter>
-noremap <C-x><C-b> <esc>:Denite buffer<Enter>
-noremap <C-x><C-t> <esc>:Denite tab<Enter>
-noremap <C-x><C-g> <esc>:DeniteBufferDir grep<Enter>
-noremap <C-x>pg <esc>:DeniteProjectDir grep<Enter>
-noremap <C-x><C-y> <esc>:Denite neoyank
+noremap <C-x><C-x> <ESC>:Denite 
+noremap <C-x><C-f> <ESC>:DeniteBufferDir file_rec<Enter>
+noremap <C-x><C-r> <ESC>:Denite file_old<Enter>
+noremap <C-x><C-b> <ESC>:Denite buffer<Enter>
+noremap <C-x><C-t> <ESC>:Denite tab<Enter>
+noremap <C-x><C-g> <ESC>:DeniteBufferDir grep<Enter>
+noremap <C-x>pg <ESC>:DeniteProjectDir grep<Enter>
+noremap <C-x>g <ESC>::DeniteProjectDir grep<Enter>expand("<cword>")<Enter>
+noremap <C-x><C-y> <ESC>:Denite neoyank
 
 " remap split window
-noremap <C-x>0 <esc>:close<Enter>
-noremap <C-x>2 <esc>:split<Enter>
-noremap <C-x>3 <esc>:vsplit<Enter>
+noremap <C-x>0 <ESC>:close<Enter>
+noremap <C-x>2 <ESC>:split<Enter>
+noremap <C-x>3 <ESC>:vsplit<Enter>
 
 set expandtab
 set shiftwidth=2
@@ -135,7 +138,7 @@ set smartcase
 set incsearch
 set wrapscan
 set hlsearch
-noremap <esc><esc> :nohlsearch<cr><esc>
+noremap <ESC><ESC> :nohlsearch<cr><ESC>
 
 set autowrite
 autocmd CursorHold *  wall
@@ -160,8 +163,8 @@ if executable('rg')
   call denite#custom#var('file_rec', 'command',
         \ ['rg', '--files', '--glob', '!.git'])
   call denite#custom#var('grep', 'command', ['rg'])
-  call denite#custom#map('insert', '<esc>', '<denite:enter_mode:normal>', 'noremap')
-  call denite#custom#map('normal', '<esc>', '<denite:quit>', 'noremap')
+  call denite#custom#map('insert', '<C-g>', '<denite:enter_mode:normal>', 'noremap')
+  call denite#custom#map('normal', '<C-g>', '<denite:quit>', 'noremap')
   call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
   call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
   call denite#custom#map('insert', '<C-x>3', '<denite:do_action:split>', 'noremap')
@@ -201,6 +204,6 @@ nmap n <Plug>(anzu-n-with-echo)
 nmap N <Plug>(anzu-N-with-echo)
 nmap * <Plug>(anzu-star-with-echo)
 nmap # <Plug>(anzu-sharp-with-echo)
-nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
+nmap <C-g><C-g> <Plug>(anzu-clear-search-status)
 set statusline=%{anzu#search_status()}
 
