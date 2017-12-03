@@ -102,10 +102,7 @@ nnoremap <C-s> <ESC>:%s/
 " replace ESC
 noremap <C-g> <ESC>
 noremap! <C-g> <ESC>
-inoremap <silent>hh <ESC>
 inoremap <silent>jj <ESC>
-inoremap <silent>kk <ESC>
-inoremap <silent>ll <ESC>
 
 " remap move
 inoremap <C-j> <Down>
