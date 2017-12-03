@@ -189,6 +189,9 @@ let g:syntastic_php_checkers = ['php']
 " Python:
 " TODO
 
+" JavaScript:
+let g:syntastic_javascript_checkers = ['eslint']
+
 " Nyancat:
 set laststatus=2
 set statusline+=%{g:NyanModoki()}
