@@ -1,3 +1,11 @@
 alias vim=nvim
 alias ls="ls -a"
-alias git="g"
+alias g=git
+alias ga="git add"
+alias gap="git add -p"
+alias gc="git commit"
+alias gca="git commit --amend" 
+alias gplo="git pull origin"
+alias gpso="git push origin"
+alias gd="git diff"
+alias gdc="git diff --cached"
