@@ -17,8 +17,9 @@ if dein#load_state('/Users/otakumesi/.cache/dein')
   " Add or remove your plugins here:
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/denite.nvim')
+  call dein#add('Shougo/neomru.vim')
+  call dein#add('Shougo/neoyank.vim')
   call dein#add('osyo-manga/vim-anzu')
   call dein#add('Shougo/deoplete.nvim')
   if !has('nvim')
@@ -112,14 +113,13 @@ inoremap <M-l> <Right>
 
 " remap Denite
 noremap <C-x><C-x> <ESC>:Denite 
-noremap <C-x><C-f> <ESC>:DeniteBufferDir file_rec<Enter>
+noremap <C-x><C-f> <ESC>:DeniteProjectDir file_rec<Enter>
 noremap <C-x><C-r> <ESC>:Denite file_old<Enter>
 noremap <C-x><C-b> <ESC>:Denite buffer<Enter>
 noremap <C-x><C-t> <ESC>:Denite tab<Enter>
 noremap <C-x><C-g> <ESC>:DeniteBufferDir grep<Enter>
-noremap <C-x>pg <ESC>:DeniteProjectDir grep<Enter>
-noremap <C-x>g <ESC>::DeniteProjectDir grep<Enter>expand("<cword>")<Enter>
-noremap <C-x><C-y> <ESC>:Denite neoyank
+noremap <C-x><C-p> <ESC>:DeniteProjectDir grep<Enter>
+noremap <C-x><C-y> <ESC>:Denite neoyank<Enter>
 
 " remap split window
 noremap <C-x>0 <ESC>:close<Enter>
@@ -157,8 +157,7 @@ let g:syntastic_check_on_wq = 1
 
 " Denite:
 if executable('rg')
-  call denite#custom#var('file_rec', 'command',
-        \ ['rg', '--files', '--glob', '!.git'])
+  call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git'])
   call denite#custom#var('grep', 'command', ['rg'])
   call denite#custom#map('insert', '<C-g>', '<denite:enter_mode:normal>', 'noremap')
   call denite#custom#map('normal', '<C-g>', '<denite:quit>', 'noremap')
