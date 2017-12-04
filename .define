@@ -12,11 +12,24 @@ zle -N peco-src
 function find-cd() {
   cd "$(find . -type d | peco)"
 }
-
 alias fc="find-cd"
 
 function find-vim {
   vim "$(find . | peco --select-1)"
 }
-
 alias fv="find-vim"
+
+function git-checkout-from-peco {
+  git checkout "$(git branch | peco --select-1)"
+}
+alias gcp="git-checkout-from-peco"
+
+function git-push-from-peco {
+  git push origin "$(git branch | peco --select-1)"
+}
+alias gpps="git-push-from-peco"
+
+function git-pull-from-peco {
+  git pull origin "$(git branch | peco --select-1)"
+}
+alias gppl="git-pull-from-peco"
