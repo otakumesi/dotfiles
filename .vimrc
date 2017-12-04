@@ -37,6 +37,7 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('tpope/vim-endwise')
   call dein#add('jiangmiao/auto-pairs')
   call dein#add('slim-template/vim-slim')
+  call dein#add('tpope/vim-fugitive')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
@@ -95,7 +96,7 @@ set statusline+=%m
 set statusline+=%r
 set statusline+=[%{&fileencoding}]
 set statusline+=(%l/%L)
-
+set statusline+=%{fugitive#statusline()}
 
 " keymap
 nnoremap j gj
