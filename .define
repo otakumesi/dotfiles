@@ -27,9 +27,9 @@ alias gcp="git-checkout-from-peco"
 function git-push-from-peco {
   git push origin $(git branch | peco --select-1 --query "$RBUFFER")
 }
-alias gpps="git-push-from-peco"
+alias gpsp="git-push-from-peco"
 
 function git-pull-from-peco {
   git pull origin $(git branch | peco --select-1 --query "$RBUFFER")
 }
-alias gppl="git-pull-from-peco"
+alias gplp="git-pull-from-peco"
