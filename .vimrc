@@ -62,6 +62,8 @@ syntax enable
 
 set number
 set encoding=utf-8
+set spelllang=en,cjk
+set spell
 set fenc=utf-8
 set noswapfile
 set autoread
