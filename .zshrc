@@ -1,8 +1,8 @@
 export GOPATH=$HOME/goprojects
 export PATH=$GOPATH/bin:$HOME/.rbenv/shims:$HOME/.rbenv/bin:$GOPATH/bin:$HOME/.meteor:$HOME/.cargo/bin:$PATH
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+export CARGO_HOME=$HOME/.cargo
 
-# export CARGO_HOME=$HOME/.cargo
 eval "$(rbenv init -)"
 eval "$(direnv hook zsh)"
 export ZSH=$HOME/.oh-my-zsh
@@ -27,3 +27,7 @@ alias zshconfig="nvim ~/.zshrc"
 
 source ~/.alias
 source ~/.define
+
+if [ $SHLVL = 1 ]; then
+  tmux
+fi
