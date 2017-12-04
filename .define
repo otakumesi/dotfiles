@@ -20,16 +20,16 @@ function find-vim {
 alias fv="find-vim"
 
 function git-checkout-from-peco {
-  git checkout "$(git branch | peco --select-1)"
+  git checkout $(git branch | peco --select-1 --query "$RBUFFER")
 }
 alias gcp="git-checkout-from-peco"
 
 function git-push-from-peco {
-  git push origin "$(git branch | peco --select-1)"
+  git push origin $(git branch | peco --select-1 --query "$RBUFFER")
 }
 alias gpps="git-push-from-peco"
 
 function git-pull-from-peco {
-  git pull origin "$(git branch | peco --select-1)"
+  git pull origin $(git branch | peco --select-1 --query "$RBUFFER")
 }
 alias gppl="git-pull-from-peco"
