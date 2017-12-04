@@ -8,3 +8,15 @@ function peco-src() {
   zle -R -c
 }
 zle -N peco-src
+
+function find-cd() {
+  cd "$(find . -type d | peco)"
+}
+
+alias fc="find-cd"
+
+function find-vim {
+  vim "$(find . | peco --select-1)"
+}
+
+alias fv="find-vim"

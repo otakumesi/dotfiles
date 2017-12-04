@@ -31,3 +31,15 @@ source ~/.define
 if [ $SHLVL = 1 ]; then
   tmux
 fi
+
+setopt no_beep
+setopt no_nomatch
+setopt prompt_subst
+setopt transient_rprompt
+setopt hist_ignore_dups
+setopt auto_cd
+setopt auto_pushd
+setopt auto_list
+setopt auto_menu
+setopt mark_dirs
+
