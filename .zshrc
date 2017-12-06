@@ -54,4 +54,4 @@ setopt globdots
 setopt complete_in_word
 
 source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
-eval `gdircolors dircolors/dircolors.256dark`
+eval `gdircolors ~/dotfiles/dircolors/dircolors.256dark`
