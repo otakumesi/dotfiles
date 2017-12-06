@@ -19,17 +19,21 @@ function find-vim {
 }
 alias fv="find-vim"
 
+function git-select-branch {
+  git branch | peco --select-1 --query "$RBUFFER" | sed 's/\*//'
+}
+
 function git-checkout-from-peco {
-  git checkout $(git branch | peco --select-1 --query "$RBUFFER")
+  git checkout $(git-select-branch)
 }
 alias gcp="git-checkout-from-peco"
 
 function git-push-from-peco {
-  git push origin $(git branch | peco --select-1 --query "$RBUFFER")
+  git push origin $(git-select-branch)
 }
 alias gpsp="git-push-from-peco"
 
 function git-pull-from-peco {
-  git pull origin $(git branch | peco --select-1 --query "$RBUFFER")
+  git pull origin $(git-select-branch)
 }
 alias gplp="git-pull-from-peco"
