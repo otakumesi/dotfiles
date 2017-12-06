@@ -6,6 +6,7 @@ export CARGO_HOME=$HOME/.cargo
 eval "$(rbenv init -)"
 eval "$(direnv hook zsh)"
 export ZSH=$HOME/.oh-my-zsh
+plugins=(git ssh-agent ruby gem zsh-syntax-highlighting)
 
 ZSH_THEME="agnoster"
 
@@ -25,12 +26,15 @@ export EDITOR='nvim'
 
 alias zshconfig="nvim ~/.zshrc"
 
-source ~/.alias
-source ~/.define
+source ~/.aliases
+source ~/.functions
 
 if [ $SHLVL = 1 ]; then
   tmux
 fi
+
+autoload colors
+colors
 
 setopt no_beep
 setopt no_nomatch
@@ -42,4 +46,11 @@ setopt auto_pushd
 setopt auto_list
 setopt auto_menu
 setopt mark_dirs
+setopt auto_param_keys
+setopt always_last_prompt
+setopt extended_glob
+setopt globdots
+setopt complete_in_word
 
+source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+eval `gdircolors dircolors/dircolors.256dark`
