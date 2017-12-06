@@ -38,6 +38,7 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('jiangmiao/auto-pairs')
   call dein#add('slim-template/vim-slim')
   call dein#add('tpope/vim-fugitive')
+  call dein#add('scrooloose/nerdtree')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
@@ -209,3 +210,5 @@ nmap # <Plug>(anzu-sharp-with-echo)
 nmap <C-g><C-g> <Plug>(anzu-clear-search-status)
 set statusline=%{anzu#search_status()}
 
+" NERDTree:
+nnoremap <C-x><C-w> :NERDTreeToggle<Enter>
