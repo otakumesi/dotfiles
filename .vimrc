@@ -69,6 +69,7 @@ set spell
 set fenc=utf-8
 set noswapfile
 set autoread
+set autowrite
 set hidden
 set showcmd
 set cursorline
@@ -87,9 +88,9 @@ set list
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 
 " molokai
-colorscheme molokai
 let g:molokai_original = 1
 let g:rehash256 = 1
+colorscheme molokai
 
 " statusline
 set statusline=%F
@@ -177,9 +178,23 @@ if $GOPATH != ''
   let g:syntastic_go_checkers = ['go', 'golint', 'govet']
 endif
 
+let g:go_highlight_types = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_build_constraints = 1
+let g:go_auto_sameids = 1
+let g:go_fmt_command = 'goimports'
+let g:go_addtags_transform = 'snakecase'
+let g:go_snippet_engine = 'neosnippet'
+let g:go_list_type = 'quickfix'
+
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+
 augroup Go
   autocmd!
-  autocmd BufWritePre *.go GoFmt
+  autocmd BufWritePre *.go GoImports
 augroup END
 
 " Ruby:
@@ -212,3 +227,15 @@ set statusline=%{anzu#search_status()}
 
 " NERDTree:
 nnoremap <C-x><C-w> :NERDTreeToggle<Enter>
+
+" NeoSnippet:
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
+
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
