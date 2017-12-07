@@ -1,1 +1,0 @@
-/Users/otakumesi/dotfiles/.vimrc
