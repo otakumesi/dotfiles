@@ -37,3 +37,7 @@ function git-pull-from-peco {
   git pull origin $(git-select-branch)
 }
 alias gplp="git-pull-from-peco"
+
+function ssh-select-host {
+  ssh $(cat ~/.ssh/config | grep '^Host\s' | sed 's/Host//' | peco --select-1 --query "$RBUFFER" )
+}
