@@ -88,6 +88,7 @@ set matchtime=1
 
 set list
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+autocmd InsertLeave * set nopaste
 
 " molokai
 let g:molokai_original = 1
