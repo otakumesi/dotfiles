@@ -41,6 +41,8 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('tpope/vim-fugitive')
   call dein#add('scrooloose/nerdtree')
   call dein#add('zchee/deoplete-go', {'build': 'make'})
+  call dein#add('twitvim/twitvim')
+  call dein#add('rhysd/vim-goyacc')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
