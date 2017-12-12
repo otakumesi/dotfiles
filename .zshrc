@@ -3,6 +3,8 @@ export GOPATH=$HOME/goprojects
 export PATH=$GOPATH/bin:$HOME/.rbenv/shims:$HOME/.rbenv/bin:$GOPATH/bin:$HOME/.meteor:$HOME/.cargo/bin:$PATH
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 export CARGO_HOME=$HOME/.cargo
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+export PATH=${JAVA_HOME}/bin:$PATH
 
 eval "$(rbenv init -)"
 eval "$(direnv hook zsh)"
