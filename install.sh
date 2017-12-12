@@ -6,6 +6,9 @@ do
     [[ "$f" == ".gitconfig" ]] && continue
     [[ "$f" == ".gitmodules" ]] && continue
     [[ "$f" == ".DS_Store" ]] && continue
+    [[ "$f" == "README.md" ]] && continue
+    [[ "$f" =~ "^init.d" ]] && continue
+    [[ "$f" == "init.sh" ]] && continue
 
     ln -sf "$HOME/dotfiles/$f" "$HOME/$f"
 done
