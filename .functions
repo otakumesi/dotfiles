@@ -23,20 +23,20 @@ function git-select-branch {
   git branch | peco --select-1 --query "$RBUFFER" | sed 's/\*//'
 }
 
-function git-checkout-from-peco {
+function git-checkout-list {
   git checkout $(git-select-branch)
 }
-alias gcp="git-checkout-from-peco"
+alias gcl="git-checkout-list"
 
-function git-push-from-peco {
+function git-push-list {
   git push origin $(git-select-branch)
 }
-alias gpsp="git-push-from-peco"
+alias gpsl="git-push-list"
 
-function git-pull-from-peco {
+function git-pull-list {
   git pull origin $(git-select-branch)
 }
-alias gplp="git-pull-from-peco"
+alias gpll="git-pull-list"
 
 function ssh-select-host {
   ssh $(cat ~/.ssh/config | grep '^Host\s' | sed 's/Host//' | peco --select-1 --query "$RBUFFER" )
