@@ -51,5 +51,5 @@ function docker-container-select {
 }
 
 function start-project {
-  cp -R "$(find $HOME/.project.template -type d | peco)" $1
+  cp -R "$HOME/.project.template/$(ls $HOME/.project.template | peco)" $1
 }
