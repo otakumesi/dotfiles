@@ -2,12 +2,12 @@
 
 for f in .??*
 do
-    [[ "$f" =~ "^\.git" ]] && continue
     [[ "$f" == ".DS_Store" ]] && continue
     [[ "$f" == "README.md" ]] && continue
+    [[ "$f" =~ "^\.git" ]] && continue
     [[ "$f" =~ "^init\." ]] && continue
 
-    ln -sf "$HOME/dotfiles/$f" "$HOME/$f"
+    ln -snf "$HOME/dotfiles/$f" "$HOME/$f"
 done
-ln -sf "$HOME/.vim" "$HOME/.config/nvim"
-ln -sf "$HOME/dotfiles/.vimrc" "$HOME/.config/nvim/init.vim"
+ln -snf "$HOME/.vim" "$HOME/.config/nvim"
+ln -snf "$HOME/dotfiles/.vimrc" "$HOME/.config/nvim/init.vim"
