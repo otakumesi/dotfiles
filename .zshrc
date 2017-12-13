@@ -1,4 +1,4 @@
-source .profile
+source $HOME/.profile
 
 export ZSH=$HOME/.oh-my-zsh
 
