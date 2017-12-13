@@ -40,11 +40,12 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('thinca/vim-ref')
   call dein#add('jiangmiao/auto-pairs')
   call dein#add('tpope/vim-fugitive')
-  call dein#add('scrooloose/nerdtree')
+  " call dein#add('scrooloose/nerdtree')
   call dein#add('zchee/deoplete-go', {'build': 'make'})
   call dein#add('twitvim/twitvim')
   call dein#add('fatih/vim-go')
   call dein#add('rhysd/vim-goyacc')
+  call dein#add('cocopon/vaffle.vim')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
@@ -233,7 +234,10 @@ nmap <C-g><C-g> <Plug>(anzu-clear-search-status)
 set statusline=%{anzu#search_status()}
 
 " NERDTree:
-nnoremap <C-x><C-w> :NERDTreeToggle<Enter>
+" nnoremap <C-x><C-w> :NERDTreeToggle<Enter>
+
+" Vaffle
+nnoremap <C-x><C-w> :Vaffle<Enter>
 
 " NeoSnippet:
 imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
