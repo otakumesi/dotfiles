@@ -46,6 +46,7 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('fatih/vim-go')
   call dein#add('rhysd/vim-goyacc')
   call dein#add('cocopon/vaffle.vim')
+  call dein#add('ekalinin/Dockerfile.vim')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })

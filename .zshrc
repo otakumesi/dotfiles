@@ -1,14 +1,7 @@
-export GOROOT_BOOTSTRAP=$HOME/go1.4/bin
-export GOPATH=$HOME/goprojects
-export PATH=$GOPATH/bin:$HOME/.rbenv/shims:$HOME/.rbenv/bin:$GOPATH/bin:$HOME/.meteor:$HOME/.cargo/bin:$PATH
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-export CARGO_HOME=$HOME/.cargo
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
-export PATH=${JAVA_HOME}/bin:$PATH
+source $HOME/.profile
 
-eval "$(rbenv init -)"
-eval "$(direnv hook zsh)"
 export ZSH=$HOME/.oh-my-zsh
+
 plugins=(git ssh-agent ruby gem zsh-syntax-highlighting)
 
 ZSH_THEME="agnoster"
@@ -19,22 +12,11 @@ DISABLE_AUTO_UPDATE="true"
 
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="mm/dd/yyyy"
-XDG_CONFIG_HOME=$HOME
 
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
-export MANPATH="/usr/local/man:$MANPATH"
-export LANG=en_US.UTF-8
-export EDITOR='nvim'
 
 alias zshconfig="nvim ~/.zshrc"
-
-source ~/.aliases
-source ~/.functions
-
-if [ $SHLVL = 1 ]; then
-  tmux
-fi
 
 autoload colors
 colors
