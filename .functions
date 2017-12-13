@@ -49,3 +49,7 @@ function docker-image-select {
 function docker-container-select {
   docker ps --format "{{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Command}}\t{{.RunningFor}}" | peco | cut -f 1
 }
+
+function start-project {
+  cp -R "$(find $HOME/project.template -type d | peco)" $1
+}
