@@ -47,6 +47,8 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('rhysd/vim-goyacc')
   call dein#add('cocopon/vaffle.vim')
   call dein#add('ekalinin/Dockerfile.vim')
+  call dein#add('hashivim/vim-terraform')
+  call dein#add('juliosueiras/vim-terraform-completion')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
@@ -209,16 +211,25 @@ augroup END
 " Ruby:
 " TODO
 let g:syntastic_php_checkers = ['ruby', 'rubocop']
+autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 
 " PHP:
 " TODO
 let g:syntastic_php_checkers = ['php']
+autocmd Filetype php setlocal ts=4 sw=4 expandtab
 
 " Python:
 " TODO
 
 " JavaScript:
 let g:syntastic_javascript_checkers = ['eslint']
+autocmd Filetype javascript setlocal ts=2 sw=2 expandtab
+
+" Terraform:
+let g:terraform_align=1
+let g:terraform_fold_sections=1
+let g:terraform_remap_spacebar=1
+autocmd Filetype terraform setlocal ts=4 sw=4 expandtab
 
 " Nyancat:
 set laststatus=2
