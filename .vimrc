@@ -201,7 +201,7 @@ let g:go_addtags_transform = 'snakecase'
 let g:go_snippet_engine = 'neosnippet'
 let g:go_list_type = 'quickfix'
 
-autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+autocmd BufNewFile,BufRead *.go setlocal tabstop=4 shiftwidth=4 noexpandtab 
 
 augroup Go
   autocmd!
@@ -230,6 +230,9 @@ let g:terraform_align=1
 let g:terraform_fold_sections=1
 let g:terraform_remap_spacebar=1
 autocmd Filetype terraform setlocal ts=4 sw=4 expandtab
+
+" Makefile:
+autocmd BufNewFile,BufRead Makefile setlocal tabstop=4 shiftwidth=4 noexpandtab 
 
 " Nyancat:
 set laststatus=2
