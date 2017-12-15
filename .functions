@@ -26,7 +26,7 @@ function git-select-branch {
 function git-checkout-list {
   git checkout $(git-select-branch)
 }
-alias gcl="git-checkout-list"
+alias gcbl="git-checkout-list"
 
 function git-push-list {
   git push origin $(git-select-branch)
