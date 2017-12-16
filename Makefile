@@ -9,6 +9,6 @@ install:
 init:
 	./init.sh
 
-.PHONY: clean
-clean: installer.sh
+.PHONY: distclean
+distclean: installer.sh
 	rm installer.sh
