@@ -49,6 +49,7 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('ekalinin/Dockerfile.vim')
   call dein#add('hashivim/vim-terraform')
   call dein#add('juliosueiras/vim-terraform-completion')
+  call dein#add('cespare/vim-toml')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
