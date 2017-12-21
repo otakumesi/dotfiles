@@ -101,9 +101,11 @@ set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 autocmd InsertLeave * set nopaste
 
 " molokai
-let g:molokai_original = 1
-let g:rehash256 = 1
+" let g:molokai_original = 1
+" let g:rehash256 = 1
+" colorscheme christmas
 colorscheme molokai
+" colorscheme Christmas
 
 " statusline
 set statusline=%F
