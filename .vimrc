@@ -260,7 +260,7 @@ set statusline=%{anzu#search_status()}
 " nnoremap <C-x><C-w> :NERDTreeToggle<Enter>
 
 " Vaffle
-nnoremap <C-x><C-w> :Vaffle<Enter>
+nnoremap <C-x><C-w> :Vaffle %:h<Enter>
 
 " NeoSnippet:
 imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
