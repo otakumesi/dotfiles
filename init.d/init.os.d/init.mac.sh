@@ -2,3 +2,4 @@
 
 brew install rbenv
 brew install tfenv
+brew cask install amethyst

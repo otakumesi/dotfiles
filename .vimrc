@@ -141,8 +141,8 @@ noremap <C-x><C-y> <ESC>:Denite neoyank<Enter>
 
 " remap split window
 noremap <C-x>0 <ESC>:close<Enter>
-noremap <C-x>2 <ESC>:split<Enter>
-noremap <C-x>3 <ESC>:vsplit<Enter>
+noremap <C-x>- <ESC>:split<Enter>
+noremap <C-x><Bar> <ESC>:vsplit<Enter>
 
 set expandtab
 set shiftwidth=2
@@ -184,6 +184,9 @@ if executable('rg')
   call denite#custom#map('insert', '<C-x>3', '<denite:do_action:split>', 'noremap')
   call denite#custom#map('insert', '<C-x>2', '<denite:do_action:vsplit>', 'noremap')
 endif
+
+" Shell:
+" autocmd BufNewFile,BufRead .aliases,.functions,.profile SetFileTypeSH("bash")
 
 " Golang:
 if $GOPATH != ''

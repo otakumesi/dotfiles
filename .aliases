@@ -19,3 +19,10 @@ alias grH="git reset HEAD"
 alias gchk="git checkout"
 alias gl="git log"
 alias glp="git log | peco"
+
+
+case "$(uname)" in
+  'Darwin' )
+    alias marp="open -a /Applications/Marp.app/";;
+esac
+
