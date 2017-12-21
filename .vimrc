@@ -103,9 +103,10 @@ autocmd InsertLeave * set nopaste
 " molokai
 " let g:molokai_original = 1
 " let g:rehash256 = 1
-" colorscheme christmas
-colorscheme molokai
-" colorscheme Christmas
+" colorscheme molokai
+let g:solarized_termcolors=256
+set background=light
+colorscheme solarized
 
 " statusline
 set statusline=%F
