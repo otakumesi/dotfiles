@@ -120,6 +120,7 @@ set statusline+=%{fugitive#statusline()}
 nnoremap j gj
 nnoremap k gk
 nnoremap <C-s> <ESC>:%s/
+vnoremap <C-s> <ESC>:'<,'>s/
 
 " replace ESC
 noremap <C-g> <ESC>
