@@ -280,6 +280,7 @@ if executable('swim')
 
   function! s:insertLeave()
       call system('swim use ' . s:AsciiIM)
+      call system('swim list --current')
   endfunction
 
   augroup ime
