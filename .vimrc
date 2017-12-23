@@ -41,10 +41,10 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('jiangmiao/auto-pairs')
   call dein#add('tpope/vim-fugitive')
   " call dein#add('scrooloose/nerdtree')
-  call dein#add('zchee/deoplete-go', {'build': 'make'})
   call dein#add('twitvim/twitvim')
   call dein#add('fatih/vim-go')
   call dein#add('rhysd/vim-goyacc')
+  call dein#add('zchee/deoplete-go', {'build': 'make'})
   call dein#add('jodosha/vim-godebug')
   call dein#add('cocopon/vaffle.vim')
   call dein#add('ekalinin/Dockerfile.vim')
@@ -259,7 +259,7 @@ set statusline=%{anzu#search_status()}
 " NERDTree:
 " nnoremap <C-x><C-w> :NERDTreeToggle<Enter>
 
-" Vaffle
+" Vaffle:
 nnoremap <C-x><C-w> :Vaffle %:h<Enter>
 
 " NeoSnippet:
@@ -272,4 +272,18 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 
 if has('conceal')
   set conceallevel=2 concealcursor=i
+endif
+
+" IME:
+if executable('swim')
+  let s:AsciiIM = 'com.apple.keyboardlayout.all'
+
+  function! s:insertLeave()
+      call system('swim use ' . s:AsciiIM)
+  endfunction
+
+  augroup ime
+    autocmd!
+    autocmd InsertLeave * call s:insertLeave()
+  augroup END
 endif
