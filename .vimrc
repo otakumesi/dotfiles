@@ -59,6 +59,7 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('tpope/vim-surround')
   call dein#add('Shougo/deoplete-rct')
   call dein#add('tpope/vim-endwise')
+  call dein#add('rhysd/accelerated-jk')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
@@ -310,3 +311,7 @@ let g:echodoc#enable_at_startup = 1
 let g:user_emmet_leader_key = '<C-c>'
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,js,scss,slim,jade EmmetInstall
+
+" accelerated-jk
+nmap j <Plug>(accelerated_jk_gj)
+nmap k <Plug>(accelerated_jk_gk)
