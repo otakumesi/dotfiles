@@ -4,7 +4,7 @@ for f in .??*
 do
   [[ "$f" == ".DS_Store" ]] && continue
   [[ "$f" == "README.md" ]] && continue
-  [[ "$f" =~ "^\.git" ]] && continue
+  [[ "$f" == ".git"* ]] && continue
   [[ "$f" =~ "^init\." ]] && continue
 
   ln -snf "$HOME/dotfiles/$f" "$HOME"

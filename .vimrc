@@ -263,12 +263,9 @@ set statusline=%{anzu#search_status()}
 nnoremap <C-x><C-w> :Vaffle %:h<Enter>
 
 " NeoSnippet:
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
+imap <C-a> <Plug>(neosnippet_expand_or_jump)
+smap <C-a> <Plug>(neosnippet_expand_or_jump)
+xmap <C-a> <Plug>(neosnippet_expand_or_jump)
 
 if has('conceal')
   set conceallevel=2 concealcursor=i

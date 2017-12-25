@@ -19,6 +19,11 @@ function find-vim {
 }
 alias fv="find-vim"
 
+function grep-vim {
+  vim "$(rg $1 | grep -e "!^\w:" | peco --select-1)"
+}
+alias fv="find-vim"
+
 function git-select-branch {
   git branch | peco --select-1 --query "$RBUFFER" | sed 's/\*//'
 }
