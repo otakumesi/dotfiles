@@ -106,6 +106,7 @@ set matchtime=1
 set matchpairs& matchpairs+=<:>
 set showmatch
 set ambiwidth=double
+set autochdir
 
 set list
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
@@ -276,7 +277,7 @@ set statusline=%{anzu#search_status()}
 " nnoremap <C-x><C-w> :NERDTreeToggle<Enter>
 
 " Vaffle:
-nnoremap <C-x><C-w> :Vaffle %:h<Enter>
+nnoremap <C-x><C-w> :Vaffle <Enter>
 
 " NeoSnippet:
 imap <C-a> <Plug>(neosnippet_expand_or_jump)
