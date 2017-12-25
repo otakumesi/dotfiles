@@ -105,6 +105,7 @@ set nostartofline
 set matchtime=1
 set matchpairs& matchpairs+=<:>
 set showmatch
+set ambiwidth=double
 
 set list
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
@@ -179,6 +180,7 @@ autocmd CursorHoldI *  wall
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
+set completeopt+=noinsert
 
 " Syntastic:
 execute pathogen#infect()
