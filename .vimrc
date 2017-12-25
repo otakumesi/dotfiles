@@ -41,16 +41,22 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('jiangmiao/auto-pairs')
   call dein#add('tpope/vim-fugitive')
   " call dein#add('scrooloose/nerdtree')
-  call dein#add('zchee/deoplete-go', {'build': 'make'})
   call dein#add('twitvim/twitvim')
   call dein#add('fatih/vim-go')
   call dein#add('rhysd/vim-goyacc')
+  call dein#add('zchee/deoplete-go', {'build': 'make'})
   call dein#add('jodosha/vim-godebug')
   call dein#add('cocopon/vaffle.vim')
   call dein#add('ekalinin/Dockerfile.vim')
   call dein#add('hashivim/vim-terraform')
   call dein#add('juliosueiras/vim-terraform-completion')
   call dein#add('cespare/vim-toml')
+  call dein#add('Shougo/echodoc.vim')
+  call dein#add('pangloss/vim-javascript')
+  call dein#add('mxw/vim-jsx')
+  call dein#add('posva/vim-vue')
+  call dein#add('mattn/emmet-vim')
+  call dein#add('tpope/vim-surround')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
@@ -120,6 +126,7 @@ set statusline+=%{fugitive#statusline()}
 nnoremap j gj
 nnoremap k gk
 nnoremap <C-s> <ESC>:%s/
+vnoremap <C-s> <ESC>:'<,'>s/
 
 " replace ESC
 noremap <C-g> <ESC>
@@ -144,12 +151,16 @@ noremap <C-x><C-y> <ESC>:Denite neoyank<Enter>
 
 " remap split window
 noremap <C-x>0 <ESC>:close<Enter>
-noremap <C-x>- <ESC>:split<Enter>
-noremap <C-x><Bar> <ESC>:vsplit<Enter>
+noremap <C-w>x <ESC>:close<Enter>
+noremap <C-w>- <ESC>:split<Enter>
+noremap <C-w><Bar> <ESC>:vsplit<Enter>
 
 set expandtab
 set shiftwidth=2
 set tabstop=2
+
+" for echomode
+set noshowmode
 
 set ignorecase
 set smartcase
@@ -217,12 +228,10 @@ augroup Go
 augroup END
 
 " Ruby:
-" TODO
 let g:syntastic_php_checkers = ['ruby', 'rubocop']
 autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 
 " PHP:
-" TODO
 let g:syntastic_php_checkers = ['php']
 autocmd Filetype php setlocal ts=4 sw=4 expandtab
 
@@ -232,6 +241,7 @@ autocmd Filetype php setlocal ts=4 sw=4 expandtab
 " JavaScript:
 let g:syntastic_javascript_checkers = ['eslint']
 autocmd Filetype javascript setlocal ts=2 sw=2 expandtab
+let g:jsx_ext_required = 0
 
 " Terraform:
 let g:terraform_align=1
@@ -259,7 +269,7 @@ set statusline=%{anzu#search_status()}
 " NERDTree:
 " nnoremap <C-x><C-w> :NERDTreeToggle<Enter>
 
-" Vaffle
+" Vaffle:
 nnoremap <C-x><C-w> :Vaffle %:h<Enter>
 
 " NeoSnippet:
@@ -270,3 +280,26 @@ xmap <C-a> <Plug>(neosnippet_expand_or_jump)
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
+
+" IME:
+if executable('swim')
+  let s:AsciiIM = 'com.apple.keyboardlayout.all'
+
+  function! s:insertLeave()
+      call system('swim use ' . s:AsciiIM)
+      call system('swim list --current')
+  endfunction
+
+  augroup ime
+    autocmd!
+    autocmd InsertLeave * call s:insertLeave()
+  augroup END
+endif
+
+" EchoDoc
+let g:echodoc#enable_at_startup = 1
+
+"emmet
+let g:user_emmet_leader_key = '<C-c>'
+let g:user_emmet_install_global = 0
+autocmd FileType html,css,js,scss,slim,jade EmmetInstall
