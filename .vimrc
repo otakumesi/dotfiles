@@ -57,6 +57,8 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('posva/vim-vue')
   call dein#add('mattn/emmet-vim')
   call dein#add('tpope/vim-surround')
+  call dein#add('Shougo/deoplete-rct')
+  call dein#add('tpope/vim-endwise')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
