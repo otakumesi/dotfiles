@@ -104,10 +104,10 @@ set wildmode=list:longest
 set clipboard+=unnamedplus
 set nostartofline
 set matchtime=1
-set matchpairs& matchpairs+=<:>
 set showmatch
 set ambiwidth=double
 set autochdir
+set matchpairs+=<:>
 
 set list
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
