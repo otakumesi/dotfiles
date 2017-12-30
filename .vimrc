@@ -208,7 +208,7 @@ if executable('rg')
 endif
 
 " Shell:
-" autocmd BufNewFile,BufRead .aliases,.functions,.profile SetFileTypeSH("bash")
+autocmd BufNewFile,BufRead .aliases,.functions,.profile setlocal syntax=sh
 
 " Golang:
 if $GOPATH != ''
@@ -248,6 +248,7 @@ autocmd Filetype php setlocal ts=4 sw=4 expandtab
 
 " JavaScript:
 let g:syntastic_javascript_checkers = ['eslint']
+autocmd Filetype .eslintrc,.babelrc setfiletype javascript
 autocmd Filetype javascript setlocal ts=2 sw=2 expandtab
 let g:jsx_ext_required = 0
 
