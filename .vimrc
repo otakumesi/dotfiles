@@ -62,6 +62,7 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('rhysd/accelerated-jk')
   call dein#add('plasticboy/vim-markdown')
   call dein#add('godlygeek/tabular')
+  call dein#add('junegunn/vader.vim')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
