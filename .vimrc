@@ -60,6 +60,8 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('Shougo/deoplete-rct')
   call dein#add('tpope/vim-endwise')
   call dein#add('rhysd/accelerated-jk')
+  call dein#add('plasticboy/vim-markdown')
+  call dein#add('godlygeek/tabular')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
@@ -261,6 +263,9 @@ autocmd Filetype terraform setlocal ts=4 sw=4 expandtab
 " Makefile:
 autocmd BufNewFile,BufRead Makefile setlocal tabstop=4 shiftwidth=4 noexpandtab 
 
+" Markdown:
+let g:vim_markdown_folding_disabled = 1
+
 " Nyancat:
 set laststatus=2
 set statusline+=%{g:NyanModoki()}
@@ -311,7 +316,7 @@ let g:echodoc#enable_at_startup = 1
 "emmet
 let g:user_emmet_leader_key = '<C-c>'
 let g:user_emmet_install_global = 0
-autocmd FileType html,css,js,scss,slim,jade EmmetInstall
+autocmd FileType html,css,javascript,scss,slim,jade,vue EmmetInstall
 
 " accelerated-jk
 nmap j <Plug>(accelerated_jk_gj)
