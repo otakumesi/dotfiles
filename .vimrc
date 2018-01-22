@@ -60,6 +60,8 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('Shougo/deoplete-rct')
   call dein#add('tpope/vim-endwise')
   call dein#add('rhysd/accelerated-jk')
+  call dein#add('vim-airline/vim-airline')
+  call dein#add('vim-airline/vim-airline-themes')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })

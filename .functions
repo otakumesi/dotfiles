@@ -58,3 +58,12 @@ function docker-container-select {
 function start-project {
   cp -R "$HOME/.project.template/$(ls $HOME/.project.template | peco)" $1
 }
+
+function peco-select-tmux-session()
+{
+  local res
+  res=$(tmux list-sessions | peco | awk -F':' '{print $1}')
+  if [ -n "$res" ]; then
+    _cool-peco-insert-command-line "tmux attach -t $res"
+  fi
+}

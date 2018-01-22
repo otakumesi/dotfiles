@@ -17,10 +17,14 @@ eval "$(rbenv init -)"
 eval "$(direnv hook zsh)"
 
 if [ $SHLVL = 1 ]; then
-  tmux
+  tmux new-session -s $(basename $(pwd))
 fi
 
 source $HOME/.aliases
 source $HOME/.functions
+source $HOME/sandbox/gcp/google-cloud-sdk/completion.zsh.inc
+source $HOME/sandbox/gcp/google-cloud-sdk/path.zsh.inc
+
+alias kc=kubectl
 
 [[ -s "/Users/200448/.gvm/scripts/gvm" ]] && source "/Users/200448/.gvm/scripts/gvm"
