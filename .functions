@@ -1,13 +1,9 @@
-bindkey '^]' peco-src
-function peco-src() {
-  local src=$(ghq list --full-path | peco --query "$LBUFFER")
+function cdghq() {
+  local src="$(ghq root)/$(ghq list | peco --query "$lbuffer")"
   if [ -n "$src" ]; then
-      BUFFER="cd $src"
-      zle accept-line
+      cd $src
   fi
-  zle -R -c
 }
-zle -N peco-src
 
 function find-cd() {
   cd "$(find . -type d | peco)"
