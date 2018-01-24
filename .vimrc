@@ -35,6 +35,7 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('tpope/vim-dispatch')
   call dein#add('tpope/vim-endwise')
   call dein#add('tpope/vim-rails')
+  call dein#add('5t111111/denite-rails')
   call dein#add('slim-template/vim-slim')
   call dein#add('thoughtbot/vim-rspec')
   call dein#add('thinca/vim-ref')
@@ -243,7 +244,10 @@ augroup END
 
 " Ruby:
 let g:syntastic_php_checkers = ['ruby', 'rubocop']
-autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
+augroup ruby
+  autocmd!
+  autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
+augroup END
 
 " PHP:
 let g:syntastic_php_checkers = ['php']
@@ -283,9 +287,6 @@ nmap * <Plug>(anzu-star-with-echo)
 nmap # <Plug>(anzu-sharp-with-echo)
 nmap <C-g><C-g> <Plug>(anzu-clear-search-status)
 set statusline=%{anzu#search_status()}
-
-" NERDTree:
-" nnoremap <C-x><C-w> :NERDTreeToggle<Enter>
 
 " Vaffle:
 nnoremap <C-x><C-w> :Vaffle <Enter>
