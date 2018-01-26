@@ -39,6 +39,7 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('slim-template/vim-slim')
   call dein#add('thoughtbot/vim-rspec')
   call dein#add('thinca/vim-ref')
+  call dein#add('terryma/vim-multiple-cursors')
   call dein#add('jiangmiao/auto-pairs')
   call dein#add('tpope/vim-fugitive')
   " call dein#add('scrooloose/nerdtree')
@@ -117,7 +118,7 @@ set matchpairs+=<:>
 
 set list
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
-autocmd InsertLeave * set nopaste
+au InsertLeave * set nopaste
 
 " molokai
 " let g:molokai_original = 1
@@ -183,8 +184,8 @@ set hlsearch
 noremap <ESC><ESC> :nohlsearch<cr><ESC>
 
 set autowrite
-autocmd CursorHold *  wall
-autocmd CursorHoldI *  wall
+au CursorHold *  wall
+au CursorHoldI *  wall
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
@@ -214,7 +215,7 @@ if executable('rg')
 endif
 
 " Shell:
-autocmd BufNewFile,BufRead .aliases,.functions,.profile setlocal syntax=sh
+au BufNewFile,BufRead .aliases,.functions,.profile setlocal syntax=sh
 
 " Golang:
 if $GOPATH != ''
@@ -234,41 +235,47 @@ let g:go_addtags_transform = 'snakecase'
 let g:go_snippet_engine = 'neosnippet'
 let g:go_list_type = 'quickfix'
 
-autocmd BufNewFile,BufRead *.go setlocal tabstop=4 shiftwidth=4 noexpandtab 
+au BufNewFile,BufRead *.go setlocal tabstop=4 shiftwidth=4 noexpandtab 
 
 augroup Go
   autocmd!
-  autocmd BufWritePre *.go GoImports
+  au BufWritePre *.go GoImports
 augroup END
 
 " Ruby:
 let g:syntastic_php_checkers = ['ruby', 'rubocop']
 augroup ruby
   autocmd!
-  autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
+  au Filetype ruby setlocal ts=2 sw=2 expandtab
 augroup END
 
 " PHP:
 let g:syntastic_php_checkers = ['php']
-autocmd Filetype php setlocal ts=4 sw=4 expandtab
+au Filetype php setlocal ts=4 sw=4 expandtab
 
 " Python:
 " TODO
 
 " JavaScript:
 let g:syntastic_javascript_checkers = ['eslint']
-autocmd BufNewFile,BufRead .eslintrc,.babelrc setfiletype javascript
-autocmd Filetype javascript setlocal ts=2 sw=2 expandtab
+au BufNewFile,BufRead .eslintrc,.babelrc setfiletype javascript
+au Filetype javascript setlocal ts=2 sw=2 expandtab
 let g:jsx_ext_required = 0
 
 " Terraform:
 let g:terraform_align=1
 let g:terraform_fold_sections=1
 let g:terraform_remap_spacebar=1
-autocmd Filetype terraform setlocal ts=4 sw=4 expandtab
+au Filetype terraform setlocal ts=4 sw=4 expandtab
+
+" Apache:
+augroup Apache
+  autocmd!
+  au BufRead,BufNewFile /etc/httpd/conf/*,/etc/httpd/conf.d/* set filetype=apache
+augroup END
 
 " Makefile:
-autocmd BufNewFile,BufRead Makefile setlocal tabstop=4 shiftwidth=4 noexpandtab 
+au BufNewFile,BufRead Makefile setlocal tabstop=4 shiftwidth=4 noexpandtab 
 
 " Markdown:
 let g:vim_markdown_folding_disabled = 1
@@ -310,7 +317,7 @@ if executable('swim')
 
   augroup ime
     autocmd!
-    autocmd InsertLeave * call s:insertLeave()
+    au InsertLeave * call s:insertLeave()
   augroup END
 endif
 
@@ -320,7 +327,7 @@ let g:echodoc#enable_at_startup = 1
 "emmet
 let g:user_emmet_leader_key = '<C-c>'
 let g:user_emmet_install_global = 0
-autocmd FileType html,css,javascript,scss,slim,jade,vue EmmetInstall
+au FileType html,css,javascript,scss,slim,jade,vue EmmetInstall
 
 " accelerated-jk
 nmap j <Plug>(accelerated_jk_gj)
