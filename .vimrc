@@ -67,6 +67,7 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('plasticboy/vim-markdown')
   call dein#add('godlygeek/tabular')
   call dein#add('junegunn/vader.vim')
+  call dein#add('thinca/vim-quickrun')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
@@ -121,12 +122,12 @@ set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 au InsertLeave * set nopaste
 
 " molokai
-" let g:molokai_original = 1
-" let g:rehash256 = 1
-" colorscheme molokai
-let g:solarized_termcolors=256
-set background=light
-colorscheme solarized
+let g:molokai_original = 1
+let g:rehash256 = 1
+colorscheme molokai
+" let g:solarized_termcolors=256
+" set background=light
+" colorscheme solarized
 
 " statusline
 set statusline=%F
