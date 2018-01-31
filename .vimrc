@@ -31,8 +31,8 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('vim-syntastic/syntastic')
   call dein#add('koron/nyancat-vim')
   call dein#add('nefo-mi/nyan-modoki.vim')
-  call dein#add('tpope/vim-bundler')
   call dein#add('tpope/vim-dispatch')
+  call dein#add('tpope/vim-bundler')
   call dein#add('tpope/vim-endwise')
   call dein#add('tpope/vim-rails')
   call dein#add('5t111111/denite-rails')
@@ -60,7 +60,6 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('mattn/emmet-vim')
   call dein#add('tpope/vim-surround')
   call dein#add('Shougo/deoplete-rct')
-  call dein#add('tpope/vim-endwise')
   call dein#add('rhysd/accelerated-jk')
   call dein#add('vim-airline/vim-airline')
   call dein#add('vim-airline/vim-airline-themes')
@@ -68,6 +67,7 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('godlygeek/tabular')
   call dein#add('junegunn/vader.vim')
   call dein#add('thinca/vim-quickrun')
+  call dein#add('pearofducks/ansible-vim')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
@@ -121,13 +121,15 @@ set list
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 au InsertLeave * set nopaste
 
-" molokai
-let g:molokai_original = 1
-let g:rehash256 = 1
-colorscheme molokai
-" let g:solarized_termcolors=256
-" set background=light
-" colorscheme solarized
+" Molokai:
+" let g:molokai_original = 1
+" let g:rehash256 = 1
+" colorscheme molokai
+
+" Solarized:
+let g:solarized_termcolors=256
+set background=light
+colorscheme solarized
 
 " statusline
 set statusline=%F
@@ -188,7 +190,7 @@ set autowrite
 au CursorHold *  wall
 au CursorHoldI *  wall
 
-" deoplete
+" Deoplete:
 let g:deoplete#enable_at_startup = 1
 set completeopt+=noinsert
 
@@ -259,15 +261,21 @@ au Filetype php setlocal ts=4 sw=4 expandtab
 
 " JavaScript:
 let g:syntastic_javascript_checkers = ['eslint']
-au BufNewFile,BufRead .eslintrc,.babelrc setfiletype javascript
-au Filetype javascript setlocal ts=2 sw=2 expandtab
 let g:jsx_ext_required = 0
+augroup javascript
+  autocmd!
+  au BufNewFile,BufRead .eslintrc,.babelrc setfiletype javascript
+  au Filetype javascript setlocal ts=2 sw=2 expandtab
+augroup END
 
 " Terraform:
 let g:terraform_align=1
 let g:terraform_fold_sections=1
 let g:terraform_remap_spacebar=1
-au Filetype terraform setlocal ts=4 sw=4 expandtab
+augroup terraform
+  autocmd!
+  au Filetype terraform setlocal ts=4 sw=4 expandtab
+augroup END
 
 " Apache:
 augroup Apache
@@ -276,7 +284,13 @@ augroup Apache
 augroup END
 
 " Makefile:
-au BufNewFile,BufRead Makefile setlocal tabstop=4 shiftwidth=4 noexpandtab 
+au BufNewFile,BufRead Makefile setlocal tabstop=4 shiftwidth=4 noexpandtab
+
+" Ansible:
+augroup ansible
+  autocmd!
+  au BufRead,BufNewFile */provisioning/*.yml set filetype=ansible
+augroup END
 
 " Markdown:
 let g:vim_markdown_folding_disabled = 1
@@ -322,14 +336,14 @@ if executable('swim')
   augroup END
 endif
 
-" EchoDoc
+" EchoDoc:
 let g:echodoc#enable_at_startup = 1
 
-"emmet
+" Emmet:
 let g:user_emmet_leader_key = '<C-c>'
 let g:user_emmet_install_global = 0
 au FileType html,css,javascript,scss,slim,jade,vue EmmetInstall
 
-" accelerated-jk
+" AcceleratedJk:
 nmap j <Plug>(accelerated_jk_gj)
 nmap k <Plug>(accelerated_jk_gk)
