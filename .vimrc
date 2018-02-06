@@ -53,6 +53,7 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('hashivim/vim-terraform')
   call dein#add('juliosueiras/vim-terraform-completion')
   call dein#add('cespare/vim-toml')
+  call dein#add('aklt/plantuml-syntax')
   call dein#add('Shougo/echodoc.vim')
   call dein#add('pangloss/vim-javascript')
   call dein#add('mxw/vim-jsx')
@@ -68,6 +69,7 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('junegunn/vader.vim')
   call dein#add('thinca/vim-quickrun')
   call dein#add('pearofducks/ansible-vim')
+  call dein#add('wakatime/vim-wakatime')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
@@ -347,3 +349,6 @@ au FileType html,css,javascript,scss,slim,jade,vue EmmetInstall
 " AcceleratedJk:
 nmap j <Plug>(accelerated_jk_gj)
 nmap k <Plug>(accelerated_jk_gk)
+
+" PlantUML:
+let g:plantuml_executable_script = "plantuml -tsvg $@"
