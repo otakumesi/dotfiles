@@ -1,0 +1,25 @@
+---
+- hosts: localhost
+  - roles:
+    - common
+    - mac
+  vars:
+    homebrew_packages:
+      - { name: docker }
+      - { name: openssl, state: linked }
+      - { name: zsh }
+      - { name: git }
+      - { name: imagemagick }
+      - { name: tmux }
+      - { name: tig }
+      - { name: vim }
+      - { name: emacs }
+      - { name: neovim }
+      - { name: mysql }
+      - { name: jq }
+      - { name: direnv }
+    homebrew_cask_packages:
+      - { name: amethyst }
+      - { name: firefox }
+      - { name: google-chrome }
+      - { name: google-japanese-ime }

@@ -1,0 +1,17 @@
+---
+- name: Update Home Brew
+  homebrew:
+    update_homebrew: yes
+    upgrade_all: yes
+
+- name: Install Brew Packages
+  homebrew:
+    name: "{{ item.name }}"
+    state: "{{ item.state | default('latest') }}"
+  with_items: homebrew_packages
+
+- name: Install Brew Cask Packages
+  homebrew:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items: homebrew_cask_packages
