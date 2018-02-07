@@ -1,10 +1,21 @@
 source $HOME/.profile
+source $HOME/.zsh/vendor/antigen.zsh
 
-export ZSH=$HOME/.oh-my-zsh
+antigen use oh-my-zsh
 
-plugins=(git ssh-agent ruby gem zsh-syntax-highlighting)
+# defaultRepo
+antigen bundle git
+antigen bundle heroku
+antigen bundle pip
+antigen bundle ruby
+antigen bundle gem
+antigen bundle ssh-agent
 
-ZSH_THEME="agnoster"
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+antigen theme agnoster
+
+antigen apply
 
 CASE_SENSITIVE="true"
 HYPHEN_INSENSITIVE="true"
@@ -12,9 +23,6 @@ DISABLE_AUTO_UPDATE="true"
 
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="mm/dd/yyyy"
-
-plugins=(git)
-source $ZSH/oh-my-zsh.sh
 
 alias zshconfig="nvim ~/.zshrc"
 
@@ -37,7 +45,6 @@ setopt extended_glob
 setopt globdots
 setopt complete_in_word
 
-source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 eval `gdircolors ~/dotfiles/dircolors/dircolors.256dark`
 
 # tabtab source for serverless package
