@@ -70,6 +70,8 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('thinca/vim-quickrun')
   call dein#add('pearofducks/ansible-vim')
   call dein#add('wakatime/vim-wakatime')
+  call dein#add('kristijanhusak/vim-carbon-now-sh')
+  call dein#add('derekwyatt/vim-scala')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
@@ -339,7 +341,7 @@ if executable('swim')
 endif
 
 " EchoDoc:
-let g:echodoc#enable_at_startup = 1
+" let g:echodoc#enable_at_startup = 1
 
 " Emmet:
 let g:user_emmet_leader_key = '<C-c>'
