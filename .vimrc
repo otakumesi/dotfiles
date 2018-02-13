@@ -55,7 +55,9 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('cespare/vim-toml')
   call dein#add('aklt/plantuml-syntax')
   call dein#add('Shougo/echodoc.vim')
-  call dein#add('pangloss/vim-javascript')
+  " call dein#add('pangloss/vim-javascript')
+  call dein#add('neovim/node-host', { 'build': 'npm install' })
+  call dein#add('billyvg/tigris.nvim', { 'build': './install.sh' })
   call dein#add('mxw/vim-jsx')
   call dein#add('posva/vim-vue')
   call dein#add('mattn/emmet-vim')
@@ -263,7 +265,7 @@ au Filetype php setlocal ts=4 sw=4 expandtab
 
 " JavaScript:
 let g:syntastic_javascript_checkers = ['eslint']
-let g:jsx_ext_required = 0
+" let g:jsx_ext_required = 0
 augroup javascript
   autocmd!
   au BufNewFile,BufRead .eslintrc,.babelrc setfiletype javascript
