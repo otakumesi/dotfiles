@@ -55,7 +55,9 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('cespare/vim-toml')
   call dein#add('aklt/plantuml-syntax')
   call dein#add('Shougo/echodoc.vim')
-  call dein#add('pangloss/vim-javascript')
+  " call dein#add('pangloss/vim-javascript')
+  call dein#add('neovim/node-host', { 'build': 'npm install' })
+  call dein#add('billyvg/tigris.nvim', { 'build': './install.sh' })
   call dein#add('mxw/vim-jsx')
   call dein#add('posva/vim-vue')
   call dein#add('mattn/emmet-vim')
@@ -73,6 +75,7 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('kristijanhusak/vim-carbon-now-sh')
   call dein#add('derekwyatt/vim-scala')
   call dein#add('ensime/ensime-vim')
+  call dein#add('sbdchd/neoformat')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
@@ -238,7 +241,7 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 let g:go_auto_sameids = 1
-let g:go_fmt_command = 'goimports'
+" let g:go_fmt_command = 'goimrpots'
 let g:go_addtags_transform = 'snakecase'
 let g:go_snippet_engine = 'neosnippet'
 let g:go_list_type = 'quickfix'
@@ -252,6 +255,7 @@ augroup END
 
 " Ruby:
 let g:syntastic_php_checkers = ['ruby', 'rubocop']
+let g:neoformat_enabled_ruby = ['rubocop']
 augroup ruby
   autocmd!
   au Filetype ruby setlocal ts=2 sw=2 expandtab
@@ -266,11 +270,12 @@ let g:python3_host_prog = "/usr/local/bin/python3"
 
 " JavaScript:
 let g:syntastic_javascript_checkers = ['eslint']
-let g:jsx_ext_required = 0
+let g:neoformat_enabled_javascript = ['prettier']
 augroup javascript
   autocmd!
   au BufNewFile,BufRead .eslintrc,.babelrc setfiletype javascript
   au Filetype javascript setlocal ts=2 sw=2 expandtab
+  au BufWritePre *.js Neoformat
 augroup END
 
 " Scala:
@@ -281,24 +286,27 @@ augroup Scala
 augroup END
 
 " Terraform:
-let g:terraform_align=1
-let g:terraform_fold_sections=1
-let g:terraform_remap_spacebar=1
+let g:terraform_align = 1
+let g:terraform_fold_sections = 1
+let g:terraform_remap_spacebar = 1
 augroup terraform
   autocmd!
   au Filetype terraform setlocal ts=4 sw=4 expandtab
 augroup END
 
-" Apache:
+" MISC:
 augroup Apache
   autocmd!
   au BufRead,BufNewFile /etc/httpd/conf/*,/etc/httpd/conf.d/* set filetype=apache
 augroup END
 
-" Makefile:
+let g:neoformat_enabled_css = ['prettier']
+let g:neoformat_enabled_json = ['prettier']
+let g:neoformat_enabled_yaml = ['pyaml']
 au BufNewFile,BufRead Makefile setlocal tabstop=4 shiftwidth=4 noexpandtab
 
 " Ansible:
+let g:neoformat_enabled_ansible = ['pyaml']
 augroup ansible
   autocmd!
   au BufRead,BufNewFile */provisioning/*.yml set filetype=ansible
