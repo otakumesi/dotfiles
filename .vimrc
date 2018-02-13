@@ -72,6 +72,7 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('wakatime/vim-wakatime')
   call dein#add('kristijanhusak/vim-carbon-now-sh')
   call dein#add('derekwyatt/vim-scala')
+  call dein#add('ensime/ensime-vim')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
@@ -261,7 +262,7 @@ let g:syntastic_php_checkers = ['php']
 au Filetype php setlocal ts=4 sw=4 expandtab
 
 " Python:
-" TODO
+let g:python3_host_prog = "/usr/local/bin/python3"
 
 " JavaScript:
 let g:syntastic_javascript_checkers = ['eslint']
@@ -270,6 +271,13 @@ augroup javascript
   autocmd!
   au BufNewFile,BufRead .eslintrc,.babelrc setfiletype javascript
   au Filetype javascript setlocal ts=2 sw=2 expandtab
+augroup END
+
+" Scala:
+augroup Scala
+  autocmd!
+  autocmd BufWritePost *.scala silent :EnTypeCheck
+  nnoremap <localleader>t :EnType<CR>
 augroup END
 
 " Terraform:

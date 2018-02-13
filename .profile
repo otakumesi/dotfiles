@@ -6,7 +6,8 @@ XDG_CONFIG_HOME=$HOME
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 export CARGO_HOME=$HOME/.cargo
 export GOPATH=$HOME/goprojects
-export PATH=$GOPATH/bin:$HOME/.rbenv/shims:$HOME/.rbenv/bin:$HOME/.meteor:$CARGO_HOME/bin:$HOME/.tfenv/bin:$JAVA_HOME/bin:$PATH
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH=$GOPATH/bin:$HOME/.rbenv/shims:$PYENV_ROOT/bin:$PATH:$HOME/.rbenv/bin:$HOME/.meteor:$CARGO_HOME/bin:$HOME/.tfenv/bin:$JAVA_HOME/bin:$PATH
 export MANPATH="/usr/local/man:$MANPATH"
 
 export GOROOT_BOOTSTRAP=$HOME/go1.4/bin
@@ -14,7 +15,9 @@ export GOROOT_BOOTSTRAP=$HOME/go1.4/bin
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 eval "$(rbenv init -)"
+eval "$(pyenv init -)"
 eval "$(direnv hook zsh)"
+
 
 if [ $SHLVL = 1 ]; then
   tmux new-session -s $(basename $(pwd))
