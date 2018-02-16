@@ -16,6 +16,9 @@ export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 eval "$(rbenv init -)"
 eval "$(direnv hook zsh)"
 
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
+
 if [ $SHLVL = 1 ]; then
   tmux new-session -s $(basename $(pwd))
 fi
