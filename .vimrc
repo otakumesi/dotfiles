@@ -73,9 +73,9 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('pearofducks/ansible-vim')
   call dein#add('wakatime/vim-wakatime')
   call dein#add('kristijanhusak/vim-carbon-now-sh')
-  call dein#add('derekwyatt/vim-scala')
-  call dein#add('ensime/ensime-vim')
   call dein#add('sbdchd/neoformat')
+  call dein#add('davidhalter/jedi-vim')
+  call dein#add('nathanaelkane/vim-indent-guides')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
@@ -266,6 +266,8 @@ let g:syntastic_php_checkers = ['php']
 au Filetype php setlocal ts=4 sw=4 expandtab
 
 " Python:
+let g:syntastic_python_flake8_exec = 'python3'
+let g:syntastic_python_flake8_args = ['-m', 'flake8']
 let g:python3_host_prog = "/usr/local/bin/python3"
 
 " JavaScript:
@@ -370,3 +372,6 @@ nmap k <Plug>(accelerated_jk_gk)
 
 " PlantUML:
 let g:plantuml_executable_script = "plantuml -tsvg $@"
+
+" IndentGuide:
+let g:indent_guides_enable_on_vim_startup = 1
