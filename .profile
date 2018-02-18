@@ -18,6 +18,8 @@ eval "$(rbenv init -)"
 eval "$(pyenv init -)"
 eval "$(direnv hook zsh)"
 
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
 
 if [ $SHLVL = 1 ]; then
   tmux new-session -s $(basename $(pwd))

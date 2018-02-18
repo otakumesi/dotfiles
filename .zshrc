@@ -10,6 +10,7 @@ antigen bundle pip
 antigen bundle ruby
 antigen bundle gem
 antigen bundle ssh-agent
+antigen bundle zsh-completions
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 
