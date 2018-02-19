@@ -76,6 +76,7 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('sbdchd/neoformat')
   call dein#add('davidhalter/jedi-vim')
   call dein#add('nathanaelkane/vim-indent-guides')
+  call dein#add('ap/vim-css-color')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
