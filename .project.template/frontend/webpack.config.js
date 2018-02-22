@@ -40,7 +40,7 @@ const config = {
               loader: "css-loader"
             },
             {
-              loader: "scss-loader"
+              loader: "sass-loader"
             },
             {
               loader: "postcss-loader"
