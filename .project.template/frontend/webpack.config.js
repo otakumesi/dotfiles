@@ -50,6 +50,9 @@ const config = {
       }
     ]
   },
+  resolve: {
+    extensions: [".js", ".jsx"]
+  },
   plugins: [
     new HtmlWebpackPlugin(),
     new ExtractTextPlugin("assets/css/application.css")
