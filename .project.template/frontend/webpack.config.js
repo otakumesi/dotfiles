@@ -3,14 +3,13 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-const src = path.resolve(__dirname, "./src/");
+const src = path.resolve(__dirname);
 const dist = path.resolve(__dirname, "./dist/");
 
 const config = {
   devtool: "#source-map",
-  context: src,
   entry: {
-    app: "main.js"
+    app: path.resolve(src, "main.js")
   },
   output: {
     path: dist,
@@ -19,7 +18,7 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.jsx?/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
@@ -29,11 +28,11 @@ const config = {
         }
       },
       {
-        test: /\.html/,
+        test: /\.html$/,
         use: "html-loader"
       },
       {
-        test: /\.css/,
+        test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
           use: [
