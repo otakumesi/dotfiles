@@ -7,6 +7,8 @@ export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 export CARGO_HOME=$HOME/.cargo
 export GOPATH=$HOME/goprojects
 export PYENV_ROOT="$HOME/.pyenv"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 export PATH=$GOPATH/bin:$HOME/.rbenv/shims:$PYENV_ROOT/bin:$PATH:$HOME/.rbenv/bin:$HOME/.meteor:$CARGO_HOME/bin:$HOME/.tfenv/bin:$JAVA_HOME/bin:$PATH
 export MANPATH="/usr/local/man:$MANPATH"
 
@@ -18,8 +20,6 @@ eval "$(rbenv init -)"
 eval "$(pyenv init -)"
 eval "$(direnv hook zsh)"
 
-export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
 
 if [ $SHLVL = 1 ]; then
   tmux new-session -s $(basename $(pwd))
