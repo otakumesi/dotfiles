@@ -14,7 +14,7 @@ antigen bundle zsh-completions
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 
-antigen theme agnoster
+antigen theme halfo/lambda-mod-zsh-theme
 
 antigen apply
 
@@ -48,13 +48,9 @@ setopt complete_in_word
 
 eval `gdircolors ~/dotfiles/dircolors/dircolors.256dark`
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+if [[ -f $HOME/google-cloud-sdk ]] then
+  source $HOME/google-cloud-sdk/completion.zsh.inc
+  source $HOME/google-cloud-sdk/path.zsh.inc
+fi
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

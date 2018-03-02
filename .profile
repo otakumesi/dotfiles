@@ -32,13 +32,11 @@ alias kc=kubectl
 
 [[ -s "/Users/200448/.gvm/scripts/gvm" ]] && source "/Users/200448/.gvm/scripts/gvm"
 
-# if [[ ! -e $HOME/.ghq/gcp ]]; then
-#   mkdir $HOME/.ghq/gcp
-#   cd $HOME/.ghq/gcp
-#   wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-180.0.0-darwin-x86.tar.gz?hl=ja
-#   tar vxzf google-cloud-sdk-180.0.0-darwin-x86.tar.gz
-#   ./google-cloud-sdk/install.sh
-# fi
-# 
-# source $HOME/.ghq/gcp/google-cloud-sdk/completion.zsh.inc
-# source $HOME/.ghq/gcp/google-cloud-sdk/path.zsh.inc
+[[ -f $HOME/.acme.sh/.acme.sh.env ]] && . $HOME/.acme.sh/.acme.sh.env
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
