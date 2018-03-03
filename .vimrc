@@ -55,7 +55,6 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('cespare/vim-toml')
   call dein#add('aklt/plantuml-syntax')
   call dein#add('Shougo/echodoc.vim')
-  " call dein#add('pangloss/vim-javascript')
   call dein#add('neovim/node-host', { 'build': 'npm install' })
   call dein#add('billyvg/tigris.nvim', { 'build': './install.sh' })
   call dein#add('mxw/vim-jsx')
@@ -269,7 +268,7 @@ au Filetype php setlocal ts=4 sw=4 expandtab
 " Python:
 let g:syntastic_python_flake8_exec = 'python3'
 let g:syntastic_python_flake8_args = ['-m', 'flake8']
-let g:python3_host_prog = "/usr/local/bin/python3"
+let g:python3_host_prog = $HOME.'/.pyenv/shims/python3'
 
 " JavaScript:
 let g:syntastic_javascript_checkers = ['eslint']
