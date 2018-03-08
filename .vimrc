@@ -76,6 +76,8 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('davidhalter/jedi-vim')
   call dein#add('nathanaelkane/vim-indent-guides')
   call dein#add('ap/vim-css-color')
+  call dein#add('rizzatti/dash.vim')
+  call dein#add('vim-scripts/gtags.vim')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
@@ -169,9 +171,8 @@ noremap <C-x><C-x> <ESC>:Denite
 noremap <C-x><C-f> <ESC>:DeniteProjectDir file_rec<Enter>
 noremap <C-x><C-r> <ESC>:Denite file_old<Enter>
 noremap <C-x><C-b> <ESC>:Denite buffer<Enter>
-noremap <C-x><C-t> <ESC>:Denite tab<Enter>
-noremap <C-x><C-g> <ESC>:DeniteBufferDir grep<Enter>
-noremap <C-x><C-p> <ESC>:DeniteProjectDir grep<Enter>
+noremap <C-x><C-d><C-g> <ESC>:DeniteBufferDir grep<Enter>
+noremap <C-x><C-p><C-g> <ESC>:DeniteProjectDir grep<Enter>
 noremap <C-x><C-y> <ESC>:Denite neoyank<Enter>
 
 " remap split window
@@ -333,6 +334,8 @@ set statusline=%{anzu#search_status()}
 
 " Vaffle:
 nnoremap <C-x><C-w> :Vaffle <Enter>
+let g:vaffle_show_hidden_files = 1
+let g:vaffle_auto_cd = 1
 
 " NeoSnippet:
 imap <C-a> <Plug>(neosnippet_expand_or_jump)
@@ -375,3 +378,8 @@ let g:plantuml_executable_script = "plantuml -tsvg $@"
 
 " IndentGuide:
 let g:indent_guides_enable_on_vim_startup = 1
+
+" Gtags:
+map <C-x><C-t> :GtagsCursor<Enter>
+map <C-n> :cn<Enter>
+map <C-p> :cp<Enter>
