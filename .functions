@@ -5,36 +5,33 @@ function cdghq() {
   fi
 }
 
-function find-cd() {
-  cd "$(find . -type d | peco)"
+function fdcd() {
+  cd "$(fd . -type d | peco)"
 }
-alias fc="find-cd"
 
-function find-vim {
-  vim "$(find . | peco --select-1)"
+function fdvim() {
+  vim "$(fd . | peco --select-1)"
 }
-alias fv="find-vim"
 
-function grep-vim {
+function rgvim() {
   vim "$(rg $1 | grep -e "!^\w:" | peco --select-1)"
 }
-alias fv="find-vim"
 
-function git-select-branch {
+function git-select-branch() {
   git branch | peco --select-1 --query "$RBUFFER" | sed 's/\*//'
 }
 
-function git-checkout-list {
+function git-checkout-list() {
   git checkout $(git-select-branch)
 }
 alias gcbl="git-checkout-list"
 
-function git-push-list {
+function git-push-list() {
   git push origin $(git-select-branch)
 }
 alias gpsl="git-push-list"
 
-function git-pull-list {
+function git-pull-list() {
   git pull origin $(git-select-branch)
 }
 alias gpll="git-pull-list"
