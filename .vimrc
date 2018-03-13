@@ -15,22 +15,40 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add($HOME.'/.cache/dein/repos/github.com/Shougo/dein.vim')
 
   " Add or remove your plugins here:
+  " Common
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+  endif
+
+  " IDEnize
+  call dein#add('Shougo/deoplete.nvim')
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('Shougo/denite.nvim')
   call dein#add('Shougo/neomru.vim')
   call dein#add('Shougo/neoyank.vim')
-  call dein#add('osyo-manga/vim-anzu')
-  call dein#add('haya14busa/vim-migemo')
-  call dein#add('Shougo/deoplete.nvim')
-  if !has('nvim')
-    call dein#add('roxma/nvim-yarp')
-    call dein#add('roxma/vim-hug-neovim-rpc')
-  endif
+  call dein#add('thinca/vim-quickrun')
+  call dein#add('sbdchd/neoformat')
+  call dein#add('vim-scripts/gtags.vim')
+  call dein#add('tpope/vim-surround')
+  call dein#add('Shougo/echodoc.vim')
+  call dein#add('cocopon/vaffle.vim')
+  call dein#add('tpope/vim-fugitive')
   call dein#add('tpope/vim-pathogen')
   call dein#add('vim-syntastic/syntastic')
-  call dein#add('koron/nyancat-vim')
-  call dein#add('nefo-mi/nyan-modoki.vim')
+  call dein#add('terryma/vim-multiple-cursors')
+  call dein#add('jiangmiao/auto-pairs')
+  call dein#add('osyo-manga/vim-anzu')
+
+  " Productivity
+  call dein#add('wakatime/vim-wakatime')
+  call dein#add('rhysd/accelerated-jk')
+  call dein#add('rizzatti/dash.vim')
+  call dein#add('haya14busa/vim-migemo')
+  call dein#add('thinca/vim-ref')
+
+  " Ruby
   call dein#add('tpope/vim-dispatch')
   call dein#add('tpope/vim-bundler')
   call dein#add('tpope/vim-endwise')
@@ -38,48 +56,56 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('5t111111/denite-rails')
   call dein#add('slim-template/vim-slim')
   call dein#add('thoughtbot/vim-rspec')
-  call dein#add('thinca/vim-ref')
-  call dein#add('terryma/vim-multiple-cursors')
-  call dein#add('jiangmiao/auto-pairs')
-  call dein#add('tpope/vim-fugitive')
-  " call dein#add('scrooloose/nerdtree')
-  call dein#add('twitvim/twitvim')
+  call dein#add('Shougo/deoplete-rct')
+
+  " Golang
   call dein#add('fatih/vim-go')
   call dein#add('rhysd/vim-goyacc')
   call dein#add('zchee/deoplete-go', {'build': 'make'})
   call dein#add('jodosha/vim-godebug')
-  call dein#add('cocopon/vaffle.vim')
-  call dein#add('ekalinin/Dockerfile.vim')
-  call dein#add('hashivim/vim-terraform')
-  call dein#add('juliosueiras/vim-terraform-completion')
-  call dein#add('cespare/vim-toml')
-  call dein#add('aklt/plantuml-syntax')
-  call dein#add('Shougo/echodoc.vim')
+
+  " JavaScript
   call dein#add('neovim/node-host', { 'build': 'npm install' })
   call dein#add('billyvg/tigris.nvim', { 'build': './install.sh' })
   call dein#add('mxw/vim-jsx')
   call dein#add('posva/vim-vue')
+
+  " HTML / CSS
   call dein#add('mattn/emmet-vim')
-  call dein#add('tpope/vim-surround')
-  call dein#add('Shougo/deoplete-rct')
-  call dein#add('rhysd/accelerated-jk')
-  call dein#add('vim-airline/vim-airline')
-  call dein#add('vim-airline/vim-airline-themes')
+  call dein#add('ap/vim-css-color')
+
+  " Clojure
+  call dein#add('tpope/vim-fireplace')
+  call dein#add('tpope/vim-salve')
+  call dein#add('guns/vim-clojure-static')
+  call dein#add('clojure-vim/vim-cider')
+
+  " Markdown
   call dein#add('plasticboy/vim-markdown')
   call dein#add('godlygeek/tabular')
-  call dein#add('junegunn/vader.vim')
-  call dein#add('thinca/vim-quickrun')
-  call dein#add('pearofducks/ansible-vim')
-  call dein#add('wakatime/vim-wakatime')
-  call dein#add('kristijanhusak/vim-carbon-now-sh')
-  call dein#add('sbdchd/neoformat')
-  call dein#add('davidhalter/jedi-vim')
-  call dein#add('nathanaelkane/vim-indent-guides')
-  call dein#add('ap/vim-css-color')
-  call dein#add('rizzatti/dash.vim')
-  call dein#add('vim-scripts/gtags.vim')
 
-  " You can specify revision/branch/tag.
+  " VimScript
+  call dein#add('junegunn/vader.vim')
+
+  " SettingFiles
+  call dein#add('pearofducks/ansible-vim')
+  call dein#add('cespare/vim-toml')
+  call dein#add('https://raw.githubusercontent.com/google/protobuf/master/editors/proto.vim', {'script_type' : 'protobuf'})
+  call dein#add('hashivim/vim-terraform')
+  call dein#add('ekalinin/Dockerfile.vim')
+  call dein#add('aklt/plantuml-syntax')
+  call dein#add('juliosueiras/vim-terraform-completion')
+
+  " Python
+  call dein#add('davidhalter/jedi-vim')
+  
+  " etc
+  call dein#add('kristijanhusak/vim-carbon-now-sh')
+  call dein#add('nathanaelkane/vim-indent-guides')
+  call dein#add('vim-airline/vim-airline')
+  call dein#add('vim-airline/vim-airline-themes')
+  call dein#add('twitvim/twitvim')
+
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
 
   " Required:
@@ -317,12 +343,6 @@ augroup END
 
 " Markdown:
 let g:vim_markdown_folding_disabled = 1
-
-" Nyancat:
-set laststatus=2
-set statusline+=%{g:NyanModoki()}
-let g:nyan_modoki_select_cat_face_number = 1
-let g:nayn_modoki_animation_enabled= 1
 
 " Anzu:
 nmap n <Plug>(anzu-n-with-echo)
