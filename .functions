@@ -5,8 +5,15 @@ function cdghq() {
   fi
 }
 
+function nbacks() {
+  for i in `seq 1 $1`
+  do
+    cd ..
+  done
+}
+
 function fdcd() {
-  cd "$(fd . -type d | peco)"
+  cd "$(fd . --type d | peco --select-1)"
 }
 
 function fdvim() {
@@ -15,6 +22,16 @@ function fdvim() {
 
 function rgvim() {
   vim "$(rg $1 | grep -e "!^\w:" | peco --select-1)"
+}
+
+function pjcd() {
+  cd $(git rev-parse --show-toplevel)
+  cd $(find . -type d | peco --select-1)
+}
+
+function pjvim() {
+  cd $(git rev-parse --show-toplevel)
+  vim $(find . | peco --select-1)
 }
 
 function git-select-branch() {
