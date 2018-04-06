@@ -40,6 +40,8 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('terryma/vim-multiple-cursors')
   call dein#add('jiangmiao/auto-pairs')
   call dein#add('osyo-manga/vim-anzu')
+  " call dein#add('vim-scripts/DBGp-client')
+  call dein#add('vim-vdebug/vdebug')
 
   " Productivity
   call dein#add('wakatime/vim-wakatime')
@@ -47,6 +49,8 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('rizzatti/dash.vim')
   call dein#add('haya14busa/vim-migemo')
   call dein#add('thinca/vim-ref')
+  call dein#add('Rykka/clickable.vim')
+  call dein#add('Rykka/riv.vim')
 
   " Ruby
   call dein#add('tpope/vim-dispatch')
@@ -296,6 +300,9 @@ au Filetype php setlocal ts=4 sw=4 expandtab
 let g:syntastic_python_flake8_exec = 'python3'
 let g:syntastic_python_flake8_args = ['-m', 'flake8']
 let g:python3_host_prog = $HOME.'/.pyenv/shims/python3'
+
+" Sphinx:
+let g:syntastic_rst_checkers = ['sphinx']
 
 " JavaScript:
 let g:syntastic_javascript_checkers = ['eslint']
