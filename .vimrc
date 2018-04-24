@@ -239,10 +239,8 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_wq = 0
 
 " Denite:
 if executable('rg')
@@ -306,12 +304,12 @@ let g:syntastic_rst_checkers = ['sphinx']
 
 " JavaScript:
 let g:syntastic_javascript_checkers = ['eslint']
-let g:neoformat_enabled_javascript = ['prettier']
+" let g:neoformat_enabled_javascript = ['prettier']
 augroup javascript
   autocmd!
   au BufNewFile,BufRead .eslintrc,.babelrc setfiletype javascript
   au Filetype javascript setlocal ts=2 sw=2 expandtab
-  au BufWritePre *.js Neoformat
+  " au BufWritePre *.js Neoformat
 augroup END
 
 " Scala:
@@ -336,17 +334,17 @@ augroup Apache
   au BufRead,BufNewFile /etc/httpd/conf/*,/etc/httpd/conf.d/* set filetype=apache
 augroup END
 
-let g:neoformat_enabled_css = ['prettier']
+" let g:neoformat_enabled_css = ['prettier']
 let g:neoformat_enabled_json = ['prettier']
 let g:neoformat_enabled_yaml = ['pyaml']
 au BufNewFile,BufRead Makefile setlocal tabstop=4 shiftwidth=4 noexpandtab
 
 " Ansible:
-let g:neoformat_enabled_ansible = ['pyaml']
-augroup ansible
-  autocmd!
-  au BufRead,BufNewFile */provisioning/*.yml set filetype=ansible
-augroup END
+" let g:neoformat_enabled_ansible = ['pyaml']
+" augroup ansible
+"   autocmd!
+"   au BufRead,BufNewFile */provisioning/*.yml set filetype=ansible
+" augroup END
 
 " Markdown:
 let g:vim_markdown_folding_disabled = 1

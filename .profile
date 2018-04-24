@@ -15,6 +15,7 @@ export MANPATH="/usr/local/man:$MANPATH"
 export GOROOT_BOOTSTRAP=$HOME/go1.4/bin
 
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+export TMUX_POWERLINE_SEG_WEATHER_LOCATION="28677518"
 
 eval "$(rbenv init -)"
 eval "$(pyenv init -)"
