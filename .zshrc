@@ -25,6 +25,9 @@ DISABLE_AUTO_UPDATE="true"
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="mm/dd/yyyy"
 
+ENHANCD_FILTER=peco
+TMUX_POWERLINE_SEG_WEATHER_LOCATION="12796587"
+
 alias zshconfig="nvim ~/.zshrc"
 
 autoload colors
@@ -48,9 +51,6 @@ setopt complete_in_word
 
 eval `gdircolors ~/dotfiles/dircolors/dircolors.256dark`
 
-if [[ -f $HOME/google-cloud-sdk ]] then
-  source $HOME/google-cloud-sdk/completion.zsh.inc
-  source $HOME/google-cloud-sdk/path.zsh.inc
-fi
-
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+source .machinerc

@@ -19,25 +19,18 @@ export TMUX_POWERLINE_SEG_WEATHER_LOCATION="28677518"
 
 eval "$(rbenv init -)"
 eval "$(pyenv init -)"
+eval "$(pipenv --completion)"
 eval "$(direnv hook zsh)"
-
 
 if [ $SHLVL = 1 ]; then
   tmux new-session -s $(basename $(pwd))
 fi
 
+alias kc=kubectl
+
 source $HOME/.aliases
 source $HOME/.functions
-
-alias kc=kubectl
 
 [[ -s "/Users/200448/.gvm/scripts/gvm" ]] && source "/Users/200448/.gvm/scripts/gvm"
 
 [[ -f $HOME/.acme.sh/.acme.sh.env ]] && . $HOME/.acme.sh/.acme.sh.env
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
