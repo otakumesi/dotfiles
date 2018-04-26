@@ -166,6 +166,7 @@ set matchpairs+=<:>
 set list
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 au InsertLeave * set nopaste
+" au BufWritePre * :set binary binary | set noeol
 
 " Molokai:
 " let g:molokai_original = 1
@@ -293,7 +294,7 @@ let g:syntastic_php_checkers = ['ruby', 'rubocop']
 let g:neoformat_enabled_ruby = ['rubocop']
 augroup ruby
   autocmd!
-  au Filetype ruby setlocal ts=2 sw=2 expandtab
+  au Filetype ruby,slim setlocal ts=2 sw=2 expandtab
 augroup END
 
 " PHP:
