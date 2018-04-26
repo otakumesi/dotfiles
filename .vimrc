@@ -14,25 +14,27 @@ if dein#load_state($HOME.'/.cache/dein')
   " Required:
   call dein#add($HOME.'/.cache/dein/repos/github.com/Shougo/dein.vim')
 
+  " call dein#add('Shougo/denite.nvim')
+
   " Add or remove your plugins here:
   " Common
   if !has('nvim')
     call dein#add('roxma/nvim-yarp')
     call dein#add('roxma/vim-hug-neovim-rpc')
   endif
+  call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
 
   " IDEnize
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('Shougo/denite.nvim')
   call dein#add('Shougo/neomru.vim')
   call dein#add('Shougo/neoyank.vim')
   call dein#add('thinca/vim-quickrun')
   call dein#add('sbdchd/neoformat')
   call dein#add('vim-scripts/gtags.vim')
   call dein#add('tpope/vim-surround')
-  call dein#add('Shougo/echodoc.vim')
+  " call dein#add('Shougo/echodoc.vim')
   call dein#add('cocopon/vaffle.vim')
   call dein#add('tpope/vim-fugitive')
   call dein#add('tpope/vim-pathogen')
@@ -101,7 +103,11 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('juliosueiras/vim-terraform-completion')
 
   " Python
-  call dein#add('davidhalter/jedi-vim')
+  " call dein#add('davidhalter/jedi-vim')
+  call dein#add('nvie/vim-flake8')
+  call dein#add('Vimjas/vim-python-pep8-indent')
+  call dein#add('Glench/Vim-Jinja2-Syntax')
+  call dein#add('zchee/deoplete-jedi')
   
   " etc
   call dein#add('kristijanhusak/vim-carbon-now-sh')
@@ -110,8 +116,6 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('vim-airline/vim-airline-themes')
   call dein#add('twitvim/twitvim')
 
-  call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
-
   " Required:
   call dein#end()
   call dein#save_state()
@@ -119,6 +123,9 @@ endif
 
 " Required:
 filetype plugin indent on
+if has('conceal')
+  set conceallevel=0
+endif
 syntax enable
 
 " If you want to install not installed plugins on startup.
@@ -129,7 +136,6 @@ endif
 "End dein Scripts-------------------------
 
 filetype plugin indent on
-syntax enable
 
 set number
 set encoding=utf-8
@@ -297,7 +303,15 @@ au Filetype php setlocal ts=4 sw=4 expandtab
 " Python:
 let g:syntastic_python_flake8_exec = 'python3'
 let g:syntastic_python_flake8_args = ['-m', 'flake8']
+let g:neoformat_enabled_python = ['autopep8', 'yapf']
 let g:python3_host_prog = $HOME.'/.pyenv/shims/python3'
+let g:flake8_show_in_file = 1
+" let g:jedi#completions_enabled = 0
+" let g:jedi#auto_vim_configuration = 0
+augroup python
+  autocmd!
+  au Filetype python setlocal ts=4 sw=4 expandtab
+augroup END
 
 " Sphinx:
 let g:syntastic_rst_checkers = ['sphinx']
@@ -349,6 +363,11 @@ au BufNewFile,BufRead Makefile setlocal tabstop=4 shiftwidth=4 noexpandtab
 " Markdown:
 let g:vim_markdown_folding_disabled = 1
 
+"HTML:
+" Jinjaだとtidyがうまく動かないためpassiveにしておく
+let g:syntastic_mode_map = {'mode':'active',
+      \'passive_filetypes':['html']}
+
 " Anzu:
 nmap n <Plug>(anzu-n-with-echo)
 nmap N <Plug>(anzu-N-with-echo)
@@ -366,10 +385,6 @@ let g:vaffle_auto_cd = 1
 imap <C-a> <Plug>(neosnippet_expand_or_jump)
 smap <C-a> <Plug>(neosnippet_expand_or_jump)
 xmap <C-a> <Plug>(neosnippet_expand_or_jump)
-
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
 
 " IME:
 if executable('swim')
