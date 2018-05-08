@@ -26,8 +26,9 @@ if dein#load_state($HOME.'/.cache/dein')
 
   " IDEnize
   call dein#add('Shougo/deoplete.nvim')
-  call dein#add('Shougo/neosnippet.vim')
-  call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('SirVer/ultisnips')
+  " call dein#add('Shougo/neosnippet.vim')
+  " call dein#add('Shougo/neosnippet-snippets')
   call dein#add('Shougo/neomru.vim')
   call dein#add('Shougo/neoyank.vim')
   call dein#add('thinca/vim-quickrun')
@@ -108,6 +109,7 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('Vimjas/vim-python-pep8-indent')
   call dein#add('Glench/Vim-Jinja2-Syntax')
   call dein#add('zchee/deoplete-jedi')
+  call dein#add('tweekmonster/django-plus.vim')
   
   " etc
   call dein#add('kristijanhusak/vim-carbon-now-sh')
@@ -279,7 +281,7 @@ let g:go_highlight_build_constraints = 1
 let g:go_auto_sameids = 1
 " let g:go_fmt_command = 'goimrpots'
 let g:go_addtags_transform = 'snakecase'
-let g:go_snippet_engine = 'neosnippet'
+" let g:go_snippet_engine = 'neosnippet'
 let g:go_list_type = 'quickfix'
 
 au BufNewFile,BufRead *.go setlocal tabstop=4 shiftwidth=4 noexpandtab 
@@ -311,7 +313,7 @@ let g:flake8_show_in_file = 1
 " let g:jedi#auto_vim_configuration = 0
 augroup python
   autocmd!
-  au Filetype python setlocal ts=4 sw=4 expandtab
+  au Filetype python setlocal ts=4 sw=4 sts=4 expandtab
 augroup END
 
 " Sphinx:
@@ -383,9 +385,15 @@ let g:vaffle_show_hidden_files = 1
 let g:vaffle_auto_cd = 1
 
 " NeoSnippet:
-imap <C-a> <Plug>(neosnippet_expand_or_jump)
-smap <C-a> <Plug>(neosnippet_expand_or_jump)
-xmap <C-a> <Plug>(neosnippet_expand_or_jump)
+" imap <C-a> <Plug>(Neosnippet_expand_or_jump)
+" smap <C-a> <Plug>(neosnippet_expand_or_jump)
+" xmap <C-a> <Plug>(neosnippet_expand_or_jump)
+
+" Ultisnips:
+let g:UltiSnipsExpandTrigger       = "<tab>"
+let g:UltiSnipsJumpForwardTrigger  = "<C-a>"
+" let g:UltiSnipsJumpBackwardTrigger = "<c-p>"
+" let g:UltiSnipsListSnippets        = "<c-k>"
 
 " IME:
 if executable('swim')
@@ -408,7 +416,7 @@ endif
 " Emmet:
 let g:user_emmet_leader_key = '<C-c>'
 let g:user_emmet_install_global = 0
-au FileType html,css,javascript,scss,slim,jade,vue EmmetInstall
+au FileType html,css,javascript,scss,slim,jade,vue,jinja.html EmmetInstall
 
 " AcceleratedJk:
 nmap j <Plug>(accelerated_jk_gj)
