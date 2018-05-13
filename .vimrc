@@ -76,6 +76,8 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('billyvg/tigris.nvim', { 'build': './install.sh' })
   call dein#add('mxw/vim-jsx')
   call dein#add('posva/vim-vue')
+  " call dein#add('alampros/vim-styled-jsx')
+  " call dein#add('flowtype/vim-flow')
 
   " HTML / CSS
   call dein#add('mattn/emmet-vim')
