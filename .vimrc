@@ -14,7 +14,7 @@ if dein#load_state($HOME.'/.cache/dein')
   " Required:
   call dein#add($HOME.'/.cache/dein/repos/github.com/Shougo/dein.vim')
 
-  " call dein#add('Shougo/denite.nvim')
+  call dein#add('Shougo/denite.nvim')
 
   " Add or remove your plugins here:
   " Common
@@ -22,13 +22,12 @@ if dein#load_state($HOME.'/.cache/dein')
     call dein#add('roxma/nvim-yarp')
     call dein#add('roxma/vim-hug-neovim-rpc')
   endif
-  call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
+  call dein#add('Shougo/deol.nvim')
+  call dein#add('prabirshrestha/async.vim')
 
   " IDEnize
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('SirVer/ultisnips')
-  " call dein#add('Shougo/neosnippet.vim')
-  " call dein#add('Shougo/neosnippet-snippets')
   call dein#add('Shougo/neomru.vim')
   call dein#add('Shougo/neoyank.vim')
   call dein#add('thinca/vim-quickrun')
@@ -43,8 +42,8 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('terryma/vim-multiple-cursors')
   call dein#add('jiangmiao/auto-pairs')
   call dein#add('osyo-manga/vim-anzu')
-  " call dein#add('vim-scripts/DBGp-client')
   call dein#add('vim-vdebug/vdebug')
+  call dein#add('editorconfig/editorconfig-vim')
 
   " Productivity
   call dein#add('wakatime/vim-wakatime')
@@ -74,8 +73,11 @@ if dein#load_state($HOME.'/.cache/dein')
   " JavaScript
   call dein#add('neovim/node-host', { 'build': 'npm install' })
   call dein#add('billyvg/tigris.nvim', { 'build': './install.sh' })
+  call dein#add('leafgarland/typescript-vim')
+  call dein#add('Quramy/tsuquyomi')
   call dein#add('mxw/vim-jsx')
   call dein#add('posva/vim-vue')
+  call dein#add('styled-components/vim-styled-components')
 
   " HTML / CSS
   call dein#add('mattn/emmet-vim')
@@ -104,7 +106,6 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('juliosueiras/vim-terraform-completion')
 
   " Python
-  " call dein#add('davidhalter/jedi-vim')
   call dein#add('nvie/vim-flake8')
   call dein#add('Vimjas/vim-python-pep8-indent')
   call dein#add('Glench/Vim-Jinja2-Syntax')
@@ -241,6 +242,8 @@ au CursorHoldI *  wall
 " Deoplete:
 let g:deoplete#enable_at_startup = 1
 set completeopt+=noinsert
+call deoplete#enable_logging('DEBUG', $HOME.'/deoplete.log')
+call deoplete#custom#source('jedi', 'is_debug_enabled', 1)
 
 " Syntastic:
 execute pathogen#infect()
@@ -309,8 +312,6 @@ let g:syntastic_python_flake8_args = ['-m', 'flake8']
 let g:neoformat_enabled_python = ['autopep8', 'yapf']
 let g:python3_host_prog = $HOME.'/.pyenv/shims/python3'
 let g:flake8_show_in_file = 1
-" let g:jedi#completions_enabled = 0
-" let g:jedi#auto_vim_configuration = 0
 augroup python
   autocmd!
   au Filetype python setlocal ts=4 sw=4 sts=4 expandtab
@@ -328,6 +329,9 @@ augroup javascript
   au Filetype javascript setlocal ts=2 sw=2 expandtab
   " au BufWritePre *.js Neoformat
 augroup END
+
+" TypeScript:
+let g:tsuquyomi_completion_detail = 1
 
 " Scala:
 augroup Scala
@@ -416,7 +420,7 @@ endif
 " Emmet:
 let g:user_emmet_leader_key = '<C-c>'
 let g:user_emmet_install_global = 0
-au FileType html,css,javascript,scss,slim,jade,vue,jinja.html EmmetInstall
+au FileType html,css,javascript,typescript,scss,slim,jade,vue,jinja.html EmmetInstall
 
 " AcceleratedJk:
 nmap j <Plug>(accelerated_jk_gj)
