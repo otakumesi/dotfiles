@@ -15,6 +15,7 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add($HOME.'/.cache/dein/repos/github.com/Shougo/dein.vim')
 
   call dein#add('Shougo/denite.nvim')
+  call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 
   " Add or remove your plugins here:
   " Common
@@ -321,17 +322,25 @@ augroup END
 let g:syntastic_rst_checkers = ['sphinx']
 
 " JavaScript:
+let g:syntastic_enable_javascript_checkers = 1
 let g:syntastic_javascript_checkers = ['eslint']
-" let g:neoformat_enabled_javascript = ['prettier']
+let g:neoformat_enabled_javascript = ['prettier']
 augroup javascript
   autocmd!
   au BufNewFile,BufRead .eslintrc,.babelrc setfiletype javascript
   au Filetype javascript setlocal ts=2 sw=2 expandtab
-  " au BufWritePre *.js Neoformat
+  au BufWritePre *.js Neoformat
 augroup END
 
 " TypeScript:
+let g:syntastic_enable_typescript_checkers = 1
+let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_typescript_checkers = ['tsuquyomi']
 let g:tsuquyomi_completion_detail = 1
+augroup typescript
+  autocmd!
+  au BufNewFile,BufRead *.tsx setfiletype typescript.jsx
+augroup END
 
 " Scala:
 augroup Scala
