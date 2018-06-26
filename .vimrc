@@ -92,6 +92,7 @@ if dein#load_state($HOME.'/.cache/dein')
 
   " OCaml
   call dein#add('def-lkb/ocp-indent-vim')
+  call dein#add('copy/deoplete-ocaml')
 
   " Markdown
   call dein#add('plasticboy/vim-markdown')
@@ -357,10 +358,7 @@ let g:opamshare = substitute(system('opam config var share'), '\n$', '', '''')
 execute "set rtp+=" . g:opamshare . '/merlin/vim'
 let g:syntastic_ocaml_checkers = ['merlin']
 
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif
-let g:neocomplete#force_omni_input_patterns.ocaml = '[^. *\t]\.\w*\|\h\w*|#'
+au BufNewFile,BufRead ocaml setlocal tabstop=2 shiftwidth=2 noexpandtab, g:deoplete#complete_method="complete"
 
 " Terraform:
 let g:terraform_align = 1
