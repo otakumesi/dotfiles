@@ -90,6 +90,9 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('guns/vim-clojure-static')
   call dein#add('clojure-vim/vim-cider')
 
+  " OCaml
+  call dein#add('def-lkb/ocp-indent-vim')
+
   " Markdown
   call dein#add('plasticboy/vim-markdown')
   call dein#add('godlygeek/tabular')
@@ -348,6 +351,16 @@ augroup Scala
   autocmd BufWritePost *.scala silent :EnTypeCheck
   nnoremap <localleader>t :EnType<CR>
 augroup END
+
+" OCaml:
+let g:opamshare = substitute(system('opam config var share'), '\n$', '', '''')
+execute "set rtp+=" . g:opamshare . '/merlin/vim'
+let g:syntastic_ocaml_checkers = ['merlin']
+
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.ocaml = '[^. *\t]\.\w*\|\h\w*|#'
 
 " Terraform:
 let g:terraform_align = 1

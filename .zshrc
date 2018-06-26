@@ -51,6 +51,7 @@ setopt complete_in_word
 
 eval `gdircolors ~/dotfiles/dircolors/dircolors.256dark`
 
+. /Users/200448/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 source $HOME/.machinerc
