@@ -358,16 +358,26 @@ augroup Scala
 augroup END
 
 " OCaml:
-let g:opamshare = substitute(system('opam config var share'), '\n$', '', '''')
-execute "set rtp+=" . g:opamshare . '/merlin/vim'
+if executable('opam')
+  let g:opamshare = substitute(system('opam config var share'), '\n$', '', '''')
+  execute "set rtp+=" . g:opamshare . '/merlin/vim'
+end
+
 let g:syntastic_ocaml_checkers = ['merlin']
 
 au BufNewFile,BufRead ocaml setlocal tabstop=2 shiftwidth=2 noexpandtab, g:deoplete#complete_method="complete"
 
 " Rust:
 let g:rustfmt_autosave = 1
-let g:deoplete#sources#rust#racer_binary=(system('which racer'))
-let g:deoplete#sources#rust#rust_source_path=(system('rustc --print sysroot').'/lib/rustlib/src/')
+
+if executable('racer')
+  let g:deoplete#sources#rust#racer_binary=(system('which racer'))
+end
+
+if executable('rustc')
+  let g:deoplete#sources#rust#rust_source_path=(system('rustc --print sysroot').'/lib/rustlib/src/')
+end
+
 let g:deoplete#sources#rust#show_duplicates = 1
 let g:deoplete#sources#rust#disable_keymap = 1
 let g:deoplete#sources#rust#documentation_max_height = 20
