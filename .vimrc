@@ -71,6 +71,10 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('zchee/deoplete-go', {'build': 'make'})
   call dein#add('jodosha/vim-godebug')
 
+  " Rust
+  call dein#add('rust-lang/rust.vim')
+  call dein#add('sebastianmarkow/deoplete-rust')
+
   " JavaScript
   call dein#add('neovim/node-host', { 'build': 'npm install' })
   call dein#add('billyvg/tigris.nvim', { 'build': './install.sh' })
