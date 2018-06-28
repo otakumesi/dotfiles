@@ -25,6 +25,7 @@ if dein#load_state($HOME.'/.cache/dein')
   call dein#add('slim-template/vim-slim')
   call dein#add('thoughtbot/vim-rspec')
   call dein#add('Shougo/deoplete-rct')
+  call dein#add('fishbullet/deoplete-ruby')
 
   " Golang
   call dein#add('fatih/vim-go')
@@ -38,12 +39,13 @@ if dein#load_state($HOME.'/.cache/dein')
 
   " JavaScript
   call dein#add('neovim/node-host', { 'build': 'npm install' })
-  call dein#add('billyvg/tigris.nvim', { 'build': './install.sh' })
+  call dein#add('pangloss/vim-javascript')
   call dein#add('leafgarland/typescript-vim')
   call dein#add('Quramy/tsuquyomi')
   call dein#add('mxw/vim-jsx')
   call dein#add('posva/vim-vue')
   call dein#add('styled-components/vim-styled-components')
+  call dein#add('carlitux/deoplete-ternjs', { 'build': 'npm install -g tern' })
 
   " HTML / CSS
   call dein#add('mattn/emmet-vim')
@@ -120,6 +122,7 @@ set autoread
 set autowrite
 set hidden
 set showcmd
+set cmdheight=2
 set cursorline
 set cursorcolumn
 set virtualedit=onemore
@@ -194,9 +197,6 @@ noremap <C-w><Bar> <ESC>:vsplit<Enter>
 set expandtab
 set shiftwidth=2
 set tabstop=2
-
-" for echomode
-set noshowmode
 
 set ignorecase
 set smartcase
@@ -418,7 +418,7 @@ if executable('swim')
 endif
 
 " EchoDoc:
-" let g:echodoc#enable_at_startup = 1
+let g:echodoc#enable_at_startup = 1
 
 " Emmet:
 let g:user_emmet_leader_key = '<C-c>'
