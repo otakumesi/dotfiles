@@ -7,6 +7,7 @@ do
   [[ "$f" == ".git"* ]] && continue
   [[ "$f" =~ "^init\." ]] && continue
 
+  echo $f
   ln -snf "$HOME/dotfiles/$f" "$HOME"
 done
 
