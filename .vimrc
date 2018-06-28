@@ -331,13 +331,8 @@ au BufNewFile,BufRead ocaml setlocal tabstop=2 shiftwidth=2 noexpandtab, g:deopl
 " Rust:
 let g:rustfmt_autosave = 1
 
-if executable('racer')
-  let g:deoplete#sources#rust#racer_binary=(system('which racer'))
-end
-
-if executable('rustc')
-  let g:deoplete#sources#rust#rust_source_path=(system('rustc --print sysroot').'/lib/rustlib/src/')
-end
+let g:deoplete#sources#rust#racer_binary=(system('which racer'))
+let g:deoplete#sources#rust#rust_source_path=(system('rustc --print sysroot').'/lib/rustlib/src/rust/src')
 
 let g:deoplete#sources#rust#show_duplicates = 1
 let g:deoplete#sources#rust#disable_keymap = 1
