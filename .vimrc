@@ -14,15 +14,10 @@ if dein#load_state($HOME.'/.cache/dein')
   " Required:
   call dein#add($HOME.'/.cache/dein/repos/github.com/Shougo/dein.vim')
 
-  call dein#add('Shougo/denite.nvim')
-  call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
+  call dein#load_toml($HOME.'/.dein.toml')
 
   " Add or remove your plugins here:
   " Common
-  if !has('nvim')
-    call dein#add('roxma/nvim-yarp')
-    call dein#add('roxma/vim-hug-neovim-rpc')
-  endif
   call dein#add('Shougo/deol.nvim')
   call dein#add('prabirshrestha/async.vim')
 
