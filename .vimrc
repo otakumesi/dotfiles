@@ -16,40 +16,6 @@ if dein#load_state($HOME.'/.cache/dein')
 
   call dein#load_toml($HOME.'/.dein.toml')
 
-  " Add or remove your plugins here:
-  " Common
-  call dein#add('Shougo/deol.nvim')
-  call dein#add('prabirshrestha/async.vim')
-
-  " IDEnize
-  call dein#add('Shougo/deoplete.nvim')
-  call dein#add('SirVer/ultisnips')
-  call dein#add('Shougo/neomru.vim')
-  call dein#add('Shougo/neoyank.vim')
-  call dein#add('thinca/vim-quickrun')
-  call dein#add('sbdchd/neoformat')
-  call dein#add('vim-scripts/gtags.vim')
-  call dein#add('tpope/vim-surround')
-  " call dein#add('Shougo/echodoc.vim')
-  call dein#add('cocopon/vaffle.vim')
-  call dein#add('tpope/vim-fugitive')
-  call dein#add('tpope/vim-pathogen')
-  call dein#add('vim-syntastic/syntastic')
-  call dein#add('terryma/vim-multiple-cursors')
-  call dein#add('jiangmiao/auto-pairs')
-  call dein#add('osyo-manga/vim-anzu')
-  call dein#add('vim-vdebug/vdebug')
-  call dein#add('editorconfig/editorconfig-vim')
-
-  " Productivity
-  call dein#add('wakatime/vim-wakatime')
-  call dein#add('rhysd/accelerated-jk')
-  call dein#add('rizzatti/dash.vim')
-  call dein#add('haya14busa/vim-migemo')
-  call dein#add('thinca/vim-ref')
-  call dein#add('Rykka/clickable.vim')
-  call dein#add('Rykka/riv.vim')
-
   " Ruby
   call dein#add('tpope/vim-dispatch')
   call dein#add('tpope/vim-bundler')
