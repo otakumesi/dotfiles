@@ -269,3 +269,6 @@ repo = 'vim-airline/vim-airline'
 
 [[plugins]]
 repo = 'vim-airline/vim-airline-themes'
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'

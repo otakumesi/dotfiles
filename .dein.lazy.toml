@@ -102,3 +102,7 @@ let g:LauguageClient_serverCommands = {
 '''
 on_ft = ['rust', 'go']
 
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+depends = ['context_filetype.vim']
+on_ft = ['toml', 'vim', 'yaml', 'markdown']
