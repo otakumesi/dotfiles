@@ -1,0 +1,104 @@
+# Ruby
+[[plugins]]
+repo = 'Shougo/deoplete-rct'
+on_ft = ['ruby', 'haml', 'slim']
+
+[[plugins]]
+repo = 'fishbullet/deoplete-ruby'
+on_ft = ['ruby', 'haml', 'slim']
+
+[[plugins]]
+repo = 'tpope/vim-rails'
+on_ft = ['ruby', 'haml', 'slim']
+
+[[plugins]]
+repo = '5t111111/denite-rails'
+on_ft = ['ruby', 'haml', 'slim']
+
+[[plugins]]
+repo = 'tpope/vim-bundler'
+on_ft = ['ruby', 'haml', 'slim']
+
+[[plugins]]
+repo = 'tpope/vim-endwise'
+on_ft = ['ruby', 'haml', 'slim']
+
+# Python
+[[plugins]]
+repo = 'zchee/deoplete-jedi'
+on_ft= ['python', 'jinja']
+
+[[plugins]]
+repo = 'tweekmonster/django-plus.vim'
+on_ft= ['python', 'jinja']
+
+[[plugins]]
+repo = 'Glench/Vim-Jinja2-Syntax'
+on_ft= ['python', 'jinja']
+
+[[plugins]]
+repo = 'nvie/vim-flake8'
+on_ft= ['python']
+
+[[plugins]]
+repo = 'Vimjas/vim-python-pep8-indent'
+on_ft= ['python']
+
+# Golang
+[[plugins]]
+repo = 'zchee/deoplete-go'
+build = 'make'
+on_ft = ['go']
+
+[[plugins]]
+repo = 'jodosha/vim-godebug'
+on_ft = ['go']
+
+# Rust
+[[plugins]]
+repo = 'sebastianmarkow/deoplete-rust'
+on_ft = ['rust']
+hook_post_source = '''
+let g:deoplete#sources#rust#racer_binary=(system('which racer'))
+let g:deoplete#sources#rust#rust_source_path=(system('rustc --print sysroot').'/lib/rustlib/src/rust/src')
+let g:deoplete#sources#rust#show_duplicates = 1
+let g:deoplete#sources#rust#disable_keymap = 1
+let g:deoplete#sources#rust#documentation_max_height = 20
+'''
+
+# JavaScript
+[[plugins]]
+repo ='carlitux/deoplete-ternjs'
+build = 'npm install -g tern'
+
+on_ft = ['javascript', 'javascript.jsx']
+
+# OCaml
+[[plugins]]
+repo = 'def-lkb/ocp-indent-vim'
+on_ft = ['ocaml']
+
+[[plugins]]
+repo = 'copy/deoplete-ocaml'
+on_ft = ['ocaml']
+
+# VimScript
+[[plugins]]
+repo = 'junegunn/vader.vim'
+on_ft = ['vim']
+
+# Terraform
+[[plugins]]
+repo = 'juliosueiras/vim-terraform-completion'
+on_ft = ['terraform']
+
+# productivity
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+hook_add = '''
+let g:LauguageClient_serverCommands = {
+  \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+  \ 'go': ['go-langserer'] }
+'''
+on_ft = ['rust', 'go']
+

@@ -14,82 +14,19 @@ if dein#load_state($HOME.'/.cache/dein')
   " Required:
   call dein#add($HOME.'/.cache/dein/repos/github.com/Shougo/dein.vim')
 
-  call dein#load_toml($HOME.'/.dein.toml')
+  call dein#load_toml($HOME.'/.dein.toml', {'lazy': 0})
+  call dein#load_toml($HOME.'/.dein.lazy.toml', {'lazy': 1})
 
-  " Ruby
-  call dein#add('tpope/vim-dispatch')
-  call dein#add('tpope/vim-bundler')
-  call dein#add('tpope/vim-endwise')
-  call dein#add('tpope/vim-rails')
-  call dein#add('5t111111/denite-rails')
-  call dein#add('slim-template/vim-slim')
-  call dein#add('thoughtbot/vim-rspec')
-  call dein#add('Shougo/deoplete-rct')
-  call dein#add('fishbullet/deoplete-ruby')
+  " Ocaml:
+  if executable('opam')
+    let g:opamshare = substitute(system('opam config var share'), '\n$', '', '''')
+    call dein#add(g:opamshare . '/merlin/vim', {'lazy': 1, 'on_ft': 'ocaml', 'on_event': 'InsertEnter'})
+  end
 
-  " Golang
-  call dein#add('fatih/vim-go')
-  call dein#add('rhysd/vim-goyacc')
-  call dein#add('zchee/deoplete-go', {'build': 'make'})
-  call dein#add('jodosha/vim-godebug')
-
-  " Rust
-  call dein#add('rust-lang/rust.vim')
-  call dein#add('sebastianmarkow/deoplete-rust')
-
-  " JavaScript
-  call dein#add('neovim/node-host', { 'build': 'npm install' })
-  call dein#add('pangloss/vim-javascript')
-  call dein#add('leafgarland/typescript-vim')
-  call dein#add('Quramy/tsuquyomi')
-  call dein#add('mxw/vim-jsx')
-  call dein#add('posva/vim-vue')
-  call dein#add('styled-components/vim-styled-components')
-  call dein#add('carlitux/deoplete-ternjs', { 'build': 'npm install -g tern' })
-
-  " HTML / CSS
-  call dein#add('mattn/emmet-vim')
-  call dein#add('ap/vim-css-color')
-
-  " Clojure
-  call dein#add('tpope/vim-fireplace')
-  call dein#add('tpope/vim-salve')
-  call dein#add('guns/vim-clojure-static')
-  call dein#add('clojure-vim/vim-cider')
-
-  " OCaml
-  call dein#add('def-lkb/ocp-indent-vim')
-  call dein#add('copy/deoplete-ocaml')
-
-  " Markdown
-  call dein#add('plasticboy/vim-markdown')
-  call dein#add('godlygeek/tabular')
-
-  " VimScript
-  call dein#add('junegunn/vader.vim')
-
-  " SettingFiles
-  call dein#add('pearofducks/ansible-vim')
-  call dein#add('cespare/vim-toml')
-  call dein#add('https://raw.githubusercontent.com/google/protobuf/master/editors/proto.vim', {'script_type' : 'protobuf'})
-  call dein#add('hashivim/vim-terraform')
-  call dein#add('ekalinin/Dockerfile.vim')
-  call dein#add('aklt/plantuml-syntax')
-  call dein#add('juliosueiras/vim-terraform-completion')
-
-  " Python
-  call dein#add('nvie/vim-flake8')
-  call dein#add('Vimjas/vim-python-pep8-indent')
-  call dein#add('Glench/Vim-Jinja2-Syntax')
-  call dein#add('zchee/deoplete-jedi')
-  call dein#add('tweekmonster/django-plus.vim')
-  
-  " etc
-  call dein#add('kristijanhusak/vim-carbon-now-sh')
-  call dein#add('nathanaelkane/vim-indent-guides')
-  call dein#add('vim-airline/vim-airline')
-  call dein#add('vim-airline/vim-airline-themes')
-  call dein#add('twitvim/twitvim')
+  if $GOPATH != ''
+    call dein#add(globpath($GOPATH, "src/github.com/golang/lint/misc/vim"), {'lazy': 1, 'on_ft': 'go', 'on_event': 'InsertEnter'})
+    let g:syntastic_go_checkers = ['go', 'golint', 'govet']
+  endif
 
   " Required:
   call dein#end()
@@ -160,7 +97,6 @@ set statusline+=%m
 set statusline+=%r
 set statusline+=[%{&fileencoding}]
 set statusline+=(%l/%L)
-set statusline+=%{fugitive#statusline()}
 
 " keymap
 nnoremap j gj
@@ -178,15 +114,6 @@ inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <M-h> <Left>
 inoremap <M-l> <Right>
-
-" remap Denite
-noremap <C-x><C-x> <ESC>:Denite 
-noremap <C-x><C-f> <ESC>:DeniteProjectDir file_rec<Enter>
-noremap <C-x><C-r> <ESC>:Denite file_old<Enter>
-noremap <C-x><C-b> <ESC>:Denite buffer<Enter>
-noremap <C-x><C-d><C-g> <ESC>:DeniteBufferDir grep<Enter>
-noremap <C-x><C-p><C-g> <ESC>:DeniteProjectDir grep<Enter>
-noremap <C-x><C-y> <ESC>:Denite neoyank<Enter>
 
 " remap split window
 noremap <C-x>0 <ESC>:close<Enter>
@@ -206,45 +133,13 @@ set hlsearch
 noremap <ESC><ESC> :nohlsearch<cr><ESC>
 
 set autowrite
-au CursorHold *  wall
-au CursorHoldI *  wall
-
-" Deoplete:
-let g:deoplete#enable_at_startup = 1
-set completeopt+=noinsert
-call deoplete#enable_logging('DEBUG', $HOME.'/deoplete.log')
-call deoplete#custom#source('jedi', 'is_debug_enabled', 1)
-
-" Syntastic:
-execute pathogen#infect()
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_wq = 0
-
-" Denite:
-if executable('rg')
-  call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git'])
-  call denite#custom#var('grep', 'command', ['rg'])
-  call denite#custom#map('insert', '<C-g>', '<denite:enter_mode:normal>', 'noremap')
-  call denite#custom#map('normal', '<C-g>', '<denite:quit>', 'noremap')
-  call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
-  call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
-  call denite#custom#map('insert', '<C-x>3', '<denite:do_action:split>', 'noremap')
-  call denite#custom#map('insert', '<C-x>2', '<denite:do_action:vsplit>', 'noremap')
-endif
+au CursorHold * wall
+au CursorHoldI * wall
 
 " Shell:
 au BufNewFile,BufRead .aliases,.functions,.profile setlocal syntax=sh
 
 " Golang:
-if $GOPATH != ''
-  execute "set rtp+=".globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
-  let g:syntastic_go_checkers = ['go', 'golint', 'govet']
-endif
-
 let g:go_highlight_types = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -252,9 +147,9 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 let g:go_auto_sameids = 1
-" let g:go_fmt_command = 'goimrpots'
+let g:go_fmt_command = 'gofmt'
 let g:go_addtags_transform = 'snakecase'
-" let g:go_snippet_engine = 'neosnippet'
+let g:go_snippet_engine = 'neosnippet'
 let g:go_list_type = 'quickfix'
 
 au BufNewFile,BufRead *.go setlocal tabstop=4 shiftwidth=4 noexpandtab 
@@ -319,24 +214,12 @@ augroup Scala
 augroup END
 
 " OCaml:
-if executable('opam')
-  let g:opamshare = substitute(system('opam config var share'), '\n$', '', '''')
-  execute "set rtp+=" . g:opamshare . '/merlin/vim'
-end
-
 let g:syntastic_ocaml_checkers = ['merlin']
 
 au BufNewFile,BufRead ocaml setlocal tabstop=2 shiftwidth=2 noexpandtab, g:deoplete#complete_method="complete"
 
 " Rust:
 let g:rustfmt_autosave = 1
-
-let g:deoplete#sources#rust#racer_binary=(system('which racer'))
-let g:deoplete#sources#rust#rust_source_path=(system('rustc --print sysroot').'/lib/rustlib/src/rust/src')
-
-let g:deoplete#sources#rust#show_duplicates = 1
-let g:deoplete#sources#rust#disable_keymap = 1
-let g:deoplete#sources#rust#documentation_max_height = 20
 
 " Terraform:
 let g:terraform_align = 1
@@ -373,30 +256,6 @@ let g:vim_markdown_folding_disabled = 1
 let g:syntastic_mode_map = {'mode':'active',
       \'passive_filetypes':['html']}
 
-" Anzu:
-nmap n <Plug>(anzu-n-with-echo)
-nmap N <Plug>(anzu-N-with-echo)
-nmap * <Plug>(anzu-star-with-echo)
-nmap # <Plug>(anzu-sharp-with-echo)
-nmap <C-g><C-g> <Plug>(anzu-clear-search-status)
-set statusline=%{anzu#search_status()}
-
-" Vaffle:
-nnoremap <C-x><C-w> :Vaffle <Enter>
-let g:vaffle_show_hidden_files = 1
-let g:vaffle_auto_cd = 1
-
-" NeoSnippet:
-" imap <C-a> <Plug>(Neosnippet_expand_or_jump)
-" smap <C-a> <Plug>(neosnippet_expand_or_jump)
-" xmap <C-a> <Plug>(neosnippet_expand_or_jump)
-
-" Ultisnips:
-let g:UltiSnipsExpandTrigger       = "<tab>"
-let g:UltiSnipsJumpForwardTrigger  = "<C-a>"
-" let g:UltiSnipsJumpBackwardTrigger = "<c-p>"
-" let g:UltiSnipsListSnippets        = "<c-k>"
-
 " IME:
 if executable('swim')
   let s:AsciiIM = 'com.apple.keyboardlayout.all'
@@ -411,26 +270,3 @@ if executable('swim')
     au InsertLeave * call s:insertLeave()
   augroup END
 endif
-
-" EchoDoc:
-let g:echodoc#enable_at_startup = 1
-
-" Emmet:
-let g:user_emmet_leader_key = '<C-c>'
-let g:user_emmet_install_global = 0
-au FileType html,css,javascript,typescript,scss,slim,jade,vue,jinja.html EmmetInstall
-
-" AcceleratedJk:
-nmap j <Plug>(accelerated_jk_gj)
-nmap k <Plug>(accelerated_jk_gk)
-
-" PlantUML:
-let g:plantuml_executable_script = "plantuml -tsvg $@"
-
-" IndentGuide:
-let g:indent_guides_enable_on_vim_startup = 1
-
-" Gtags:
-map <C-x><C-t> :GtagsCursor<Enter>
-map <C-n> :cn<Enter>
-map <C-p> :cp<Enter>
