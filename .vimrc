@@ -66,17 +66,16 @@ set matchpairs+=<:>
 set list
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 au InsertLeave * set nopaste
-" au BufWritePre * :set binary binary | set noeol
 
 " Molokai:
-" let g:molokai_original = 1
-" let g:rehash256 = 1
-" colorscheme molokai
+let g:molokai_original = 1
+let g:rehash256 = 1
+colorscheme molokai
 
 " Solarized:
-let g:solarized_termcolors=256
-set background=light
-colorscheme solarized
+" let g:solarized_termcolors=256
+" set background=light
+" colorscheme solarized
 
 " statusline
 set statusline=%F
