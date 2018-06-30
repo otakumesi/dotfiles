@@ -1,19 +1,13 @@
-"dein Scripts-----------------------------
 if &compatible
-  set nocompatible               " Be iMproved
+  set nocompatible
 endif
 
-" Required:
 set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
 
-" Required:
 if dein#load_state($HOME.'/.cache/dein')
   call dein#begin($HOME.'/.cache/dein')
 
-  " Let dein manage dein
-  " Required:
   call dein#add($HOME.'/.cache/dein/repos/github.com/Shougo/dein.vim')
-
   call dein#load_toml($HOME.'/.dein.toml', {'lazy': 0})
   call dein#load_toml($HOME.'/.dein.lazy.toml', {'lazy': 1})
 
@@ -23,32 +17,25 @@ if dein#load_state($HOME.'/.cache/dein')
     call dein#add(g:opamshare . '/merlin/vim', {'lazy': 1, 'on_ft': 'ocaml', 'on_event': 'InsertEnter'})
   end
 
+  " Golang:
   if $GOPATH != ''
     call dein#add(globpath($GOPATH, "src/github.com/golang/lint/misc/vim"), {'lazy': 1, 'on_ft': 'go', 'on_event': 'InsertEnter'})
     let g:syntastic_go_checkers = ['go', 'golint', 'govet']
   endif
 
-  " Required:
   call dein#end()
   call dein#save_state()
 endif
 
-" Required:
-filetype plugin indent on
-if has('conceal')
-  set conceallevel=0
-endif
-syntax enable
-
-" If you want to install not installed plugins on startup.
 if dein#check_install()
   call dein#install()
 endif
 
-"End dein Scripts-------------------------
-
+if has('conceal')
+  set conceallevel=0
+endif
+syntax enable
 filetype plugin indent on
-
 set number
 set encoding=utf-8
 set spelllang=en,cjk
