@@ -1,39 +1,41 @@
-if &compatible
-  set nocompatible
-endif
-
-set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
-
-if dein#load_state($HOME.'/.cache/dein')
-  call dein#begin($HOME.'/.cache/dein')
-
-  call dein#add($HOME.'/.cache/dein/repos/github.com/Shougo/dein.vim')
-  call dein#load_toml($HOME.'/.dein.toml', {'lazy': 0})
-  call dein#load_toml($HOME.'/.dein.lazy.toml', {'lazy': 1})
-
-  " Ocaml:
-  if executable('opam')
-    let g:opamshare = substitute(system('opam config var share'), '\n$', '', '''')
-    call dein#add(g:opamshare . '/merlin/vim', {'lazy': 1, 'on_ft': 'ocaml', 'on_event': 'InsertEnter'})
-  end
-
-  " Golang:
-  if $GOPATH != ''
-    call dein#add(globpath($GOPATH, "src/github.com/golang/lint/misc/vim"), {'lazy': 1, 'on_ft': 'go', 'on_event': 'InsertEnter'})
-    let g:syntastic_go_checkers = ['go', 'golint', 'govet']
+if has('nvim')
+  if &compatible
+    set nocompatible
   endif
+  
+  set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
+  
+  if dein#load_state($HOME.'/.cache/dein')
+    call dein#begin($HOME.'/.cache/dein')
+  
+    call dein#add($HOME.'/.cache/dein/repos/github.com/Shougo/dein.vim')
+    call dein#load_toml($HOME.'/.dein.toml', {'lazy': 0})
+    call dein#load_toml($HOME.'/.dein.lazy.toml', {'lazy': 1})
+  
+    " Ocaml:
+    if executable('opam')
+      let g:opamshare = substitute(system('opam config var share'), '\n$', '', '''')
+      call dein#add(g:opamshare . '/merlin/vim', {'lazy': 1, 'on_ft': 'ocaml', 'on_event': 'InsertEnter'})
+    end
+  
+    " Golang:
+    if $GOPATH != ''
+      call dein#add(globpath($GOPATH, "src/github.com/golang/lint/misc/vim"), {'lazy': 1, 'on_ft': 'go', 'on_event': 'InsertEnter'})
+      let g:syntastic_go_checkers = ['go', 'golint', 'govet']
+    endif
+  
+    call dein#end()
+    call dein#save_state()
+  endif
+  
+  if dein#check_install()
+    call dein#install()
+  endif
+end
 
-  call dein#end()
-  call dein#save_state()
-endif
-
-if dein#check_install()
-  call dein#install()
-endif
-
-if has('conceal')
-  set conceallevel=0
-endif
+  if has('conceal')
+    set conceallevel=0
+  endif
 syntax enable
 filetype plugin indent on
 set number
