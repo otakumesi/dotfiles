@@ -1,7 +1,7 @@
 function cdghq() {
-  local src="$(ghq root)/$(ghq list | peco --query "$lbuffer")"
+  local src="$(ghq list | fzf --query "$LBUFFER" --reverse)"
   if [ -n "$src" ]; then
-      cd $src
+      cd $(ghq root)/"${src}"
   fi
 }
 
@@ -13,29 +13,29 @@ function nbacks() {
 }
 
 function fdcd() {
-  cd "$(fd . --type d | peco --select-1)"
+  cd "$(fd . --type d | fzf --select-1 --reverse)"
 }
 
 function fdvim() {
-  vim "$(fd . | peco --select-1)"
+  vim "$(fd . | fzf --select-1 --reverse)"
 }
 
 function rgvim() {
-  vim "$(rg $1 | grep -e "!^\w:" | peco --select-1)"
+  vim "$(rg $1 | grep -e "!^\w:" | fzf)"
 }
 
 function pjcd() {
   cd $(git rev-parse --show-toplevel)
-  cd $(find . -type d | peco --select-1)
+  cd $(find . -type d | fzf --select-1 --reverse)
 }
 
 function pjvim() {
   cd $(git rev-parse --show-toplevel)
-  vim $(find . | peco --select-1)
+  vim $(find . | fzf --select-1 --reverse)
 }
 
 function git-select-branch() {
-  git branch | peco --select-1 --query "$RBUFFER" | sed 's/\*//'
+  git branch | fzf --select-1 --reverse --query "$RBUFFER" | sed 's/\*//'
 }
 
 function git-checkout-list() {
@@ -54,26 +54,26 @@ function git-pull-list() {
 alias gpll="git-pull-list"
 
 function ssh-select-host {
-  ssh $(cat ~/.ssh/config | grep '^Host\s' | sed 's/Host//' | peco --select-1 --query "$RBUFFER" )
+  ssh $(cat ~/.ssh/config | grep '^Host\s' | sed 's/Host//' | fzf --select-1 --reverse --query "$RBUFFER" )
 }
 
 function docker-image-select {
-  docker images --format "{{.ID}}\t{{.Repository}}\t{{.Tag}}\t{{.CreatedSince}}\t{{.CreatedAt}}" | peco | cut -f 1
+  docker images --format "{{.ID}}\t{{.Repository}}\t{{.Tag}}\t{{.CreatedSince}}\t{{.CreatedAt}}" | fzf | cut -f 1
 }
 
 function docker-container-select {
-  docker ps --format "{{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Command}}\t{{.RunningFor}}" | peco | cut -f 1
+  docker ps --format "{{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Command}}\t{{.RunningFor}}" | fzf | cut -f 1
 }
 
 function start-project {
-  cp -R "$HOME/.project.template/$(ls $HOME/.project.template | peco)" $1
+  cp -R "$HOME/.project.template/$(ls $HOME/.project.template | fzf)" $1
 }
 
-function peco-select-tmux-session()
+function fzf-select-tmux-session()
 {
   local res
-  res=$(tmux list-sessions | peco | awk -F':' '{print $1}')
+  res=$(tmux list-sessions | fzf | awk -F':' '{print $1}')
   if [ -n "$res" ]; then
-    _cool-peco-insert-command-line "tmux attach -t $res"
+    _cool-fzf-insert-command-line "tmux attach -t $res"
   fi
 }
