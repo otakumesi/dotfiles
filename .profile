@@ -35,3 +35,5 @@ source $HOME/.functions
 [[ -s "/Users/200448/.gvm/scripts/gvm" ]] && source "/Users/200448/.gvm/scripts/gvm"
 
 [[ -f $HOME/.acme.sh/.acme.sh.env ]] && . $HOME/.acme.sh/.acme.sh.env
+export PATH="$HOME/.ndenv/bin:$PATH"
+eval "$(ndenv init -)"

@@ -272,3 +272,9 @@ repo = 'vim-airline/vim-airline-themes'
 
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
+hook_add = '''
+if !exists('g:context_filetype#same_filetypes')
+  let g:context_filetype#same_filetypes = {}
+end
+let g:context_filetype#same_filetypes.html = 'css'
+'''

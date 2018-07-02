@@ -181,7 +181,7 @@ augroup javascript
   autocmd!
   au BufNewFile,BufRead .eslintrc,.babelrc setfiletype javascript
   au Filetype javascript setlocal ts=2 sw=2 expandtab
-  au BufWritePre *.js Neoformat
+  " au BufWritePre *.js Neoformat
 augroup END
 
 " TypeScript:

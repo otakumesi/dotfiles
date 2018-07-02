@@ -13,11 +13,17 @@ function nbacks() {
 }
 
 function fdcd() {
-  cd "$(fd . --type d | fzf --select-1 --reverse)"
+  local src="$(fd . --type d | fzf --select-1 --reverse)"
+  if [ -n "$src" ]; then
+    cd  $src
+  fi
 }
 
 function fdvim() {
-  vim "$(fd . | fzf --select-1 --reverse)"
+  local src="$(fd . | fzf --select-1 --reverse)"
+  if [ -n "$src" ]; then
+    vim  $src
+  fi
 }
 
 function rgvim() {
