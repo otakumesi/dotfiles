@@ -112,6 +112,9 @@ repo = 'terryma/vim-multiple-cursors'
 
 [[plugins]]
 repo = 'jiangmiao/auto-pairs'
+hook_add='''
+let g:AutoPairsMapCR = 0
+'''
 
 [[plugins]]
 repo = 'osyo-manga/vim-anzu'
