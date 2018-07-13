@@ -46,6 +46,7 @@ on_if = '!has("nvim")'
 repo = 'Shougo/deoplete.nvim'
 hook_add = '''
 let g:deoplete#enable_at_startup = 1
+let g:deoplate#auto_complete_start_length = 2
 set completeopt+=noinsert
 call deoplete#enable_logging('DEBUG', $HOME.'/deoplete.log')
 call deoplete#custom#source('jedi', 'is_debug_enabled', 1)
