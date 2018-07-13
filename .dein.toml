@@ -279,3 +279,12 @@ if !exists('g:context_filetype#same_filetypes')
 end
 let g:context_filetype#same_filetypes.html = 'css'
 '''
+
+[[plugins]]
+repo = 'vim-vdebug/vdebug'
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+map <C-f> :NERDTreeToggle<CR>
+'''
