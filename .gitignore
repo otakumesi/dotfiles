@@ -89,3 +89,6 @@ flycheck_*.el
 
 # local machine rc
 .machinerc
+
+# javascript
+.tern-port
