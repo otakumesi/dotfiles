@@ -85,14 +85,6 @@ map <C-p> :cp<Enter>
 repo = 'tpope/vim-surround'
 
 [[plugins]]
-repo = 'cocopon/vaffle.vim'
-hook_add = '''
-nnoremap <C-x><C-w> :Vaffle <Enter>
-let g:vaffle_show_hidden_files = 1
-let g:vaffle_auto_cd = 1
-'''
-
-[[plugins]]
 repo = 'tpope/vim-fugitive'
 hook_add = '''
 set statusline+=%{fugitive#statusline()}
@@ -286,5 +278,15 @@ repo = 'vim-vdebug/vdebug'
 [[plugins]]
 repo = 'scrooloose/nerdtree'
 hook_add = '''
-map <C-f> :NERDTreeToggle<CR>
+map <C-x><C-w> :NERDTreeToggle<CR>
+let g:NERDTreeMapActivateNode = "l"
+let g:NERDTreeMapOpenRecursively = "L"
+let g:NERDTreeMapUpdir = "h"
+let g:NERDTreeMapUpdirKeepOpen = "H"
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeShowLineNumbers=1
 '''
+
+[[plugins]]
+repo = 'Xuyuanp/nerdtree-git-plugin'
+depends = ['scrooloose/nerdtree']
