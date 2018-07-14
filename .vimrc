@@ -2,6 +2,10 @@ if has('nvim')
   if &compatible
     set nocompatible
   endif
+
+  augroup MySettings
+    autocmd!
+  augroup END
   
   set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
   
@@ -60,7 +64,6 @@ set wildmode=list:longest
 set clipboard+=unnamedplus
 set nostartofline
 set matchtime=1
-set showmatch
 set ambiwidth=double
 set autochdir
 set matchpairs+=<:>
@@ -68,16 +71,6 @@ set matchpairs+=<:>
 set list
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 au InsertLeave * set nopaste
-
-" Molokai:
-let g:molokai_original = 1
-let g:rehash256 = 1
-colorscheme molokai
-
-" Solarized:
-" let g:solarized_termcolors=256
-" set background=light
-" colorscheme solarized
 
 " statusline
 set statusline=%F

@@ -5,6 +5,17 @@ repo = 'Shougo/dein.vim'
 repo = 'Shougo/deol.nvim'
 
 [[plugins]]
+repo = 'freeo/vim-kalisi'
+hook_add='''
+let g:airline_theme='kalisi'
+set background=light
+set t_Co=256
+let &t_AB="\e[48;5;%dm"
+let &t_AF="\e[38;5;%dm"
+au MySettings VimEnter * nested colorscheme kalisi
+'''
+
+[[plugins]]
 repo = 'prabirshrestha/async.vim'
 
 [[plugins]]
@@ -46,6 +57,7 @@ on_if = '!has("nvim")'
 repo = 'Shougo/deoplete.nvim'
 hook_add = '''
 let g:deoplete#enable_at_startup = 1
+let g:deoplate#auto_complete_start_length = 2
 set completeopt+=noinsert
 call deoplete#enable_logging('DEBUG', $HOME.'/deoplete.log')
 call deoplete#custom#source('jedi', 'is_debug_enabled', 1)
@@ -84,14 +96,6 @@ map <C-p> :cp<Enter>
 repo = 'tpope/vim-surround'
 
 [[plugins]]
-repo = 'cocopon/vaffle.vim'
-hook_add = '''
-nnoremap <C-x><C-w> :Vaffle <Enter>
-let g:vaffle_show_hidden_files = 1
-let g:vaffle_auto_cd = 1
-'''
-
-[[plugins]]
 repo = 'tpope/vim-fugitive'
 hook_add = '''
 set statusline+=%{fugitive#statusline()}
@@ -119,6 +123,9 @@ repo = 'terryma/vim-multiple-cursors'
 
 [[plugins]]
 repo = 'jiangmiao/auto-pairs'
+hook_add='''
+let g:AutoPairsMapCR = 0
+'''
 
 [[plugins]]
 repo = 'osyo-manga/vim-anzu'
@@ -278,3 +285,22 @@ if !exists('g:context_filetype#same_filetypes')
 end
 let g:context_filetype#same_filetypes.html = 'css'
 '''
+
+[[plugins]]
+repo = 'vim-vdebug/vdebug'
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+map <C-x><C-w> :NERDTreeToggle<CR>
+let g:NERDTreeMapActivateNode = "l"
+let g:NERDTreeMapOpenRecursively = "L"
+let g:NERDTreeMapUpdir = "h"
+let g:NERDTreeMapUpdirKeepOpen = "H"
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeShowLineNumbers=1
+'''
+
+[[plugins]]
+repo = 'Xuyuanp/nerdtree-git-plugin'
+depends = ['scrooloose/nerdtree']
