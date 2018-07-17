@@ -83,3 +83,12 @@ function fzf-select-tmux-session()
     _cool-fzf-insert-command-line "tmux attach -t $res"
   fi
 }
+
+function rename-tmux-session-into-repository-name()
+{
+  local tabname=`basename $(git rev-parse --show-toplevel)`
+  tmux rename-session $tabname
+  echo "renamed current tmux session into $tabname"
+}
+zle -N rename-tmux-session-into-repository-name
+bindkey "^q^q" rename-tmux-session-into-repository-name
