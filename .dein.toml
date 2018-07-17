@@ -5,14 +5,16 @@ repo = 'Shougo/dein.vim'
 repo = 'Shougo/deol.nvim'
 
 [[plugins]]
-repo = 'freeo/vim-kalisi'
+repo = 'ajmwagar/vim-deus'
 hook_add='''
-let g:airline_theme='kalisi'
-set background=light
+let g:airline_theme='deus'
+let g:deus_termcolors=256
+set termguicolors
+set background=dark
 set t_Co=256
-let &t_AB="\e[48;5;%dm"
-let &t_AF="\e[38;5;%dm"
-au MySettings VimEnter * nested colorscheme kalisi
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+au MySettings VimEnter * nested colorscheme deus
 '''
 
 [[plugins]]
