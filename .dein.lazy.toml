@@ -85,14 +85,6 @@ repo = 'juliosueiras/vim-terraform-completion'
 on_ft = ['terraform']
 
 # Productivity
-[[plugins]]
-repo = 'prabirshrestha/vim-lsp'
-hook_add = '''
-let g:LauguageClient_serverCommands = {
-  \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-  \ 'go': ['go-langserer'] }
-'''
-on_ft = ['rust', 'go']
 
 [[plugins]]
 repo = 'osyo-manga/vim-precious'

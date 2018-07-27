@@ -64,7 +64,7 @@ call deoplete#enable_logging('DEBUG', $HOME.'/deoplete.log')
 call deoplete#custom#source('jedi', 'is_debug_enabled', 1)
 call deoplete#custom#option({
   \ 'on_insert_enter': v:false,
-  \ 'min_pattern_length': 3
+  \ 'min_pattern_length': 2
   \ })
 '''
 
@@ -317,10 +317,16 @@ build = 'bash install.sh'
 depends = ['deoplete']
 hook_add = '''
 let g:LanguageClient_serverCommands = {
-    \ 'python':['pyls'],
-    \ 'ruby': ['solargraph', 'stdio']
-    \ }
+  \ 'python':['pyls'],
+  \ 'ruby': ['solargraph', 'stdio'],
+  \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+  \ 'typescript': ['/usr/local/bin/javascript-typescript-stdio'],
+  \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+  \ 'typescript.tsx': ['tcp://127.0.0.1:2089'],
+  \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+  \ 'go': ['go-langserer']
+  \ }
 call deoplete#custom#source('LanguageClient',
-            \ 'min_pattern_length',
-            \ 2)
+  \ 'min_pattern_length',
+  \ 2)
 '''
