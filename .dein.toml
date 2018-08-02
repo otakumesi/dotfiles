@@ -5,16 +5,10 @@ repo = 'Shougo/dein.vim'
 repo = 'Shougo/deol.nvim'
 
 [[plugins]]
-repo = 'ajmwagar/vim-deus'
+repo = 'keith/parsec.vim'
 hook_add='''
-let g:airline_theme='deus'
-let g:deus_termcolors=256
-set termguicolors
-set background=dark
-set t_Co=256
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-au MySettings VimEnter * nested colorscheme deus
+set background=light
+au MySettings VimEnter * nested colorscheme parsec
 '''
 
 [[plugins]]
@@ -88,14 +82,6 @@ repo = 'thinca/vim-quickrun'
 
 [[plugins]]
 repo = 'sbdchd/neoformat'
-
-[[plugins]]
-repo = 'vim-scripts/gtags.vim'
-hook_add = '''
-map <C-x><C-t> :GtagsCursor<Enter>
-map <C-n> :cn<Enter>
-map <C-p> :cp<Enter>
-'''
 
 [[plugins]]
 repo = 'tpope/vim-surround'
@@ -318,7 +304,10 @@ depends = ['deoplete']
 hook_add = '''
 let g:LanguageClient_serverCommands = {
   \ 'python':['pyls'],
+  \ 'jinja':['pyls'],
   \ 'ruby': ['solargraph', 'stdio'],
+  \ 'slim': ['solargraph', 'stdio'],
+  \ 'haml': ['solargraph', 'stdio'],
   \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
   \ 'typescript': ['/usr/local/bin/javascript-typescript-stdio'],
   \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
@@ -330,3 +319,24 @@ call deoplete#custom#source('LanguageClient',
   \ 'min_pattern_length',
   \ 2)
 '''
+
+[[plugins]]
+repo = 'RRethy/vim-illuminate'
+hook_add = '''
+let g:Illuminate_delay = 250
+let g:Illuminate_ftHighlightGroups = {
+      \ 'vim': ['vimVar', 'vimString', 'vimLineComment',
+      \         'vimFuncName', 'vimFunction', 'vimUserFunc', 'vimFunc'],
+      \ 'ruby': ['rubyFunction', 'rubySymbol', 'rubyString', 'rubyClassName',
+      \          'rubyModuleName', 'rubyConstant'],
+      \ 'javascript': ['jsFuncName', 'jsClassFuncName', 'jsArguments', 'jsString',
+      \                'jsModuleKeyword', 'jsVariableDef'],
+      \ 'python': ['pythonFunction']
+      \ }
+let g:Illuminate_ftblacklist = ['nerdtree']
+nnoremap <C-x><C-t> <Esc>:call LanguageClient#textDocument_definition()<CR>
+nnoremap <C-x><C-j> <Esc>:call LanguageClient#textDocument_typeDefinition()<CR>
+'''
+
+[[plugins]]
+repo = 'ymyzk/vim-copl'
