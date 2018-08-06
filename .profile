@@ -1,7 +1,7 @@
 export LANG=en_US.UTF-8
 export EDITOR='nvim'
 
-XDG_CONFIG_HOME=$HOME
+export XDG_CONFIG_HOME=$HOME
 
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 export CARGO_HOME=$HOME/.cargo

@@ -18,12 +18,12 @@ repo = 'prabirshrestha/async.vim'
 repo = 'Shougo/denite.nvim'
 hook_add = '''
 noremap <C-x><C-x> <ESC>:Denite 
-noremap <C-x><C-f> <ESC>:DeniteProjectDir file_rec<Enter>
-noremap <C-x><C-r> <ESC>:Denite file_old<Enter>
-noremap <C-x><C-b> <ESC>:Denite buffer<Enter>
-noremap <C-x><C-d><C-g> <ESC>:DeniteBufferDir grep<Enter>
-noremap <C-x><C-p><C-g> <ESC>:DeniteProjectDir grep<Enter>
-noremap <C-x><C-y> <ESC>:Denite neoyank<Enter>
+noremap <C-x><C-f> <ESC>:DeniteProjectDir file_rec<CR>
+noremap <C-x><C-r> <ESC>:Denite file_old<CR>
+noremap <C-x><C-b> <ESC>:Denite buffer<CR>
+noremap <C-x><C-d><C-g> <ESC>:DeniteBufferDir grep<CR>
+noremap <C-x><C-p><C-g> <ESC>:DeniteProjectDir grep<CR>
+noremap <C-x><C-y> <ESC>:Denite neoyank<CR>
 
 if executable('rg')
   call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git'])
@@ -336,6 +336,16 @@ let g:Illuminate_ftHighlightGroups = {
 let g:Illuminate_ftblacklist = ['nerdtree']
 nnoremap <C-x><C-t> <Esc>:call LanguageClient#textDocument_definition()<CR>
 nnoremap <C-x><C-j> <Esc>:call LanguageClient#textDocument_typeDefinition()<CR>
+'''
+
+[[plugins]]
+repo = 'janko-m/vim-test'
+hook_add = '''
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
 '''
 
 [[plugins]]

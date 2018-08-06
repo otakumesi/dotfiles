@@ -97,10 +97,10 @@ inoremap <M-h> <Left>
 inoremap <M-l> <Right>
 
 " remap split window
-noremap <C-x>0 <ESC>:close<Enter>
-noremap <C-w>x <ESC>:close<Enter>
-noremap <C-w>- <ESC>:split<Enter>
-noremap <C-w><Bar> <ESC>:vsplit<Enter>
+noremap <C-x>0 <ESC>:close<CR>
+noremap <C-w>x <ESC>:close<CR>
+noremap <C-w>- <ESC>:split<CR>
+noremap <C-w><Bar> <ESC>:vsplit<CR>
 
 set expandtab
 set shiftwidth=2
