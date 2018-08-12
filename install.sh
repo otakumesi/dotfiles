@@ -11,5 +11,5 @@ do
   ln -snf "$HOME/dotfiles/$f" "$HOME"
 done
 
-ln -snf "$HOME/dotfiles/.vim" "$HOME/.config/nvim"
-ln -snf "$HOME/dotfiles/.vimrc" "$HOME/.config/nvim/init.vim"
+ln -snf "$HOME/.vim" "$HOME/.config/nvim"
+ln -snf "$HOME/.vimrc" "$HOME/.config/nvim/init.vim"
