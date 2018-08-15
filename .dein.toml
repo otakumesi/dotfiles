@@ -95,18 +95,43 @@ set statusline+=%{fugitive#statusline()}
 [[plugins]]
 repo = 'tpope/vim-pathogen'
 
+# [[plugins]]
+# repo = 'vim-syntastic/syntastic'
+# hook_add = '''
+# execute pathogen#infect()
+# set statusline+=%#warningmsg#
+# set statusline+=%{SyntasticStatuslineFlag()}
+# set statusline+=%*
+# 
+# let g:syntastic_auto_loc_list = 0
+# let g:syntastic_check_on_wq = 0
+# 
+# let g:syntastic_go_checkers = ['go', 'golint', 'govet']
+# '''
+
 [[plugins]]
-repo = 'vim-syntastic/syntastic'
+repo = 'w0rp/ale'
 hook_add = '''
-execute pathogen#infect()
+let g:ale_completion_enabled = 1
+
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
+
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+set statusline=%{LinterStatus()}
 set statusline+=%*
 
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_go_checkers = ['go', 'golint', 'govet']
+nmap <silent> f<C-r> :ALEFindRefences<CR>
 '''
 
 [[plugins]]
@@ -334,13 +359,14 @@ let g:Illuminate_ftHighlightGroups = {
       \ 'python': ['pythonFunction']
       \ }
 let g:Illuminate_ftblacklist = ['nerdtree']
-nnoremap <C-x><C-t> <Esc>:call LanguageClient#textDocument_definition()<CR>
-nnoremap <C-x><C-j> <Esc>:call LanguageClient#textDocument_typeDefinition()<CR>
+nnoremap <C-t><C-d> <Esc>:call LanguageClient#textDocument_definition()<CR>
+nnoremap <C-t><C-t> <Esc>:call LanguageClient#textDocument_typeDefinition()<CR>
 '''
 
 [[plugins]]
 repo = 'janko-m/vim-test'
 hook_add = '''
+let g:test#preserve_screen = 1
 nmap <silent> t<C-n> :TestNearest<CR>
 nmap <silent> t<C-f> :TestFile<CR>
 nmap <silent> t<C-s> :TestSuite<CR>
