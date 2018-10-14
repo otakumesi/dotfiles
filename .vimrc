@@ -156,8 +156,8 @@ au Filetype php setlocal ts=4 sw=4 expandtab
 let g:syntastic_python_flake8_exec = 'python3'
 let g:syntastic_python_flake8_args = ['-m', 'flake8']
 let g:neoformat_enabled_python = ['autopep8', 'yapf']
-let g:python3_host_prog = substitute(system('which python2'), '\n$', '', '''')
-let g:python3_host_prog = substitute(system('which python3'), '\n$', '', '''')
+let g:python3_host_prog = substitute(system('pyenv which python2'), '\n$', '', '''')
+let g:python3_host_prog = substitute(system('pyenv which python3'), '\n$', '', '''')
 let g:flake8_show_in_file = 1
 augroup python
   autocmd!

@@ -79,6 +79,10 @@ on_ft = ['ocaml']
 repo = 'junegunn/vader.vim'
 on_ft = ['vim']
 
+[[plugins]]
+repo = 'vim-jp/vital.vim'
+on_ft = ['vim']
+
 # Terraform
 [[plugins]]
 repo = 'juliosueiras/vim-terraform-completion'
