@@ -376,3 +376,9 @@ nmap <silent> t<C-g> :TestVisit<CR>
 
 [[plugins]]
 repo = 'ymyzk/vim-copl'
+
+[[plugins]]
+repo = 'tomlion/vim-solidity'
+
+[[plugins]]
+repo = 'vim-latex/vim-latex'
