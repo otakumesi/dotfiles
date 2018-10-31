@@ -390,7 +390,26 @@ let g:loaded_matchit = 1
 '''
 
 [[plugins]]
-repo = 'ryanoasis/vim-devicons'
+repo = 'deris/vim-shot-f'
+hook_add ='''
+let g:shot_f_no_default_key_mappings = 1
+
+nmap ,f  <Plug>(shot-f-f)
+nmap ,F  <Plug>(shot-f-F)
+nmap ,t  <Plug>(shot-f-t)
+nmap ,T  <Plug>(shot-f-T)
+xmap ,f  <Plug>(shot-f-f)
+xmap ,F  <Plug>(shot-f-F)
+xmap ,t  <Plug>(shot-f-t)
+xmap ,T  <Plug>(shot-f-T)
+omap ,f  <Plug>(shot-f-f)
+omap ,F  <Plug>(shot-f-F)
+omap ,t  <Plug>(shot-f-t)
+omap ,T  <Plug>(shot-f-T)
+'''
+
+[[plugins]]
+repo = 'christoomey/vim-tmux-navigator'
 
 # Twitter
 [[plugins]]
