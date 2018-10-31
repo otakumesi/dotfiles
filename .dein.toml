@@ -382,3 +382,16 @@ repo = 'tomlion/vim-solidity'
 
 [[plugins]]
 repo = 'vim-latex/vim-latex'
+
+[[plugins]]
+repo = 'andymass/vim-matchup'
+hook_add = '''
+let g:loaded_matchit = 1
+'''
+
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+
+# Twitter
+[[plugins]]
+repo = 'twitvim/twitvim'
