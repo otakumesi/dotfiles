@@ -8,6 +8,7 @@ if has('nvim')
   augroup END
   
   set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
+  set inccommand=split
   
   if dein#load_state($HOME.'/.cache/dein')
     call dein#begin($HOME.'/.cache/dein')
@@ -252,3 +253,11 @@ if executable('swim')
     au InsertLeave * call s:insertLeave()
   augroup END
 endif
+
+" PluginTest:
+command! -bang -nargs=* PluginTest call PluginTest(<bang>0, <q-args>)
+function! PluginTest(is_gui, extraCommand)
+  let cmd = a:is_gui ? 'gvim' : 'vim'
+  let extraCommand = empty(a:extraCommand) ? '' : ' -c"au VimEnter * ' . a:extraCommand . '"'
+  execute '!' . cmd . ' -u NONE -i NONE -N --cmd "set rtp+=' . getcwd() . '"' . extraCommand
+endfunction
