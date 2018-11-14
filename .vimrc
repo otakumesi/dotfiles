@@ -38,9 +38,14 @@ if has('nvim')
   endif
 end
 
-  if has('conceal')
-    set conceallevel=0
-  endif
+if has('conceal')
+  set conceallevel=0
+endif
+
+if has('mouse')
+  set mouse=a
+end
+
 syntax enable
 filetype plugin indent on
 set number

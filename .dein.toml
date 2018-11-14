@@ -5,10 +5,10 @@ repo = 'Shougo/dein.vim'
 repo = 'Shougo/deol.nvim'
 
 [[plugins]]
-repo = 'keith/parsec.vim'
+repo = 'tomasr/molokai'
 hook_add='''
 set background=light
-au MySettings VimEnter * nested colorscheme parsec
+au MySettings VimEnter * nested colorscheme molokai
 '''
 
 [[plugins]]
@@ -360,6 +360,7 @@ let g:Illuminate_ftHighlightGroups = {
       \ }
 let g:Illuminate_ftblacklist = ['nerdtree']
 nnoremap <C-t><C-d> <Esc>:call LanguageClient#textDocument_definition()<CR>
+nnoremap <S-RightMouse> <Esc>:call LanguageClient#textDocument_definition()<CR>
 nnoremap <C-t><C-t> <Esc>:call LanguageClient#textDocument_typeDefinition()<CR>
 '''
 
