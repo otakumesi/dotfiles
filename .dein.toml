@@ -93,6 +93,10 @@ repo = 'tpope/vim-surround'
 repo = 'tpope/vim-fugitive'
 hook_add = '''
 set statusline+=%{fugitive#statusline()}
+nnoremap <silent>gs :Gstatus<CR>
+nnoremap <silent>gd :Gdiff<CR>
+nnoremap <silent>gvd :Gvdiff<CR>
+nnoremap <silent>gm :Gmerge<CR>
 '''
 
 [[plugins]]
