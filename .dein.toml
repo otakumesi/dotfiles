@@ -46,6 +46,9 @@ repo = 'roxma/nvim-yarp'
 on_if = '!has("nvim")'
 
 [[plugins]]
+repo = 'mhinz/vim-startify'
+
+[[plugins]]
 repo = 'roxma/vim-hug-neovim-rpc'
 on_if = '!has("nvim")'
 
