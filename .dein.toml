@@ -312,16 +312,37 @@ let g:context_filetype#same_filetypes.html = 'css'
 [[plugins]]
 repo = 'vim-vdebug/vdebug'
 
+# [[plugins]]
+# repo = 'scrooloose/nerdtree'
+# hook_add = '''
+# map <C-x><C-w> :NERDTreeToggle<CR>
+# let g:NERDTreeMapActivateNode = "l"
+# let g:NERDTreeMapOpenRecursively = "L"
+# let g:NERDTreeMapUpdir = "h"
+# let g:NERDTreeMapUpdirKeepOpen = "H"
+# let g:NERDTreeShowHidden = 1
+# let g:NERDTreeShowLineNumbers=1
+# '''
+
 [[plugins]]
-repo = 'scrooloose/nerdtree'
+repo = 'Shougo/defx.nvim'
 hook_add = '''
-map <C-x><C-w> :NERDTreeToggle<CR>
-let g:NERDTreeMapActivateNode = "l"
-let g:NERDTreeMapOpenRecursively = "L"
-let g:NERDTreeMapUpdir = "h"
-let g:NERDTreeMapUpdirKeepOpen = "H"
-let g:NERDTreeShowHidden = 1
-let g:NERDTreeShowLineNumbers=1
+map <C-x><C-w> :Defx `expand('%:p:h')` -split="vertical" -toggle=true -listed=true -winwidth=50<CR>
+autocmd FileType defx call s:defx_my_settings()
+function! s:defx_my_settings() abort
+  nnoremap <silent><buffer><expr> <CR> defx#do_action('drop', 'vsplit')
+  nnoremap <silent><buffer><expr> l defx#do_action('drop', 'vsplit')
+  nnoremap <silent><buffer><expr> c defx#do_action('copy')
+  nnoremap <silent><buffer><expr> m defx#do_action('move')
+  nnoremap <silent><buffer><expr> yy defx#do_action('yank_path')
+  nnoremap <silent><buffer><expr> cd defx#do_action('change_vim_cwd')
+  nnoremap <silent><buffer><expr> h defx#do_action('cd', ['..'])
+  nnoremap <silent><buffer><expr> d defx#do_action('remove')
+  nnoremap <silent><buffer><expr> r defx#do_action('rename')
+  nnoremap <silent><buffer><expr> . defx#do_action('toggle_ignored_files')
+  nnoremap <silent><buffer><expr> i defx#do_action('new_file')
+  nnoremap <silent><buffer><expr> I defx#do_action('new_directory')
+endfunction
 '''
 
 [[plugins]]
