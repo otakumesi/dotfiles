@@ -92,6 +92,7 @@ flycheck_*.el
 
 # javascript
 .tern-port
+.node-version
 
 # Ruby
 .solargraph.yml

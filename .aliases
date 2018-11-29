@@ -1,6 +1,6 @@
 # User
 alias vi='vim -u NONE --noplugin'
-alias vim='nvim'
+alias vim='nvim -u ~/.vimrc'
 alias ls="ls -a"
 alias okgoogle="say 'ok, google'"
 

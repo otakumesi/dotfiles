@@ -15,6 +15,10 @@ on_ft = ['ruby', 'haml', 'slim']
 repo = 'tpope/vim-endwise'
 on_ft = ['ruby', 'haml', 'slim']
 
+[[plugins]]
+repo = 'ecomba/vim-ruby-refactoring'
+on_ft = ['ruby', 'haml', 'slim']
+
 # Python
 [[plugins]]
 repo = 'zchee/deoplete-jedi'

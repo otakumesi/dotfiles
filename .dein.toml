@@ -325,9 +325,25 @@ repo = 'vim-vdebug/vdebug'
 # '''
 
 [[plugins]]
+repo = 'kristijanhusak/defx-git'
+depends = ['Shougo/defx.nvim']
+hook_add = '''
+let g:defx_git#indicators = {
+  \ 'Modified'  : '✹',
+  \ 'Staged'    : '✚',
+  \ 'Untracked' : '✭',
+  \ 'Renamed'   : '➜',
+  \ 'Unmerged'  : '═',
+  \ 'Ignored'   : '☒',
+  \ 'Deleted'   : '✖',
+  \ 'Unknown'   : '?'
+  \ }
+'''
+
+[[plugins]]
 repo = 'Shougo/defx.nvim'
 hook_add = '''
-map <C-x><C-w> :Defx `expand('%:p:h')` -split="vertical" -toggle=true -listed=true -winwidth=50<CR>
+map <C-x><C-w> :Defx `expand('%:p:h')` -columns=git:mark:filename:type -split=vertical -toggle=true -listed=true -winwidth=50 -search=`expand('%:p')`<CR>
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
   nnoremap <silent><buffer><expr> <CR> defx#do_action('drop', 'vsplit')
