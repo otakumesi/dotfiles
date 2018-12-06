@@ -5,10 +5,14 @@ repo = 'Shougo/dein.vim'
 repo = 'Shougo/deol.nvim'
 
 [[plugins]]
-repo = 'tomasr/molokai'
+repo = 'haishanh/night-owl.vim'
 hook_add='''
-set background=light
-au MySettings VimEnter * nested colorscheme molokai
+set background=dark
+if (has("termguicolors"))
+ set termguicolors
+endif
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+au MySettings VimEnter * nested colorscheme night-owl
 '''
 
 [[plugins]]
@@ -427,6 +431,9 @@ repo = 'tomlion/vim-solidity'
 
 [[plugins]]
 repo = 'vim-latex/vim-latex'
+
+[[plugins]]
+repo = 'jvirtanen/vim-octave'
 
 [[plugins]]
 repo = 'andymass/vim-matchup'
