@@ -354,6 +354,7 @@ function! s:defx_my_settings() abort
   nnoremap <silent><buffer><expr> l defx#do_action('drop', 'vsplit')
   nnoremap <silent><buffer><expr> c defx#do_action('copy')
   nnoremap <silent><buffer><expr> m defx#do_action('move')
+  nnoremap <silent><buffer><expr> p defx#do_action('paste')
   nnoremap <silent><buffer><expr> yy defx#do_action('yank_path')
   nnoremap <silent><buffer><expr> cd defx#do_action('change_vim_cwd')
   nnoremap <silent><buffer><expr> h defx#do_action('cd', ['..'])
