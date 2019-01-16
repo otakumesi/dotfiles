@@ -187,6 +187,14 @@ repo = 'rizzatti/dash.vim'
 repo = 'haya14busa/vim-migemo'
 
 [[plugins]]
+repo = 'rhysd/migemo-search.vim'
+hook_add = '''
+if executable('cmigemo')
+    cnoremap <expr><CR> migemosearch#replace_search_word()."\<CR>"
+endif
+'''
+
+[[plugins]]
 repo = 'thinca/vim-ref'
 
 [[plugins]]

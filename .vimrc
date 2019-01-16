@@ -189,6 +189,12 @@ let g:syntastic_enable_typescript_checkers = 1
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi']
 let g:tsuquyomi_completion_detail = 1
+let g:tsuquyomi_javascript_support = 1
+let g:ale_linters = {
+\   'typescript': ['tsserver', 'tslint'],
+\   'tsx': ['tsserver', 'tslint']
+\}
+
 augroup typescript
   autocmd!
   au BufNewFile,BufRead *.tsx setfiletype typescript.jsx
@@ -238,11 +244,6 @@ au BufNewFile,BufRead Makefile setlocal tabstop=4 shiftwidth=4 noexpandtab
 
 " Markdown:
 let g:vim_markdown_folding_disabled = 1
-
-"HTML:
-" Jinjaだとtidyがうまく動かないためpassiveにしておく
-let g:syntastic_mode_map = {'mode':'active',
-      \'passive_filetypes':['html']}
 
 " IME:
 if executable('swim')
