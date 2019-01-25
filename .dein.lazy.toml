@@ -2,6 +2,54 @@
 [[plugins]]
 repo = 'tpope/vim-rails'
 on_ft = ['ruby', 'haml', 'slim']
+hook_add = '''
+let g:rails_projections = {
+      \ "app/view_objects/*.rb": {
+      \   "command": "view_object",
+      \   "test": [
+      \     "spec/view_objects/{}_spec.rb"
+      \   ]
+      \ },
+      \ "app/parameters/*_parameter.rb": {
+      \   "command": "parameter"
+      \ },
+      \ "app/policies/*_policy.rb": {
+      \   "command": "policy"
+      \ },
+      \ "app/queries/*_query.rb": {
+      \   "command": "query"
+      \ },
+      \ "app/repositories/*_repository.rb": {
+      \   "command": "repository"
+      \ },
+      \ "app/serializers/*_serializer.rb": {
+      \   "command": "serializer"
+      \ },
+      \ "app/services/*_service.rb": {
+      \   "command": "service"
+      \ },
+      \ "app/validators/*_validator.rb": {
+      \   "command": "validator"
+      \ },
+      \ "app/values/*.rb": {
+      \   "command": "value"
+      \ },
+      \ "app/filters/*_filter.rb": {
+      \   "command": "filter"
+      \ },
+      \ "app/factories/*_factory.rb": {
+      \   "command": "factory"
+      \ },
+      \ "app/decorators/*_decorator.rb": {
+      \   "command": "decorator"
+      \ },
+      \ "app/cells/*_cell.rb": {
+      \   "command": "cell"
+      \ },
+      \ "app/adapters/*_adapter.rb": {
+      \   "command": "adapter"
+      \ }}
+'''
 
 [[plugins]]
 repo = '5t111111/denite-rails'
