@@ -74,8 +74,6 @@ repo = 'SirVer/ultisnips'
 hook_add = '''
 let g:UltiSnipsExpandTrigger       = "<tab>"
 let g:UltiSnipsJumpForwardTrigger  = "<C-a>"
-" let g:UltiSnipsJumpBackwardTrigger = "<c-p>"
-" let g:UltiSnipsListSnippets        = "<c-k>"
 '''
 
 [[plugins]]
@@ -105,20 +103,6 @@ nnoremap <silent>gm :Gmerge<CR>
 
 [[plugins]]
 repo = 'tpope/vim-pathogen'
-
-# [[plugins]]
-# repo = 'vim-syntastic/syntastic'
-# hook_add = '''
-# execute pathogen#infect()
-# set statusline+=%#warningmsg#
-# set statusline+=%{SyntasticStatuslineFlag()}
-# set statusline+=%*
-# 
-# let g:syntastic_auto_loc_list = 0
-# let g:syntastic_check_on_wq = 0
-# 
-# let g:syntastic_go_checkers = ['go', 'golint', 'govet']
-# '''
 
 [[plugins]]
 repo = 'w0rp/ale'
@@ -324,18 +308,6 @@ let g:context_filetype#same_filetypes.html = 'css'
 [[plugins]]
 repo = 'vim-vdebug/vdebug'
 
-# [[plugins]]
-# repo = 'scrooloose/nerdtree'
-# hook_add = '''
-# map <C-x><C-w> :NERDTreeToggle<CR>
-# let g:NERDTreeMapActivateNode = "l"
-# let g:NERDTreeMapOpenRecursively = "L"
-# let g:NERDTreeMapUpdir = "h"
-# let g:NERDTreeMapUpdirKeepOpen = "H"
-# let g:NERDTreeShowHidden = 1
-# let g:NERDTreeShowLineNumbers=1
-# '''
-
 [[plugins]]
 repo = 'kristijanhusak/defx-git'
 depends = ['Shougo/defx.nvim']
@@ -471,7 +443,3 @@ omap ,T  <Plug>(shot-f-T)
 
 [[plugins]]
 repo = 'christoomey/vim-tmux-navigator'
-
-# Twitter
-[[plugins]]
-repo = 'twitvim/twitvim'
