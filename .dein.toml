@@ -5,14 +5,13 @@ repo = 'Shougo/dein.vim'
 repo = 'Shougo/deol.nvim'
 
 [[plugins]]
-repo = 'haishanh/night-owl.vim'
+repo = 'morhetz/gruvbox'
 hook_add='''
-set background=dark
+set background=light
 if (has("termguicolors"))
  set termguicolors
 endif
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-au MySettings VimEnter * nested colorscheme night-owl
+au MySettings VimEnter * nested colorscheme gruvbox
 '''
 
 [[plugins]]
