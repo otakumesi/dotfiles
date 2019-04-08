@@ -154,9 +154,6 @@ repo = 'vim-vdebug/vdebug'
 repo = 'editorconfig/editorconfig-vim'
 
 [[plugins]]
-repo = 'wakatime/vim-wakatime'
-
-[[plugins]]
 repo = 'rhysd/accelerated-jk'
 hook_add = '''
 nmap j <Plug>(accelerated_jk_gj)
@@ -326,7 +323,7 @@ let g:defx_git#indicators = {
 [[plugins]]
 repo = 'Shougo/defx.nvim'
 hook_add = '''
-map <C-x><C-w> :Defx `expand('%:p:h')` -columns=git:mark:filename:type -split=vertical -toggle=true -listed=true -winwidth=50 -search=`expand('%:p')`<CR>
+map <C-x><C-w> :Defx `expand('%:p:h')` -columns=git:mark:filename:type -split=vertical -winwidth=50 -search=`expand('%:p')` -toggle=1 -listed=1<CR>
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
   nnoremap <silent><buffer><expr> <CR> defx#do_action('drop', 'vsplit')
@@ -343,34 +340,6 @@ function! s:defx_my_settings() abort
   nnoremap <silent><buffer><expr> i defx#do_action('new_file')
   nnoremap <silent><buffer><expr> I defx#do_action('new_directory')
 endfunction
-'''
-
-[[plugins]]
-repo = 'Xuyuanp/nerdtree-git-plugin'
-depends = ['scrooloose/nerdtree']
-
-[[plugins]]
-repo = 'autozimu/LanguageClient-neovim'
-rev = 'next'
-build = 'bash install.sh'
-depends = ['deoplete']
-hook_add = '''
-let g:LanguageClient_serverCommands = {
-  \ 'python':['pyls'],
-  \ 'jinja':['pyls'],
-  \ 'ruby': ['solargraph', 'stdio'],
-  \ 'slim': ['solargraph', 'stdio'],
-  \ 'haml': ['solargraph', 'stdio'],
-  \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-  \ 'typescript': ['/usr/local/bin/javascript-typescript-stdio'],
-  \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-  \ 'typescript.tsx': ['tcp://127.0.0.1:2089'],
-  \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-  \ 'go': ['go-langserer']
-  \ }
-call deoplete#custom#source('LanguageClient',
-  \ 'min_pattern_length',
-  \ 2)
 '''
 
 [[plugins]]
