@@ -18,16 +18,16 @@ if has('nvim')
     call dein#load_toml($HOME.'/.dein.lazy.toml', {'lazy': 1})
   
     " Ocaml:
-    if executable('opam')
-      let g:opamshare = substitute(system('opam config var share'), '\n$', '', '''')
-      call dein#add(g:opamshare . '/merlin/vim', {'lazy': 1, 'on_ft': 'ocaml', 'on_event': 'InsertEnter'})
-    end
+    " if executable('opam')
+    "   let g:opamshare = substitute(system('opam config var share'), '\n$', '', '''')
+    "   call dein#add(g:opamshare . '/merlin/vim', {'lazy': 1, 'on_ft': 'ocaml', 'on_event': 'InsertEnter'})
+    " end
   
     " Golang:
-    if $GOPATH != ''
-      call dein#add(globpath($GOPATH, "src/github.com/golang/lint/misc/vim"), {'lazy': 1, 'on_ft': 'go', 'on_event': 'InsertEnter'})
-      let g:syntastic_go_checkers = ['go', 'golint', 'govet']
-    endif
+    " if $GOPATH != ''
+    "   call dein#add(globpath($GOPATH, "src/github.com/golang/lint/misc/vim"), {'lazy': 1, 'on_ft': 'go', 'on_event': 'InsertEnter'})
+    "   let g:syntastic_go_checkers = ['go', 'golint', 'govet']
+    " endif
   
     call dein#end()
     call dein#save_state()

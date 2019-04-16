@@ -61,7 +61,7 @@ hook_add = '''
 let g:deoplete#enable_at_startup = 1
 set completeopt+=menuone
 call deoplete#enable_logging('DEBUG', $HOME.'/deoplete.log')
-call deoplete#custom#source('jedi', 'is_debug_enabled', 1)
+call deoplete#custom#source('jedi', {})
 call deoplete#custom#option({
   \ 'on_insert_enter': v:false,
   \ 'min_pattern_length': 2
@@ -101,12 +101,23 @@ nnoremap <silent>gm :Gmerge<CR>
 '''
 
 [[plugins]]
+repo = 'airblade/vim-gitgutter'
+hook_add = '''
+set signcolumn=yes
+'''
+
+[[plugins]]
 repo = 'tpope/vim-pathogen'
 
 [[plugins]]
 repo = 'w0rp/ale'
 hook_add = '''
 let g:ale_completion_enabled = 1
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = 'E!'
+let g:ale_sign_warning = 'W!'
+let g:ale_warn_about_trailing_whitespace = 1
+let g:ale_set_highlights = 1
 
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
@@ -230,6 +241,14 @@ repo ='styled-components/vim-styled-components'
 # TypeScript
 [[plugins]]
 repo ='leafgarland/typescript-vim'
+# repo ='HerringtonDarkholme/yats.vim'
+# hook_add = '''
+# let g:yats_host_keyword = 1
+# '''
+
+[[plugins]]
+repo ='mhartington/nvim-typescript'
+build = './install.sh'
 
 [[plugins]]
 repo ='Quramy/tsuquyomi'
@@ -303,6 +322,30 @@ let g:context_filetype#same_filetypes.html = 'css'
 
 [[plugins]]
 repo = 'vim-vdebug/vdebug'
+
+[[plugins]]
+repo = 'autozimu/LanguageClient-neovim'
+rev = 'next'
+build = 'bash install.sh'
+depends = ['deoplete']
+hook_add = '''
+let g:LanguageClient_serverCommands = {
+  \ 'python':['pyls'],
+  \ 'jinja':['pyls'],
+  \ 'ruby': ['solargraph', 'stdio'],
+  \ 'slim': ['solargraph', 'stdio'],
+  \ 'haml': ['solargraph', 'stdio'],
+  \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+  \ 'typescript': ['/usr/local/bin/javascript-typescript-stdio'],
+  \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+  \ 'typescript.tsx': ['tcp://127.0.0.1:2089'],
+  \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+  \ 'go': ['go-langserer']
+  \ }
+call deoplete#custom#source('LanguageClient',
+  \ 'min_pattern_length',
+  \ 2)
+'''
 
 [[plugins]]
 repo = 'kristijanhusak/defx-git'
