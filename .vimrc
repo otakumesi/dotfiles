@@ -49,6 +49,7 @@ end
 syntax enable
 filetype plugin indent on
 set number
+set splitbelow
 set encoding=utf-8
 set fileformats=unix,dos,mac
 set fileencodings=utf-8,sjis
