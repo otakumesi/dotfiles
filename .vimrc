@@ -51,7 +51,7 @@ filetype plugin indent on
 set number
 set encoding=utf-8
 set fileformats=unix,dos,mac
-set fileencoding=utf-8,sjis
+set fileencodings=utf-8,sjis
 set spelllang=en,cjk
 set spell
 set fenc=utf-8

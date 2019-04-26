@@ -453,3 +453,9 @@ omap ,T  <Plug>(shot-f-T)
 
 [[plugins]]
 repo = 'christoomey/vim-tmux-navigator'
+
+[[plugins]]
+repo = 'szw/vim-tags'
+hook_add = '''
+set tags=./tags;$HOME
+'''
