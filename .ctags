@@ -1,0 +1,5 @@
+--append=yes
+--recursive=yes
+--langmap=RUBY:.rb
+--exclude=".git*"
+-f ~/.tags
