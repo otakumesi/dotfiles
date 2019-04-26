@@ -458,4 +458,6 @@ repo = 'christoomey/vim-tmux-navigator'
 repo = 'szw/vim-tags'
 hook_add = '''
 set tags=./tags;$HOME
+let g:vim_tags_project_tags_command = "ctags -f .tags -R . 2>dev/null"
+let g:vim_tags_gem_tags_command = "ctags -R -f .Gemfile.lock.tags `bundle show --paths` 2>/dev/null"
 '''
