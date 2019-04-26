@@ -26,6 +26,7 @@ noremap <C-x><C-r> <ESC>:CtrlPMRU<CR>
 noremap <C-x><C-f> <ESC>:CtrlPRoot<CR>
 noremap <C-x><C-d> <ESC>:CtrlPDir<CR>
 noremap <C-x><C-b> <ESC>:CtrlPBuffer<CR>
+noremap <C-x><C-l> <ESC>:CtrlPLine<CR>
 noremap <C-x><C-m> <ESC>:CtrlPMixed<CR>
 noremap <C-x><C-t> <ESC>:CtrlPTag<CR>
 
