@@ -76,6 +76,8 @@ set matchtime=1
 set ambiwidth=double
 set autochdir
 set matchpairs+=<:>
+set completeopt=menuone,longest,preview
+
 
 set list
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
