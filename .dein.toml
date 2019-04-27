@@ -18,7 +18,7 @@ au MySettings VimEnter * nested colorscheme gruvbox
 repo = 'prabirshrestha/async.vim'
 
 [[plugins]]
-repo = 'kien/ctrlp.vim'
+repo = 'ctrlpvim/ctrlp.vim'
 hook_add = '''
 let g:ctrlp_map = '<c-x>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -27,7 +27,7 @@ noremap <C-x><C-f> <ESC>:CtrlPRoot<CR>
 noremap <C-x><C-d> <ESC>:CtrlPDir<CR>
 noremap <C-x><C-b> <ESC>:CtrlPBuffer<CR>
 noremap <C-x><C-l> <ESC>:CtrlPLine<CR>
-noremap <C-x><C-m> <ESC>:CtrlPMixed<CR>
+noremap <C-x><C-a> <ESC>:CtrlPMixed<CR>
 noremap <C-x><C-t> <ESC>:CtrlPTag<CR>
 
 let g:ctrlp_working_path_mode = 'ra'
@@ -40,6 +40,15 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'some_bad_symbolic_links',
   \ }
 '''
+
+[[plugins]]
+repo = 'mattn/ctrlp-mark'
+hook_add = '''
+noremap <C-x><C-m> <ESC>:CtrlPMark<CR>
+'''
+
+[[plugins]]
+repo = 'kshenoy/vim-signature'
 
 [[plugins]]
 repo = 'sgur/ctrlp-extensions.vim'
