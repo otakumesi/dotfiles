@@ -101,12 +101,6 @@ noremap <C-g> <ESC>
 noremap! <C-g> <ESC>
 inoremap <silent>jj <ESC>
 
-" remap move
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <M-h> <Left>
-inoremap <M-l> <Right>
-
 " remap split window
 noremap <C-x>0 <ESC>:close<CR>
 noremap <C-w>x <ESC>:close<CR>

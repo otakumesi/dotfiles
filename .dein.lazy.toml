@@ -140,6 +140,11 @@ on_ft = ['vim']
 repo = 'juliosueiras/vim-terraform-completion'
 on_ft = ['terraform']
 
+# TeX
+[[plugins]]
+repo = 'vim-latex/vim-latex'
+on_ft = ['plaintex']
+
 # Productivity
 
 [[plugins]]

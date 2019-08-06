@@ -20,15 +20,15 @@ repo = 'prabirshrestha/async.vim'
 [[plugins]]
 repo = 'ctrlpvim/ctrlp.vim'
 hook_add = '''
-let g:ctrlp_map = '<c-x>'
+let g:ctrlp_map = '<c-s>'
 let g:ctrlp_cmd = 'CtrlP'
-noremap <C-x><C-r> <ESC>:CtrlPMRU<CR>
-noremap <C-x><C-f> <ESC>:CtrlPRoot<CR>
-noremap <C-x><C-d> <ESC>:CtrlPDir<CR>
-noremap <C-x><C-b> <ESC>:CtrlPBuffer<CR>
-noremap <C-x><C-l> <ESC>:CtrlPLine<CR>
-noremap <C-x><C-a> <ESC>:CtrlPMixed<CR>
-noremap <C-x><C-t> <ESC>:CtrlPTag<CR>
+noremap <C-s><C-r> <ESC>:CtrlPMRU<CR>
+noremap <C-s><C-f> <ESC>:CtrlPRoot<CR>
+noremap <C-s><C-d> <ESC>:CtrlPDir<CR>
+noremap <C-s><C-b> <ESC>:CtrlPBuffer<CR>
+noremap <C-s><C-l> <ESC>:CtrlPLine<CR>
+noremap <C-s><C-a> <ESC>:CtrlPMixed<CR>
+noremap <C-s><C-t> <ESC>:CtrlPTag<CR>
 
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
