@@ -175,9 +175,6 @@ set statusline=%{anzu#search_status()}
 '''
 
 [[plugins]]
-repo = 'vim-vdebug/vdebug'
-
-[[plugins]]
 repo = 'editorconfig/editorconfig-vim'
 
 [[plugins]]
@@ -337,6 +334,13 @@ let g:context_filetype#same_filetypes.html = 'css'
 
 [[plugins]]
 repo = 'vim-vdebug/vdebug'
+hook_add = '''
+let g:vdebug_options = {
+  \ 'sign_breakpoint': '*',
+  \ 'sign_current': '@',
+  \ 'sign_disabled': '#'
+  \ }
+'''
 
 [[plugins]]
 repo = 'autozimu/LanguageClient-neovim'
