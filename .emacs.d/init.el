@@ -83,7 +83,7 @@
    flycheck-check-syntax-automatically '(save))
   :init (global-flycheck-mode))
 
-(use-package python-mode
+(use-package python
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode)
   :config
@@ -92,16 +92,14 @@
   (setq python-indent 4)
   (setq tab-width 4))
 
-;; (use-package jedi-core
-;;   :config
-;;   (setq jedi:complete-on-dot t)
-;;   (setq jedi:use-shortcuts t)
-;;   :hook (python-mode . jedi:setup))
-;; (use-package company-jedi
-;;   :config
-;;   (defun my/python-mode-hook ()
-;;     (add-to-list 'company-backends 'company-jedi))
-;;   :hook (python-mode-hook . my/python-mode-hook))
+(use-package jedi-core
+  :config
+  (setq jedi:complete-on-dot t)
+  (setq jedi:use-shortcuts t)
+  :hook (python-mode . jedi:setup))
+(use-package company-jedi
+  :config
+  (add-to-list 'company-backends 'company-jedi))
  (use-package pipenv
     :hook (python-mode . pipenv-mode)
     :custom
