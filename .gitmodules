@@ -1,5 +1,5 @@
 [submodule ".emacs.d"]
-        path = .emacs.d
+        path = .emacs.d.bk
         url = git@github.com:otakumesi/.emacs.d.git
 [submodule "tmux-powerline"]
 	path = tmux-powerline

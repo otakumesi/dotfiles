@@ -11,5 +11,6 @@ do
   ln -snf "$HOME/dotfiles/$f" "$HOME"
 done
 
+ln -snf "$HOME/dotfiles/settings.json" "$HOME"
 ln -snf "$HOME/.vim" "$HOME/.config/nvim"
 ln -snf "$HOME/.vimrc" "$HOME/.config/nvim/init.vim"

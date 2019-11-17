@@ -3,11 +3,11 @@ export EDITOR='nvim'
 
 export XDG_CONFIG_HOME=$HOME
 
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+export JAVA_HOME=`/usr/libexec/java_home -v 11`
 export CARGO_HOME=$HOME/.cargo
 export GOPATH=$HOME/goprojects
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH=$GOPATH/bin:$HOME/.rbenv/shims:$PYENV_ROOT/bin:$PATH:$HOME/.rbenv/bin:$HOME/.meteor:$CARGO_HOME/bin:$HOME/.tfenv/bin:$JAVA_HOME/bin:$PATH:$HOME/.ndenv/bin:$PATH
+export PATH=/usr/local/bin:$GOPATH/bin:$HOME/.rbenv/shims:$PYENV_ROOT/bin:$PATH:$HOME/.rbenv/bin:$HOME/.meteor:$CARGO_HOME/bin:$HOME/.tfenv/bin:$JAVA_HOME/bin:$PATH:$HOME/.ndenv/bin:$PATH
 export MANPATH="/usr/local/man:$MANPATH"
 
 export GOROOT_BOOTSTRAP=$HOME/go1.4/bin
@@ -24,7 +24,7 @@ export FZF_TMUX_HEIGHT=30
 export NVIM_PYTHON_LOG_FILE=/tmp/log
 export NVIM_PYTHON_LOG_LEVEL=DEBUG
 
-eval "$(ndenv init -)"
+eval "$(nodenv init -)"
 eval "$(rbenv init -)"
 eval "$(pyenv init -)"
 eval "$(pipenv --completion)"
@@ -42,3 +42,6 @@ source $HOME/.functions
 [[ -s "/Users/200448/.gvm/scripts/gvm" ]] && source "/Users/200448/.gvm/scripts/gvm"
 
 [[ -f $HOME/.acme.sh/.acme.sh.env ]] && . $HOME/.acme.sh/.acme.sh.env
+
+export PATH="$HOME/.cargo/bin:$PATH"
+eval `tset -s xterm-24bits`
