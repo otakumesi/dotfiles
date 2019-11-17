@@ -23,6 +23,9 @@
       (process-send-string proc text)
       (process-send-eof proc))))
 
+(setq abbrev-file-name "~/.abbrev_defs")
+(setq save-abbrevs t)
+
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -48,8 +51,8 @@
   :config (exec-path-from-shell-initialize))
 
 (use-package dracula-theme
-    :config
-    (load-theme 'dracula t))
+  :config
+  (load-theme 'dracula t))
 
 (use-package helm
   :config
@@ -70,10 +73,8 @@
 (use-package recentf
   :config (recentf-mode 1)
   :bind ("C-x r" . 'helm-recentf))
-
-(use-package company
-  :init (global-company-mode))
-
+(use-package company :init (global-company-mode))
+(use-package yasnippet :config (yas-global-mode 1))
 (use-package flycheck
   :config
   (setq
@@ -86,25 +87,31 @@
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode)
   :config
-  (add-hook 'python-mode-hook
-	    '(lambda ()
-	       (setq indent-tabs-mode nil)
-	       (setq python-indent 4)
-	       (setq tab-width 4))))
-(use-package jedi-core)
-(use-package company-jedi
-  :config
-  (defun my/python-mode-hook ()
-    (add-to-list 'company-backends 'company-jedi))
-  :hook (python-mode-hook . my/python-mode-hook))
+  (setq electric-indent-local-mode 1)
+  (setq indent-tabs-mode nil)
+  (setq python-indent 4)
+  (setq tab-width 4))
+
+;; (use-package jedi-core
+;;   :config
+;;   (setq jedi:complete-on-dot t)
+;;   (setq jedi:use-shortcuts t)
+;;   :hook (python-mode . jedi:setup))
+;; (use-package company-jedi
+;;   :config
+;;   (defun my/python-mode-hook ()
+;;     (add-to-list 'company-backends 'company-jedi))
+;;   :hook (python-mode-hook . my/python-mode-hook))
+ (use-package pipenv
+    :hook (python-mode . pipenv-mode)
+    :custom
+     (pipenv-projectile-after-switch-function #'pipenv-projectile-after-switch-extended))
 
 (use-package lsp-mode
   :hook ((python-mode . lsp))
   :commands lsp)
 (use-package lsp-ui :commands lsp-ui-mode)
 (use-package helm-lsp :commands helm-lsp-workspace-symbol)
-(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
-(use-package dap-mode)
 (use-package company-lsp
   :config (push 'company-lsp company-backends)
   :commands comapny-lsp)
