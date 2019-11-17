@@ -44,17 +44,12 @@
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
 
-(use-package evil
-  :config
-  (evil-mode 1))
+(use-package evil :config (evil-mode 1))
+(use-package dracula-theme :config (load-theme 'dracula t))
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))
   :config (exec-path-from-shell-initialize))
-
-(use-package dracula-theme
-  :config
-  (load-theme 'dracula t))
 
 (use-package helm
   :config
@@ -74,7 +69,7 @@
   :config (helm-projectile-on)
   :bind ("C-x p h" . 'helm-projectile))
 
-(use-package magit)
+(use-package magit :defer t)
 (use-package smartparens
   :config
   (smartparens-global-mode t)
@@ -102,18 +97,21 @@
 	tab-width 4))
 
 (use-package jedi-core
+  :defer t
   :config
   (setq jedi:complete-on-dot t
 	jedi:use-shortcuts t)
   :hook (python-mode . jedi:setup))
 (use-package company-jedi
-  :defer
+  :defer t
   :config
   (add-to-list 'company-backends 'company-jedi))
 (use-package pipenv
+  :defer t
   :hook (python-mode . pipenv-mode)
   :custom (pipenv-projectile-after-switch-function #'pipenv-projectile-after-switch-extended))
-(use-package ein :defer
+(use-package ein
+  :defer t
   :config
   (require 'ein-notebook)
   (require 'ein-subpackages))
@@ -121,10 +119,14 @@
 (use-package lsp-mode
   :hook ((python-mode . lsp))
   :commands lsp)
-(use-package lsp-ui :commands lsp-ui-mode)
-(use-package helm-lsp :commands helm-lsp-workspace-symbol)
+(use-package lsp-ui
+  :defer t
+  :commands lsp-ui-mode)
+(use-package helm-lsp
+  :defer t
+  :commands helm-lsp-workspace-symbol)
 (use-package company-lsp
   :config (push 'company-lsp company-backends)
   :commands comapny-lsp)
 
-(use-package todoist :defer)
+(use-package todoist :defer t)
