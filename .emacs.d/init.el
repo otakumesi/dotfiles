@@ -9,22 +9,24 @@
 (global-display-line-numbers-mode 1)
 (column-number-mode t)
 (size-indication-mode t)
+(windmove-default-keybindings)
+(global-set-key (kbd "C-x |")  'split-window-horizontally)
+(global-set-key (kbd "C-x -")  'split-window-vertically)
+(global-set-key (kbd "C-x x")  'delete-window)
 
-(setq x-select-enable-clipboard t)
-(setq interprogram-cut-function 'paste-to-osx)
-(setq interprogram-paste-function 'copy-from-osx)
-
+(setq select-enable-clipboard t
+      interprogram-cut-function 'paste-to-osx
+      interprogram-paste-function 'copy-from-osx)
 (defun copy-from-osx ()
   (shell-command-to-string "pbpaste"))
-
 (defun paste-to-osx (text &optional push)
   (let ((process-connection-type nil))
     (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
       (process-send-string proc text)
       (process-send-eof proc))))
 
-(setq abbrev-file-name "~/.abbrev_defs")
-(setq save-abbrevs t)
+(setq abbrev-file-name "~/.abbrev_defs"
+      save-abbrevs t)
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -57,24 +59,31 @@
 (use-package helm
   :config
   (require 'helm-config)
+  (setq helm-buffers-fuzzy-matching t
+	helm-recentf-fuzzy-match    t)
   (helm-mode 1)
   :bind
   ("M-x" . helm-M-x)
   ("C-x C-f" . helm-find-files)
   ("M-y" . helm-show-kill-ring)
   ("C-x b" . helm-mini))
+(use-package helm-tramp
+  :config (setq tramp-default-method "ssh")
+  :bind ("C-x C-s" . 'helm-tramp))
 (use-package helm-projectile
-  :config (helm-projectile-on))
+  :config (helm-projectile-on)
+  :bind ("C-x p h" . 'helm-projectile))
 
 (use-package magit)
 (use-package smartparens
-  :config (require 'smartparens-config)
-  :hook ((emacs-lisp-mode . smartparens-mode)))
+  :config
+  (smartparens-global-mode t)
+  (require 'smartparens-config))
 (use-package recentf
-  :config (recentf-mode 1)
-  :bind ("C-x r" . 'helm-recentf))
+  :init (recentf-mode 1)
+  :bind ("C-x C-r" . 'helm-recentf))
 (use-package company :init (global-company-mode))
-(use-package yasnippet :config (yas-global-mode 1))
+(use-package yasnippet :init (yas-global-mode 1))
 (use-package flycheck
   :config
   (setq
@@ -87,23 +96,27 @@
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode)
   :config
-  (setq electric-indent-local-mode 1)
-  (setq indent-tabs-mode nil)
-  (setq python-indent 4)
-  (setq tab-width 4))
+  (setq electric-indent-local-mode 1
+	indent-tabs-mode nil
+	python-indent 4
+	tab-width 4))
 
 (use-package jedi-core
   :config
-  (setq jedi:complete-on-dot t)
-  (setq jedi:use-shortcuts t)
+  (setq jedi:complete-on-dot t
+	jedi:use-shortcuts t)
   :hook (python-mode . jedi:setup))
 (use-package company-jedi
+  :defer
   :config
   (add-to-list 'company-backends 'company-jedi))
- (use-package pipenv
-    :hook (python-mode . pipenv-mode)
-    :custom
-     (pipenv-projectile-after-switch-function #'pipenv-projectile-after-switch-extended))
+(use-package pipenv
+  :hook (python-mode . pipenv-mode)
+  :custom (pipenv-projectile-after-switch-function #'pipenv-projectile-after-switch-extended))
+(use-package ein :defer
+  :config
+  (require 'ein-notebook)
+  (require 'ein-subpackages))
 
 (use-package lsp-mode
   :hook ((python-mode . lsp))
@@ -113,3 +126,5 @@
 (use-package company-lsp
   :config (push 'company-lsp company-backends)
   :commands comapny-lsp)
+
+(use-package todoist :defer)
