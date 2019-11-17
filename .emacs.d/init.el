@@ -1,35 +1,9 @@
 (setq user-full-name "Takuro Niitsuma"
       user-mail-address "bakednt@gmail.com")
 
-(prefer-coding-system 'utf-8) (set-default-coding-systems 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(global-hl-line-mode +1)
-(line-number-mode +1)
-(global-display-line-numbers-mode 1)
-(column-number-mode t)
-(size-indication-mode t)
-(menu-bar-mode -1)
-(setq inhibit-startup-screen t
-      inhibit-startup-message t)
-(windmove-default-keybindings)
-(global-set-key (kbd "C-x |")  'split-window-horizontally)
-(global-set-key (kbd "C-x -")  'split-window-vertically)
-(global-set-key (kbd "C-x x")  'delete-window)
-
-(setq select-enable-clipboard t
-      interprogram-cut-function 'paste-to-osx
-      interprogram-paste-function 'copy-from-osx)
-(defun copy-from-osx ()
-  (shell-command-to-string "pbpaste"))
-(defun paste-to-osx (text &optional push)
-  (let ((process-connection-type nil))
-    (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
-      (process-send-string proc text)
-      (process-send-eof proc))))
-
-(setq abbrev-file-name "~/.abbrev_defs"
-      save-abbrevs t)
+(add-hook 'emacs-startup-hook 'load-init-settings)
+(add-hook 'emacs-startup-hook 'enable-to-copy-and-paste-on-system)
+(add-hook 'emacs-startup-hook 'enable-to-move-window-with-key)
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -133,3 +107,40 @@
   :commands comapny-lsp)
 
 (use-package todoist :defer t)
+
+(defun load-init-settings ()
+  (prefer-coding-system 'utf-8)
+  (set-default-coding-systems 'utf-8)
+  (set-terminal-coding-system 'utf-8)
+  (set-keyboard-coding-system 'utf-8)
+  (global-hl-line-mode +1)
+  (line-number-mode +1)
+  (global-display-line-numbers-mode 1)
+  (column-number-mode t)
+  (size-indication-mode t)
+  (menu-bar-mode -1)
+
+  (setq inhibit-startup-screen t
+	inhibit-startup-message t)
+
+  (setq abbrev-file-name "~/.abbrev_defs"
+        save-abbrevs t))
+
+(defun enanle-to-move-window-with-key ()
+  (windmove-default-keybindings)
+  (global-set-key (kbd "C-x |")  'split-window-horizontally)
+  (global-set-key (kbd "C-x -")  'split-window-vertically)
+  (global-set-key (kbd "C-x x")  'delete-window))
+
+(defun enable-to-copy-and-paste-on-system ()
+  (setq select-enable-clipboard t
+	interprogram-cut-function 'paste-to-osx
+	interprogram-paste-function 'copy-from-osx))
+
+(defun copy-from-osx ()
+  (shell-command-to-string "pbpaste"))
+(defun paste-to-osx (text &optional push)
+  (let ((process-connection-type nil))
+    (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+      (process-send-string proc text)
+      (process-send-eof proc))))
