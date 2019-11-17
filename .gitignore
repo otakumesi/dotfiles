@@ -54,6 +54,8 @@ Temporary Items
 auto-save-list
 tramp
 .emacs.d/straight
+.emacs.d/.python-environments
+.emacs.d/.lsp-session-v1
 .\#*
 recentf
 
