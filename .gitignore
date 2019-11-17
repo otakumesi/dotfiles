@@ -53,7 +53,9 @@ Temporary Items
 *.elc
 auto-save-list
 tramp
+.emacs.d/straight
 .\#*
+recentf
 
 # Org-mode
 .org-id-locations

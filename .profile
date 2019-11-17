@@ -44,4 +44,5 @@ source $HOME/.functions
 [[ -f $HOME/.acme.sh/.acme.sh.env ]] && . $HOME/.acme.sh/.acme.sh.env
 
 export PATH="$HOME/.cargo/bin:$PATH"
+export TERM=screen-256color
 eval `tset -s xterm-24bits`

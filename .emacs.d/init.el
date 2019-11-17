@@ -35,7 +35,6 @@
   :config (exec-path-from-shell-initialize))
 
 (use-package dracula-theme
-    :disabled
     :config
     (load-theme 'dracula t))
 
