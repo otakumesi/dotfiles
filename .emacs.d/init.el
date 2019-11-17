@@ -124,9 +124,9 @@
 	inhibit-startup-message t)
 
   (setq abbrev-file-name "~/.abbrev_defs"
-        save-abbrevs t))
+	save-abbrevs t))
 
-(defun enanle-to-move-window-with-key ()
+(defun enable-to-move-window-with-key ()
   (windmove-default-keybindings)
   (global-set-key (kbd "C-x |")  'split-window-horizontally)
   (global-set-key (kbd "C-x -")  'split-window-vertically)
@@ -136,7 +136,6 @@
   (setq select-enable-clipboard t
 	interprogram-cut-function 'paste-to-osx
 	interprogram-paste-function 'copy-from-osx))
-
 (defun copy-from-osx ()
   (shell-command-to-string "pbpaste"))
 (defun paste-to-osx (text &optional push)
@@ -144,3 +143,6 @@
     (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
       (process-send-string proc text)
       (process-send-eof proc))))
+
+(provide 'init)
+;;; init.el ends here
