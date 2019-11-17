@@ -9,6 +9,9 @@
 (global-display-line-numbers-mode 1)
 (column-number-mode t)
 (size-indication-mode t)
+(menu-bar-mode -1)
+(setq inhibit-startup-screen t
+      inhibit-startup-message t)
 (windmove-default-keybindings)
 (global-set-key (kbd "C-x |")  'split-window-horizontally)
 (global-set-key (kbd "C-x -")  'split-window-vertically)
