@@ -21,8 +21,15 @@
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
 
-(use-package evil :config (evil-mode 1))
-(use-package dracula-theme :config (load-theme 'dracula t))
+(use-package evil
+  :init (setq evil-want-keybinding nil)
+  :config (evil-mode 1))
+(use-package evil-collection
+  :after evil
+  :init (evil-collection-init))
+(use-package evil-magit :after evil)
+
+(use-package material-theme :config (load-theme 'material t))
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))
@@ -40,13 +47,18 @@
   ("M-y" . helm-show-kill-ring)
   ("C-x b" . helm-mini))
 (use-package helm-tramp
+  :after helm
   :config (setq tramp-default-method "ssh")
   :bind ("C-x C-s" . 'helm-tramp))
 (use-package helm-projectile
+  :after helm
   :config (helm-projectile-on)
   :bind ("C-x p h" . 'helm-projectile))
 
 (use-package magit :defer t)
+(use-package anzu :init (global-anzu-mode +1))
+(use-package whitespace :init (global-whitespace-mode 1))
+
 (use-package smartparens
   :config
   (smartparens-global-mode t)
@@ -66,11 +78,13 @@
 (use-package expand-region :config (define-key evil-visual-state-map (kbd "C-v") #'er/expand-region))
 
 (use-package python
+  :defer t
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode)
   :config
   (setq electric-indent-local-mode 1
 	indent-tabs-mode nil
+	python-indent-guess-indent-offset 4
 	python-indent 4
 	tab-width 4))
 
@@ -84,9 +98,21 @@
   (require 'ein-notebook)
   (require 'ein-subpackages))
 
+(use-package markdown-mode
+  :defer t
+  :mode ("\\.md\\'" . markdown-mode))
+(use-package markdown-mode+ :defer t)
+
+(use-package enh-ruby-mode
+  :defer t
+  :mode (("\\.rb\\'" . enh-ruby-mode)
+	 ("Gemfile" . enh-ruby-mode))
+  :interpreter ("ruby" . enh-ruby-mode))
+
 (use-package lsp-mode
   :defer t
-  :hook (python-mode . lsp)
+  :hook ((python-mode . lsp)
+	 (enh-ruby-mode . lsp))
   :bind (("C-x p d" . 'xref-find-definitions)
 	 ("C-x p r" . 'xref-find-references))
   :commands lsp
@@ -104,10 +130,11 @@
 	lsp-ui-doc-include-signature t
 	lsp-ui-peek-enable t))
 (use-package helm-lsp
+  :after helm
   :defer t
   :commands helm-lsp-workspace-symbol
   :bind (("C-x p w" . 'helm-lsp-workspace-symbol)
-	   ("C-x p g" . 'helm-lsp-global-workspace-symbol)))
+	 ("C-x p g" . 'helm-lsp-global-workspace-symbol)))
 (use-package company-lsp
   :config (push 'company-lsp company-backends)
   :commands comapny-lsp)
