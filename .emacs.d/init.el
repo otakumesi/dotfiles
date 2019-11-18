@@ -63,6 +63,7 @@
    flycheck-highlighting-mode 'lines
    flycheck-check-syntax-automatically '(save))
   :init (global-flycheck-mode))
+(use-package expand-region :config (define-key evil-visual-state-map (kbd "C-v") #'er/expand-region))
 
 (use-package python
   :mode ("\\.py\\'" . python-mode)
@@ -73,16 +74,6 @@
 	python-indent 4
 	tab-width 4))
 
-(use-package jedi-core
-  :defer t
-  :config
-  (setq jedi:complete-on-dot t
-	jedi:use-shortcuts t)
-  :hook (python-mode . jedi:setup))
-(use-package company-jedi
-  :defer t
-  :config
-  (add-to-list 'company-backends 'company-jedi))
 (use-package pipenv
   :defer t
   :hook (python-mode . pipenv-mode)
@@ -94,14 +85,29 @@
   (require 'ein-subpackages))
 
 (use-package lsp-mode
-  :hook ((python-mode . lsp))
-  :commands lsp)
+  :defer t
+  :hook (python-mode . lsp)
+  :bind (("C-x p d" . 'xref-find-definitions)
+	 ("C-x p r" . 'xref-find-references))
+  :commands lsp
+  :config
+  (setq lsp-prefer-flymake nil
+	lsp-auto-guess-root t
+	lsp-enable-xref t
+	lsp-document-sync-method 'incremental))
 (use-package lsp-ui
   :defer t
-  :commands lsp-ui-mode)
+  :commands lsp-ui-mode
+  :config
+  (setq lsp-ui-doc-enable t
+	lsp-ui-doc-header t
+	lsp-ui-doc-include-signature t
+	lsp-ui-peek-enable t))
 (use-package helm-lsp
   :defer t
-  :commands helm-lsp-workspace-symbol)
+  :commands helm-lsp-workspace-symbol
+  :bind (("C-x p w" . 'helm-lsp-workspace-symbol)
+	   ("C-x p g" . 'helm-lsp-global-workspace-symbol)))
 (use-package company-lsp
   :config (push 'company-lsp company-backends)
   :commands comapny-lsp)
