@@ -73,9 +73,11 @@
 
 (use-package gtags :defer t)
 (use-package magit :defer t)
+(use-package quickrun :defer t)
 (use-package anzu :init (global-anzu-mode +1))
 (use-package whitespace :init (global-whitespace-mode 1))
 (use-package migemo
+  :if (executable-find "cmigemo")
   :config
   (migemo-init)
   (setq migemo-command "cmigemo"
