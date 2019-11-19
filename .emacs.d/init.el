@@ -50,11 +50,23 @@
   :after helm
   :config (setq tramp-default-method "ssh")
   :bind ("C-x C-s" . 'helm-tramp))
+(use-package helm-gtags
+  :after helm
+  :config (setq helm-gtags-path-style 'root)
+  :hook ((python-mode . helm-gtags-mode)
+	 (enh-ruby-mode . helm-gtags-mode))
+  :bind (("M-t" . 'helm-gtags-find-tag)
+	 ("M-r" . 'helm-gtags-find-rtag)
+	 ("M-s" . 'helm-gtags-find-symbol)
+	 ("C-t" . 'helm-gtags-pop-stack)
+	 ("C-x t" . 'helm-gtags-select)))
+
 (use-package helm-projectile
   :after helm
   :config (helm-projectile-on)
   :bind ("C-x p h" . 'helm-projectile))
 
+(use-package gtags :defer t)
 (use-package magit :defer t)
 (use-package anzu :init (global-anzu-mode +1))
 (use-package whitespace :init (global-whitespace-mode 1))

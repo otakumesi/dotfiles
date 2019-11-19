@@ -105,3 +105,8 @@ flycheck_*.el
 
 # Ruby
 .solargraph.yml
+
+# GNU global
+GPATH
+GRTAGS
+GTAGS
