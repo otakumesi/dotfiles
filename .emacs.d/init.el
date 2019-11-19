@@ -65,16 +65,29 @@
   :after helm
   :config (helm-projectile-on)
   :bind ("C-x p h" . 'helm-projectile))
+(use-package projectile-rails
+  :defer t
+  :if (equal major-mode 'enh-ruby-mode)
+  :after (projectile enh-ruby-mode)
+  :hook (projectile-mode . projectile-rails-on))
 
 (use-package gtags :defer t)
 (use-package magit :defer t)
 (use-package anzu :init (global-anzu-mode +1))
 (use-package whitespace :init (global-whitespace-mode 1))
+(use-package migemo
+  :config
+  (migemo-init)
+  (setq migemo-command "cmigemo"
+	migemo-options '("-q" "--emacs")
+	migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict"
+	migemo-user-dictionary nil
+	migemo-regex-dictionary nil
+	migemo-coding-system 'utf-8-unix))
 
 (use-package smartparens
-  :config
-  (smartparens-global-mode t)
-  (require 'smartparens-config))
+  :init (smartparens-global-mode t)
+  :config (require 'smartparens-config))
 (use-package recentf
   :init (recentf-mode 1)
   :bind ("C-x C-r" . 'helm-recentf))
@@ -102,6 +115,7 @@
 
 (use-package pipenv
   :defer t
+  :if (equal major-mode 'python-mode)
   :hook (python-mode . pipenv-mode)
   :custom (pipenv-projectile-after-switch-function #'pipenv-projectile-after-switch-extended))
 (use-package ein
@@ -113,7 +127,9 @@
 (use-package markdown-mode
   :defer t
   :mode ("\\.md\\'" . markdown-mode))
-(use-package markdown-mode+ :defer t)
+(use-package markdown-mode+
+  :if (equal major-mode 'markdown-mode)
+  :defer t)
 
 (use-package enh-ruby-mode
   :defer t

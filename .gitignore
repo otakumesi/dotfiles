@@ -4,6 +4,11 @@
 tags
 .tags
 
+# GNU global
+GPATH
+GRTAGS
+GTAGS
+
 # temporary
 .vim/.netrwhist
 *~
@@ -105,8 +110,3 @@ flycheck_*.el
 
 # Ruby
 .solargraph.yml
-
-# GNU global
-GPATH
-GRTAGS
-GTAGS
