@@ -70,6 +70,9 @@
   :if (equal major-mode 'enh-ruby-mode)
   :after (projectile enh-ruby-mode)
   :hook (projectile-mode . projectile-rails-on))
+(use-package slim-mode
+  :defer t
+  :mode ("\\.slim\\'" . slim-mode))
 
 (use-package gtags :defer t)
 (use-package magit :defer t)
@@ -96,12 +99,12 @@
 (use-package company :init (global-company-mode))
 (use-package yasnippet :init (yas-global-mode 1))
 (use-package flycheck
+  :hook (after-init . global-flycheck-mode)
   :config
   (setq
-   flycheck-display-errors-delay 1
    flycheck-highlighting-mode 'lines
-   flycheck-check-syntax-automatically '(save))
-  :init (global-flycheck-mode))
+   flycheck-indication-mode 'left-fringe
+   flycheck-check-syntax-automatically '(save mode-enabled)))
 (use-package expand-region :config (define-key evil-visual-state-map (kbd "C-v") #'er/expand-region))
 
 (use-package python
@@ -142,10 +145,11 @@
 (use-package lsp-mode
   :defer t
   :hook ((python-mode . lsp)
-	 (enh-ruby-mode . lsp))
+	 (enh-ruby-mode . lsp)
+	 (slim-mode . lsp))
   :bind (("C-x p d" . 'xref-find-definitions)
 	 ("C-x p r" . 'xref-find-references))
-  :commands lsp
+  :commands (lsp lsp-goto-definition)
   :config
   (setq lsp-prefer-flymake nil
 	lsp-auto-guess-root t
@@ -157,6 +161,7 @@
   :config
   (setq lsp-ui-doc-enable t
 	lsp-ui-doc-header t
+	lsp-ui-flycheck-enable t
 	lsp-ui-doc-include-signature t
 	lsp-ui-peek-enable t))
 (use-package helm-lsp
@@ -182,6 +187,10 @@
   (column-number-mode t)
   (size-indication-mode t)
   (menu-bar-mode -1)
+  (show-paren-mode 1)
+  (transient-mark-mode 1)
+
+  (setq undo-no-redo t)
 
   (setq inhibit-startup-screen t
 	inhibit-startup-message t)
