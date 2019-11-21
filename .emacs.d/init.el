@@ -28,8 +28,7 @@
   :after evil
   :init (evil-collection-init))
 (use-package evil-magit :after evil)
-
-(use-package material-theme :config (load-theme 'material t))
+;(use-package material-theme :config (load-theme 'material t))
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))
@@ -78,7 +77,7 @@
 (use-package magit :defer t)
 (use-package quickrun :defer t)
 (use-package anzu :init (global-anzu-mode +1))
-(use-package whitespace :init (global-whitespace-mode 1))
+; (use-package whitespace :init (global-whitespace-mode 1))
 (use-package migemo
   :if (executable-find "cmigemo")
   :config
@@ -101,10 +100,9 @@
 (use-package flycheck
   :hook (after-init . global-flycheck-mode)
   :config
-  (setq
-   flycheck-highlighting-mode 'lines
-   flycheck-indication-mode 'left-fringe
-   flycheck-check-syntax-automatically '(save mode-enabled)))
+  (setq flycheck-highlighting-mode 'symbols
+	flycheck-indication-mode 'left-fringe
+	flycheck-check-syntax-automatically '(save mode-enabled)))
 (use-package expand-region :config (define-key evil-visual-state-map (kbd "C-v") #'er/expand-region))
 
 (use-package python
@@ -145,11 +143,8 @@
 (use-package lsp-mode
   :defer t
   :hook ((python-mode . lsp)
-	 (enh-ruby-mode . lsp)
-	 (slim-mode . lsp))
-  :bind (("C-x p d" . 'xref-find-definitions)
-	 ("C-x p r" . 'xref-find-references))
-  :commands (lsp lsp-goto-definition)
+	 (enh-ruby-mode . lsp))
+  :commands (lsp)
   :config
   (setq lsp-prefer-flymake nil
 	lsp-auto-guess-root t
@@ -159,11 +154,17 @@
   :defer t
   :commands lsp-ui-mode
   :config
+  (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+  (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
   (setq lsp-ui-doc-enable t
+	lsp-ui-peek-enable t
+	lsp-ui-peek-peek-height 20
+	lsp-ui-peek-list-width 50
+	lsp-ui-peek-fontify 'on-demand
 	lsp-ui-doc-header t
 	lsp-ui-flycheck-enable t
-	lsp-ui-doc-include-signature t
-	lsp-ui-peek-enable t))
+	lsp-ui-sideline t
+	lsp-ui-doc-include-signature t))
 (use-package helm-lsp
   :after helm
   :defer t
@@ -189,6 +190,7 @@
   (menu-bar-mode -1)
   (show-paren-mode 1)
   (transient-mark-mode 1)
+  (load-theme 'misterioso)
 
   (setq undo-no-redo t)
 
