@@ -37,7 +37,8 @@
 (use-package helm
   :config
   (require 'helm-config)
-  (setq helm-buffers-fuzzy-matching t
+  (setq helm-ff-lynx-style-map t
+	helm-buffers-fuzzy-matching t
 	helm-recentf-fuzzy-match    t)
   (helm-mode 1)
   :bind
