@@ -28,7 +28,6 @@
   :after evil
   :init (evil-collection-init))
 (use-package evil-magit :after evil)
-;(use-package material-theme :config (load-theme 'material t))
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))
@@ -177,6 +176,7 @@
   :commands comapny-lsp)
 
 (use-package todoist :defer t)
+(use-package twittering-mode :defer t)
 
 (defun load-init-settings ()
   (prefer-coding-system 'utf-8)
@@ -192,6 +192,8 @@
   (show-paren-mode 1)
   (transient-mark-mode 1)
   (load-theme 'misterioso)
+
+  (setq display-line-numbers t)
 
   (setq undo-no-redo t)
 
@@ -212,12 +214,13 @@
 	interprogram-cut-function 'paste-to-osx
 	interprogram-paste-function 'copy-from-osx))
 (defun copy-from-osx ()
-  (shell-command-to-string "pbpaste"))
+
 (defun paste-to-osx (text &optional push)
   (let ((process-connection-type nil))
     (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
       (process-send-string proc text)
       (process-send-eof proc))))
+
 
 (provide 'init)
 ;;; init.el ends here
