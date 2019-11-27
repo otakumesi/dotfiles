@@ -214,7 +214,7 @@
 	interprogram-cut-function 'paste-to-osx
 	interprogram-paste-function 'copy-from-osx))
 (defun copy-from-osx ()
-
+  (shell-command-to-string "pbpaste"))
 (defun paste-to-osx (text &optional push)
   (let ((process-connection-type nil))
     (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
