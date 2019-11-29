@@ -3,11 +3,11 @@ export EDITOR='nvim'
 
 export XDG_CONFIG_HOME=$HOME
 
-export JAVA_HOME=`/usr/libexec/java_home -v 11`
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 export CARGO_HOME=$HOME/.cargo
 export GOPATH=$HOME/goprojects
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH=/usr/local/bin:$GOPATH/bin:$HOME/.rbenv/shims:$PYENV_ROOT/bin:$PATH:$HOME/.rbenv/bin:$HOME/.meteor:$CARGO_HOME/bin:$HOME/.tfenv/bin:$JAVA_HOME/bin:$PATH:$HOME/.ndenv/bin:$PATH
+export PATH=/usr/local/bin:$HOME/.poetry/bin:$GOPATH/bin:$HOME/.rbenv/shims:$PYENV_ROOT/bin:$PATH:$HOME/.rbenv/bin:$HOME/.meteor:$CARGO_HOME/bin:$HOME/.tfenv/bin:$JAVA_HOME/bin:$PATH:$HOME/.ndenv/bin:$PATH
 export MANPATH="/usr/local/man:$MANPATH"
 
 export GOROOT_BOOTSTRAP=$HOME/go1.4/bin
@@ -46,3 +46,5 @@ source $HOME/.functions
 export PATH="$HOME/.cargo/bin:$PATH"
 export TERM=screen-256color
 eval `tset -s xterm-24bits`
+
+export PATH="$HOME/.poetry/bin:$PATH"
