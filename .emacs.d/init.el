@@ -112,7 +112,8 @@
   :config
   (setq electric-indent-local-mode 1
 	indent-tabs-mode nil
-	python-indent-guess-indent-offset 4
+	python-indent-guess-indent-offset-verbose nil
+	python-indent-offset 4
 	python-indent 4
 	tab-width 4))
 
@@ -121,6 +122,9 @@
   :if (equal major-mode 'python-mode)
   :hook (python-mode . pipenv-mode)
   :custom (pipenv-projectile-after-switch-function #'pipenv-projectile-after-switch-extended))
+(use-package poetry
+  :if (equal major-mode 'python-mode))
+
 (use-package ein
   :defer t
   :config
@@ -149,6 +153,7 @@
   (setq lsp-prefer-flymake nil
 	lsp-auto-guess-root t
 	lsp-enable-xref t
+	lsp-enable-snippet t
 	lsp-document-sync-method 'incremental))
 (use-package lsp-ui
   :defer t
@@ -174,6 +179,8 @@
 (use-package company-lsp
   :config (push 'company-lsp company-backends)
   :commands comapny-lsp)
+(use-package smart-jump
+  :config (smart-jump-setup-default-registers))
 
 (use-package todoist :defer t)
 (use-package twittering-mode :defer t)
