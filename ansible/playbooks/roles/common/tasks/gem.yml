@@ -1,5 +1,0 @@
----
-- name: Install Gem Packages
-  gem:
-    name: "{{ item.name }}"
-  with_items: gem_packages

@@ -1,6 +1,0 @@
----
-- name: Install NPM Global Packages
-  npm:
-    name: {{ item.name }}
-    global: yes
-  with_items: npm_packages
