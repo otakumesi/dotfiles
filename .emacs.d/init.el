@@ -134,13 +134,6 @@
   (require 'ein-notebook)
   (require 'ein-subpackages))
 
-(use-package markdown-mode
-  :defer t
-  :mode ("\\.md\\'" . markdown-mode))
-(use-package markdown-mode+
-  :if (equal major-mode 'markdown-mode)
-  :defer t)
-
 (use-package enh-ruby-mode
   :defer t
   :mode (("\\.rb\\'" . enh-ruby-mode)
@@ -150,13 +143,15 @@
 (use-package lsp-mode
   :defer t
   :hook ((python-mode . lsp)
-	 (enh-ruby-mode . lsp))
+	 (enh-ruby-mode . lsp)
+	 (c++-mode . lsp))
   :commands (lsp)
   :config
   (setq lsp-prefer-flymake nil
 	lsp-auto-guess-root t
 	lsp-enable-xref t
 	lsp-enable-snippet t
+	lsp-clients-clangd-executable "/usr/local/opt/llvm/bin/clangd"
 	lsp-document-sync-method 'incremental))
 (use-package lsp-ui
   :defer t
@@ -187,6 +182,19 @@
 
 (use-package todoist :defer t)
 (use-package twittering-mode :defer t)
+
+(use-package markdown-mode
+  :defer t
+  :commands (markdown-mode gfm-mode)
+  :mode ("\\.md\\'")
+  :config
+  (setq markdown-command "github-markup"
+	markdown-command-needs-filename t
+	markdown-cotent-type "application/xhtml+xml"))
+(use-package markdown-mode+
+  :if (equal major-mode 'markdown-mode)
+  :defer t)
+
 
 (defun load-init-settings ()
   (prefer-coding-system 'utf-8)

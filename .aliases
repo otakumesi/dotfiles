@@ -1,4 +1,5 @@
 # User
+alias dict='open dict:://'
 alias vi='vim -u NONE --noplugin'
 alias vim='nvim -u ~/.vimrc'
 alias ls="ls -a"
