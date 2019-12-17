@@ -204,7 +204,8 @@
 	inhibit-startup-message t)
 
   (setq abbrev-file-name "~/.abbrev_defs"
-	save-abbrevs t))
+	save-abbrevs t)
+  (define-key global-map (kbd "C-x C-n") 'open-now-todo-org))
 
 (defun enable-to-move-window-with-key ()
   (windmove-default-keybindings)
@@ -224,6 +225,9 @@
       (process-send-string proc text)
       (process-send-eof proc))))
 
+(defun open-now-todo-org ()
+  (interactive)
+  (find-file-other-window (expand-file-name "~/.todo-now.org")))
 
 (provide 'init)
 ;;; init.el ends here
