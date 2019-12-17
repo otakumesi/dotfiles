@@ -1,9 +1,10 @@
+# export JAVA_HOME=`/usr/libexec/java_home -v 13`
+
 export LANG=en_US.UTF-8
-export EDITOR='nvim'
+export EDITOR='emacs'
 
 export XDG_CONFIG_HOME=$HOME
 
-export JAVA_HOME=`/usr/libexec/java_home -v 11`
 export CARGO_HOME=$HOME/.cargo
 export GOPATH=$HOME/goprojects
 export PYENV_ROOT="$HOME/.pyenv"
@@ -45,4 +46,4 @@ source $HOME/.functions
 
 export PATH="$HOME/.cargo/bin:$PATH"
 export TERM=screen-256color
-eval `tset -s xterm-24bits`
+# eval `tset -s xterm-24bits`

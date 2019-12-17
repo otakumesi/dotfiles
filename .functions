@@ -19,15 +19,15 @@ function fdcd() {
   fi
 }
 
-function fdvim() {
+function fdema() {
   local src="$(fd . | fzf --select-1 --reverse)"
   if [ -n "$src" ]; then
-    vim  $src
+    emacs  $src
   fi
 }
 
-function rgvim() {
-  vim "$(rg $1 | grep -e "!^\w:" | fzf)"
+function rgema() {
+  emacs "$(rg $1 | grep -e "!^\w:" | fzf)"
 }
 
 function pjcd() {
@@ -35,9 +35,9 @@ function pjcd() {
   cd $(find . -type d | fzf --select-1 --reverse)
 }
 
-function pjvim() {
+function pjema() {
   cd $(git rev-parse --show-toplevel)
-  vim $(find . | fzf --select-1 --reverse)
+  ema $(find . | fzf --select-1 --reverse)
 }
 
 function git-select-branch() {
@@ -89,6 +89,7 @@ function rename-tmux-session-into-repository-name()
   local tabname=`basename $(git rev-parse --show-toplevel)`
   tmux rename-session $tabname
   echo "renamed current tmux session into $tabname"
+  zle reset-prompt
 }
 zle -N rename-tmux-session-into-repository-name
-bindkey "^q^q" rename-tmux-session-into-repository-name
+bindkey "^Q" rename-tmux-session-into-repository-name
