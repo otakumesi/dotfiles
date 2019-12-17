@@ -1,6 +1,3 @@
-[submodule ".emacs.d"]
-        path = .emacs.d.bk
-        url = git@github.com:otakumesi/.emacs.d.git
 [submodule "tmux-powerline"]
 	path = tmux-powerline
 	url = https://github.com/erikw/tmux-powerline.git

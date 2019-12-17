@@ -1,7 +1,0 @@
----
-
-- name: Install nvm
-  shell: curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
-
-- name: Install gvm
-  shell: bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
