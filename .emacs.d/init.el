@@ -75,6 +75,9 @@
 
 (use-package gtags :defer t)
 (use-package magit :defer t)
+(use-package forge
+  :defer t
+  :after magit)
 (use-package quickrun :defer t)
 (use-package anzu :init (global-anzu-mode +1))
 ; (use-package whitespace :init (global-whitespace-mode 1))
