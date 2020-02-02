@@ -107,6 +107,7 @@
 	flycheck-indication-mode 'left-fringe
 	flycheck-check-syntax-automatically '(save mode-enabled)))
 (use-package expand-region :config (define-key evil-visual-state-map (kbd "C-v") #'er/expand-region))
+(use-package popwin :init (popwin-mode 1))
 
 (use-package python
   :defer t

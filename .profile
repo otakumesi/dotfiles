@@ -1,5 +1,3 @@
-# export JAVA_HOME=`/usr/libexec/java_home -v 13`
-
 export LANG=en_US.UTF-8
 export EDITOR='emacs'
 
@@ -47,10 +45,8 @@ source $HOME/.functions
 
 export PATH="$HOME/.cargo/bin:$PATH"
 export TERM=screen-256color
-<<<<<<< HEAD
 # eval `tset -s xterm-24bits`
-=======
-eval `tset -s xterm-24bits`
 
 export PATH="$HOME/.poetry/bin:$PATH"
->>>>>>> 36b31021c8b5372e32a8ab39a3fa191de1f00732
+
+[[ -f /usr/local/etc/profile.d/autojump.sh ]] && . /usr/local/etc/profile.d/autojump.sh
