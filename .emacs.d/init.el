@@ -126,6 +126,7 @@
   :hook (python-mode . pipenv-mode)
   :custom (pipenv-projectile-after-switch-function #'pipenv-projectile-after-switch-extended))
 (use-package poetry
+  :defer t
   :if (equal major-mode 'python-mode))
 
 (use-package ein
@@ -140,6 +141,8 @@
 	 ("Gemfile" . enh-ruby-mode))
   :interpreter ("ruby" . enh-ruby-mode))
 
+(use-package cc-mode :defer t)
+
 (use-package lsp-mode
   :defer t
   :hook ((python-mode . lsp)
@@ -151,7 +154,6 @@
 	lsp-auto-guess-root t
 	lsp-enable-xref t
 	lsp-enable-snippet t
-	lsp-clients-clangd-executable "/usr/local/opt/llvm/bin/clangd"
 	lsp-document-sync-method 'incremental))
 (use-package lsp-ui
   :defer t
