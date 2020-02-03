@@ -1,3 +1,4 @@
+export ZSH=$HOME/.oh-my-zsh
 source $HOME/.profile
 source $HOME/.zsh/vendor/antigen.zsh
 

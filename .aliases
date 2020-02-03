@@ -3,7 +3,6 @@ alias dict='open dict:://'
 alias vi='vim -u NONE --noplugin'
 alias vim='nvim -u ~/.vimrc'
 alias ls="ls -a"
-alias okgoogle="say 'ok, google'"
 
 # Git
 alias g=git
@@ -22,11 +21,9 @@ alias gchk="git checkout"
 alias gl="git log"
 alias glp="git log | peco"
 
+
 alias gpy="gtags --gtagslabel=pygments"
-
 alias goprj="cd $GOPATH/src/github.com/otakumesi"
-
-alias pjroot="cd `git rev-parse --show-toplevel`"
 
 case "$(uname)" in
   'Darwin' )
