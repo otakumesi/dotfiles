@@ -1,3 +1,7 @@
+function pjroot() {
+  cd $(git rev-parse --show-toplevel)
+}
+
 function cdghq() {
   local src="$(ghq list | fzf --query "$LBUFFER" --reverse)"
   if [ -n "$src" ]; then

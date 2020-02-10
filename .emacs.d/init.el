@@ -127,6 +127,7 @@
   :hook (python-mode . pipenv-mode)
   :custom (pipenv-projectile-after-switch-function #'pipenv-projectile-after-switch-extended))
 (use-package poetry
+  :defer t
   :if (equal major-mode 'python-mode))
 
 (use-package ein
@@ -135,23 +136,19 @@
   (require 'ein-notebook)
   (require 'ein-subpackages))
 
-(use-package markdown-mode
-  :defer t
-  :mode ("\\.md\\'" . markdown-mode))
-(use-package markdown-mode+
-  :if (equal major-mode 'markdown-mode)
-  :defer t)
-
 (use-package enh-ruby-mode
   :defer t
   :mode (("\\.rb\\'" . enh-ruby-mode)
 	 ("Gemfile" . enh-ruby-mode))
   :interpreter ("ruby" . enh-ruby-mode))
 
+(use-package cc-mode :defer t)
+
 (use-package lsp-mode
   :defer t
   :hook ((python-mode . lsp)
-	 (enh-ruby-mode . lsp))
+	 (enh-ruby-mode . lsp)
+	 (c++-mode . lsp))
   :commands (lsp)
   :config
   (setq lsp-prefer-flymake nil
@@ -188,6 +185,19 @@
 
 (use-package todoist :defer t)
 (use-package twittering-mode :defer t)
+
+(use-package markdown-mode
+  :defer t
+  :commands (markdown-mode gfm-mode)
+  :mode ("\\.md\\'")
+  :config
+  (setq markdown-command "github-markup"
+	markdown-command-needs-filename t
+	markdown-cotent-type "application/xhtml+xml"))
+(use-package markdown-mode+
+  :if (equal major-mode 'markdown-mode)
+  :defer t)
+
 
 (defun load-init-settings ()
   (prefer-coding-system 'utf-8)

@@ -1,3 +1,5 @@
+# export JAVA_HOME=`/usr/libexec/java_home -v 13`
+
 export LANG=en_US.UTF-8
 export EDITOR='emacs'
 
@@ -34,8 +36,6 @@ if [ $SHLVL = 1 ]; then
   tmux new-session -s $(basename $(pwd))
 fi
 
-alias kc=kubectl
-
 source $HOME/.aliases
 source $HOME/.functions
 
@@ -45,8 +45,6 @@ source $HOME/.functions
 
 export PATH="$HOME/.cargo/bin:$PATH"
 export TERM=screen-256color
-# eval `tset -s xterm-24bits`
+eval `tset -s xterm-24bits`
 
 export PATH="$HOME/.poetry/bin:$PATH"
-
-[[ -f /usr/local/etc/profile.d/autojump.sh ]] && . /usr/local/etc/profile.d/autojump.sh
