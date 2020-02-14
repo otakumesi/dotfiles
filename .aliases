@@ -4,24 +4,7 @@ alias vi='vim -u NONE --noplugin'
 alias vim='nvim -u ~/.vimrc'
 alias ema='emacs'
 alias ls="ls -a"
-
-# Git
-alias g=git
-alias ga="git add"
-alias gap="git add -p"
-alias gs="git status"
-alias gc="git commit"
-alias gca="git commit --amend" 
-alias gplo="git pull origin"
-alias gpso="git push origin"
-alias gd="git diff"
-alias gdc="git diff --cached"
-alias gr="git reset"
-alias grH="git reset HEAD"
-alias gchk="git checkout"
-alias gl="git log"
-alias glp="git log | peco"
-
+alias tm=tmux
 
 alias gpy="gtags --gtagslabel=pygments"
 alias goprj="cd $GOPATH/src/github.com/otakumesi"

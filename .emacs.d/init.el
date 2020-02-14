@@ -101,6 +101,7 @@
 (use-package company :init (global-company-mode))
 (use-package yasnippet :init (yas-global-mode 1))
 (use-package flycheck
+  :init (setq-default flycheck-disabled-checkers '(python-pylint python-flake8 python-pyflakes python-pycodestyle))
   :hook (after-init . global-flycheck-mode)
   :config
   (setq flycheck-highlighting-mode 'symbols
@@ -197,6 +198,10 @@
 (use-package markdown-mode+
   :if (equal major-mode 'markdown-mode)
   :defer t)
+
+(use-package yaml-mode
+  :defer t
+  :mode ("\\.ya?ml\\'"))
 
 
 (defun load-init-settings ()

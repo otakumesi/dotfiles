@@ -1,1 +1,1 @@
-((magit-commit nil))
+((poetry nil))

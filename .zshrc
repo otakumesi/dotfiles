@@ -1,23 +1,26 @@
 export ZSH=$HOME/.oh-my-zsh
 source $HOME/.profile
-source $HOME/.zsh/vendor/antigen.zsh
 
-antigen use oh-my-zsh
+source ~/.zplug/init.zsh
 
-# defaultRepo
-antigen bundle git
-antigen bundle heroku
-antigen bundle pip
-antigen bundle ruby
-antigen bundle gem
-antigen bundle ssh-agent
-antigen bundle zsh-completions
+zplug 'plugins/git', from:oh-my-zsh
+zplug 'plugins/tmux', from:oh-my-zsh
+zplug 'plugins/pip', from:oh-my-zsh
+zplug 'plugins/ruby', from:oh-my-zsh
+zplug 'plugins/gem', from:oh-my-zsh
+zplug 'plugins/ssh-agent', from:oh-my-zsh
+zplug 'plugins/zsh-completions', from:oh-my-zsh
+zplug 'zsh-users/zsh-syntax-highlighting'
+zplug 'halfo/lambda-mod-zsh-theme', as:theme
 
-antigen bundle zsh-users/zsh-syntax-highlighting
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
 
-antigen theme halfo/lambda-mod-zsh-theme
-
-antigen apply
+zplug load --verbose
 
 CASE_SENSITIVE="true"
 HYPHEN_INSENSITIVE="true"
@@ -62,3 +65,5 @@ source $HOME/.machinerc
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
