@@ -213,6 +213,7 @@
   (show-paren-mode 1)
   (transient-mark-mode 1)
   (load-theme 'misterioso)
+  (defalias 'yes-or-no-p 'y-or-n-p)
 
   (setq display-line-numbers t)
 

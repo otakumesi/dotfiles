@@ -5,11 +5,11 @@ export EDITOR='emacs'
 
 export XDG_CONFIG_HOME=$HOME
 
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
-export CARGO_HOME=$HOME/.cargo
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8` export CARGO_HOME=$HOME/.cargo
 export GOPATH=$HOME/goprojects
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH=/usr/local/bin:$HOME/.poetry/bin:$GOPATH/bin:$HOME/.rbenv/shims:$PYENV_ROOT/bin:$PATH:$HOME/.rbenv/bin:$HOME/.meteor:$CARGO_HOME/bin:$HOME/.tfenv/bin:$JAVA_HOME/bin:$PATH:$HOME/.ndenv/bin:$PATH
+export PATH="/usr/local/bin:$HOME/.tfenv/bin:$JAVA_HOME/bin:$PATH:$HOME/.ndenv/bin:$PATH"
+export PATH="$HOME/.poetry/bin:$GOPATH/bin:$HOME/.rbenv/shims:$PYENV_ROOT/bin:$CARGO_HOME/bin:$PATH"
 export MANPATH="/usr/local/man:$MANPATH"
 
 export GOROOT_BOOTSTRAP=$HOME/go1.4/bin
@@ -31,20 +31,19 @@ eval "$(rbenv init -)"
 eval "$(pyenv init -)"
 eval "$(pipenv --completion)"
 eval "$(direnv hook zsh)"
+[[ -s "/Users/200448/.gvm/scripts/gvm" ]] && source "/Users/200448/.gvm/scripts/gvm"
+[[ -f $HOME/.acme.sh/.acme.sh.env ]] && . $HOME/.acme.sh/.acme.sh.env
 
-if [ $SHLVL = 1 ]; then
-  tmux new-session -s $(basename $(pwd))
+if [ -z $TMUX ]; then
+    if $(tmux has-session 2> /dev/null); then
+	TERM=xterm-24bits tmux attach
+    else
+	TERM=xterm-24bits tmux new-session -s $(basename $(pwd))
+    fi
 fi
 
 source $HOME/.aliases
 source $HOME/.functions
 
-[[ -s "/Users/200448/.gvm/scripts/gvm" ]] && source "/Users/200448/.gvm/scripts/gvm"
-
-[[ -f $HOME/.acme.sh/.acme.sh.env ]] && . $HOME/.acme.sh/.acme.sh.env
-
-export PATH="$HOME/.cargo/bin:$PATH"
-export TERM=screen-256color
+export TERM=xterm-24bits
 eval `tset -s xterm-24bits`
-
-export PATH="$HOME/.poetry/bin:$PATH"
