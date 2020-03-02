@@ -20,7 +20,7 @@ if ! zplug check --verbose; then
     fi
 fi
 
-zplug load --verbose
+zplug load
 
 CASE_SENSITIVE="true"
 HYPHEN_INSENSITIVE="true"
