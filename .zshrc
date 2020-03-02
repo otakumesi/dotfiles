@@ -12,6 +12,11 @@ zplug 'plugins/ssh-agent', from:oh-my-zsh
 zplug 'plugins/zsh-completions', from:oh-my-zsh
 zplug 'zsh-users/zsh-syntax-highlighting'
 zplug 'halfo/lambda-mod-zsh-theme', as:theme
+zplug "junegunn/fzf-bin", \
+    from:gh-r, \
+    as:command, \
+    rename-to:fzf, \
+    use:"*darwin*amd64*"
 
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -59,11 +64,8 @@ fi
 
 . /Users/200448/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 source $HOME/.machinerc
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-export PATH="/usr/local/opt/sqlite/bin:$PATH"
