@@ -203,6 +203,8 @@
   :defer t
   :mode ("\\.ya?ml\\'"))
 
+(use-package moe-theme
+  :config (setq moe-theme-highlight-buffer-id t))
 
 (defun load-init-settings ()
   (prefer-coding-system 'utf-8)
@@ -217,7 +219,7 @@
   (menu-bar-mode -1)
   (show-paren-mode 1)
   (transient-mark-mode 1)
-  (load-theme 'misterioso)
+  (load-theme 'moe-light)
   (defalias 'yes-or-no-p 'y-or-n-p)
 
   (setq display-line-numbers t)
@@ -255,3 +257,17 @@
 
 (provide 'init)
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("7675ffd2f5cb01a7aab53bcdd702fa019b56c764900f2eea0f74ccfc8e854386" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
