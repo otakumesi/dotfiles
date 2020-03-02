@@ -12,11 +12,6 @@ zplug 'plugins/ssh-agent', from:oh-my-zsh
 zplug 'plugins/zsh-completions', from:oh-my-zsh
 zplug 'zsh-users/zsh-syntax-highlighting'
 zplug 'halfo/lambda-mod-zsh-theme', as:theme
-zplug "junegunn/fzf-bin", \
-    from:gh-r, \
-    as:command, \
-    rename-to:fzf, \
-    use:"*darwin*amd64*"
 
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
