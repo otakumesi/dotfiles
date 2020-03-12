@@ -61,14 +61,14 @@
 	 ("C-x t" . 'helm-gtags-select)))
 
 (use-package helm-projectile
-  :after helm
+  :defer t
   :config (helm-projectile-on)
-  :bind ("C-x p h" . 'helm-projectile))
+  :bind (("C-c p" . helm-projectile)
+	 ("s-p" . helm-projectile)))
 (use-package projectile-rails
   :defer t
-  :if (equal major-mode 'enh-ruby-mode)
-  :after (projectile enh-ruby-mode)
-  :hook (projectile-mode . projectile-rails-on))
+  :hook (projectile-mode . projectile-rails-mode)
+  :bind ("C-c r" . projectile-rails-command-map))
 (use-package slim-mode
   :defer t
   :mode ("\\.slim\\'" . slim-mode))

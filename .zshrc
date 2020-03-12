@@ -5,12 +5,19 @@ source ~/.zplug/init.zsh
 
 zplug 'plugins/git', from:oh-my-zsh
 zplug 'plugins/tmux', from:oh-my-zsh
-zplug 'plugins/pip', from:oh-my-zsh
-zplug 'plugins/ruby', from:oh-my-zsh
-zplug 'plugins/gem', from:oh-my-zsh
 zplug 'plugins/ssh-agent', from:oh-my-zsh
+
+zplug 'plugins/pip', from:oh-my-zsh
+zplug "darvid/zsh-poetry"
+
+zplug 'plugins/ruby', from:oh-my-zsh
+zplug 'plugins/rails', from:oh-my-zsh
+zplug 'plugins/gem', from:oh-my-zsh
+
 zplug 'plugins/zsh-completions', from:oh-my-zsh
-zplug 'zsh-users/zsh-syntax-highlighting'
+zplug "b4b4r07/enhancd", use:init.sh
+zplug "mrowa44/emojify", as:command
+zplug 'zsh-users/zsh-syntax-highlighting', defer:2
 zplug 'halfo/lambda-mod-zsh-theme', as:theme
 
 if ! zplug check --verbose; then
