@@ -171,7 +171,10 @@
 	lsp-ui-doc-header t
 	lsp-ui-flycheck-enable t
 	lsp-ui-sideline t
-	lsp-ui-doc-include-signature t))
+	lsp-ui-doc-include-signature t
+	lsp-pyls-plugins-pycodestyle-enabled nil
+	lsp-pyls-plugins-pylint-enabled nil
+	lsp-pyls-plugins-pyflakes-enabled nil))
 (use-package helm-lsp
   :after helm
   :defer t
