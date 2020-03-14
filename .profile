@@ -15,16 +15,9 @@ export MANPATH="/usr/local/man:$MANPATH"
 export GOROOT_BOOTSTRAP=$HOME/go1.4/bin
 
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-export TMUX_POWERLINE_SEG_WEATHER_LOCATION="28677518"
 
 export OCAMLPARAM="_,bin-annot=1"
 export OPAMKEEPBUILDDIR=1
-
-export FZF_TMUX=1
-export FZF_TMUX_HEIGHT=30
-
-export NVIM_PYTHON_LOG_FILE=/tmp/log
-export NVIM_PYTHON_LOG_LEVEL=DEBUG
 
 eval "$(nodenv init -)"
 eval "$(rbenv init -)"
@@ -36,7 +29,8 @@ eval "$(direnv hook zsh)"
 
 export FZF_TMUX=1
 export FZF_DEFAULT_OPTS='--no-height --no-reverse'
-export FZF_CTRL_R_OPTS='--sort --exact'
+export FZF_CTRL_R_OPTS='--sort'
+export FZF_TMUX_HEIGHT=30
 
 if [ -z $TMUX ]; then
     if $(tmux has-session 2> /dev/null); then
@@ -48,6 +42,7 @@ fi
 
 source $HOME/.aliases
 source $HOME/.functions
+which navi >/dev/null 2>&1 && source "$(navi widget zsh)"
 
 export TERM=xterm-24bits
 eval `tset -s xterm-24bits`

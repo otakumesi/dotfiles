@@ -35,11 +35,10 @@ DISABLE_AUTO_UPDATE="true"
 
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="mm/dd/yyyy"
+ENHANCD_FILTER=fzf
+HISTFILE=~/.zsh_history
 
-ENHANCD_FILTER=peco
-TMUX_POWERLINE_SEG_WEATHER_LOCATION="12796587"
-
-alias zshconfig="nvim ~/.zshrc"
+alias zshconfig="emacs ~/.zshrc"
 
 autoload colors
 colors
