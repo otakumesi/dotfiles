@@ -15,10 +15,10 @@ zplug 'plugins/rails', from:oh-my-zsh
 zplug 'plugins/gem', from:oh-my-zsh
 
 zplug 'plugins/zsh-completions', from:oh-my-zsh
-zplug "b4b4r07/enhancd", use:init.sh
-zplug "mrowa44/emojify", as:command
+zplug 'b4b4r07/enhancd', use:init.sh
+zplug 'mrowa44/emojify', as:command
 zplug 'zsh-users/zsh-syntax-highlighting', defer:2
-zplug 'halfo/lambda-mod-zsh-theme', as:theme
+zplug 'themes/gnzh', from:oh-my-zsh, defer:2
 
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -59,6 +59,8 @@ setopt always_last_prompt
 setopt extended_glob
 setopt globdots
 setopt complete_in_word
+setopt inc_append_history
+setopt share_history
 
 if [ "$(uname)" == 'Darwin' ]; then
   eval `gdircolors ~/dotfiles/dircolors/dircolors.256dark`
