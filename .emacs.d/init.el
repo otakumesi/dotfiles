@@ -206,8 +206,7 @@
   :defer t
   :mode ("\\.ya?ml\\'"))
 
-(use-package moe-theme
-  :config (setq moe-theme-highlight-buffer-id t))
+(use-package monokai-theme)
 
 (defun load-init-settings ()
   (prefer-coding-system 'utf-8)
@@ -222,7 +221,7 @@
   (menu-bar-mode -1)
   (show-paren-mode 1)
   (transient-mark-mode 1)
-  (load-theme 'moe-light)
+  (load-theme 'monokai t)
   (defalias 'yes-or-no-p 'y-or-n-p)
 
   (setq display-line-numbers t)
