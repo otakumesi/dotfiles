@@ -1,6 +1,11 @@
 (setq user-full-name "Takuro Niitsuma"
       user-mail-address "bakednt@gmail.com")
 
+(setq initial-major-mode 'org-mode
+      initial-scratch-message (format-time-string "<%Y/%m/%d> \n" (current-time))
+      inhibit-startup-screen t
+      inhibit-startup-message t)
+
 (add-hook 'emacs-startup-hook 'load-init-settings)
 (add-hook 'emacs-startup-hook 'enable-to-copy-and-paste-on-system)
 (add-hook 'emacs-startup-hook 'enable-to-move-window-with-key)
@@ -174,7 +179,10 @@
 	lsp-ui-doc-include-signature t
 	lsp-pyls-plugins-pycodestyle-enabled nil
 	lsp-pyls-plugins-pylint-enabled nil
-	lsp-pyls-plugins-pyflakes-enabled nil))
+	lsp-pyls-plugins-pyflakes-enabled nil
+	lsp-pyls-plugins-jedi-environment t
+	lsp-pyls-plugins-jedi-use-pyenv-environment t
+	lsp-pyls-plugins-preload-modules t))
 (use-package helm-lsp
   :after helm
   :defer t
@@ -225,11 +233,7 @@
   (defalias 'yes-or-no-p 'y-or-n-p)
 
   (setq display-line-numbers t)
-
   (setq undo-no-redo t)
-
-  (setq inhibit-startup-screen t
-	inhibit-startup-message t)
 
   (setq abbrev-file-name "~/.abbrev_defs"
 	save-abbrevs t)
@@ -252,13 +256,12 @@
     (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
       (process-send-string proc text)
       (process-send-eof proc))))
-
 (defun open-now-todo-org ()
   (interactive)
   (find-file-other-window (expand-file-name "~/.todo-now.org")))
 
 (provide 'init)
-;;; init.el ends here
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
