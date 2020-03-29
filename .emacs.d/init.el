@@ -78,6 +78,9 @@
   :defer t
   :mode ("\\.slim\\'" . slim-mode))
 
+(use-package persistent-scratch
+  :config (persistent-scratch-setup-default))
+
 (use-package gtags :defer t)
 (use-package magit :defer t)
 (use-package forge
