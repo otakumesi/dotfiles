@@ -237,7 +237,18 @@
 	mew-smtp-user "niitsuma.takuro.nm3@is.naist.jp"
 	mew-smtp-server "mailpost.naist.jp"
 	mew-smtp-auth nil
-	mew-smtp-port "submission"))
+	mew-smtp-port "submission")
+  (evil-make-overriding-map mew-message-mode-map 'normal))
+
+(use-package w3m
+  :config
+  (require 'mew-w3m)
+  (setq mew-prog-text/html 'w3m-region
+	mew-prog-text/xml 'w3m-region
+	mew-use-text/html t
+	mew-mime-multipart-alternative-list '("Text/Html" "Text/Plain" ".*")
+	mew-file-max-size 10000000)
+  :hook (mew-message-hook . w3m-minor-mode))
 
 (defun load-init-settings ()
   (prefer-coding-system 'utf-8)
@@ -251,7 +262,7 @@
   (size-indication-mode t)
   (menu-bar-mode -1)
   (show-paren-mode 1)
-  (transient-mark-mode 1)
+
   (load-theme 'monokai t)
   (defalias 'yes-or-no-p 'y-or-n-p)
 
