@@ -219,6 +219,26 @@
 
 (use-package monokai-theme)
 
+(use-package mew
+  :defer t
+  :config
+  (setq mew-name "Takuro Niitsuma"
+	mew-user "niitsuma.takuro.nm3"
+	mew-ssl-verify-level 0
+	mew-use-cached-passwd t
+	mew-mailbox-type "imap"
+	mew-login-domain "mailbox.naist.jp"
+	mew-proto "%"
+	mew-imap-user "takuro-n"
+	mew-imap-server "mailbox.naist.jp"
+	mew-imap-auth nil
+	mew-imap-ssl t
+	mew-imap-ssl-port 993
+	mew-smtp-user "niitsuma.takuro.nm3@is.naist.jp"
+	mew-smtp-server "mailpost.naist.jp"
+	mew-smtp-auth nil
+	mew-smtp-port "submission"))
+
 (defun load-init-settings ()
   (prefer-coding-system 'utf-8)
   (set-default-coding-systems 'utf-8)
