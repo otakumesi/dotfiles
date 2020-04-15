@@ -241,6 +241,7 @@
   (evil-make-overriding-map mew-message-mode-map 'normal))
 
 (use-package w3m
+  :defer t
   :config
   (require 'mew-w3m)
   (setq mew-prog-text/html 'w3m-region
@@ -249,6 +250,14 @@
 	mew-mime-multipart-alternative-list '("Text/Html" "Text/Plain" ".*")
 	mew-file-max-size 10000000)
   :hook (mew-message-hook . w3m-minor-mode))
+
+(use-package spotify
+  :defer t
+  :config
+  (let ((spotify-info (auth-source-search :host "spotify.com")))
+    (setq spotify-oauth2-client-secret (plist-get spotify-info :password)
+	  spotify-oauth2-client-id (plist-get spotify-info :login)
+	  spotify-transport 'connect)))
 
 (defun load-init-settings ()
   (prefer-coding-system 'utf-8)
@@ -290,6 +299,7 @@
     (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
       (process-send-string proc text)
       (process-send-eof proc))))
+
 (defun open-now-todo-org ()
   (interactive)
   (find-file-other-window (expand-file-name "~/.todo-now.org")))
