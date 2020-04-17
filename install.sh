@@ -5,7 +5,6 @@ do
   [[ "$f" == ".DS_Store" ]] && continue
   [[ "$f" == "README.md" ]] && continue
   [[ "$f" == ".git"* ]] && continue
-  [[ "$f" =~ "^init\." ]] && continue
 
   echo $f
   ln -snf "$HOME/dotfiles/$f" "$HOME"
