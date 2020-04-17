@@ -153,6 +153,11 @@
   :interpreter ("ruby" . enh-ruby-mode))
 
 (use-package cc-mode :defer t)
+(use-package rust-mode
+  :defer t
+  :mode (("\\.rs\\'" . rust-mode))
+  :config (define-key rust-mode-map (kbd "C-c C-c") 'rust-run))
+
 
 (use-package lsp-mode
   :defer t
@@ -260,6 +265,10 @@
     (setq spotify-oauth2-client-secret (plist-get spotify-info :secret)
 	  spotify-oauth2-client-id (plist-get spotify-info :user)
 	  spotify-transport 'connect)))
+
+(use-package dap-mode
+  :config
+  (autoload 'dap-python "python-mode" nil t))
 
 (defun load-init-settings ()
   (prefer-coding-system 'utf-8)
