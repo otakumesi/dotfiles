@@ -64,6 +64,7 @@
 	 ("M-s" . 'helm-gtags-find-symbol)
 	 ("C-t" . 'helm-gtags-pop-stack)
 	 ("C-x t" . 'helm-gtags-select)))
+(use-package helm-dash :if (memq window-system '(mac)))
 
 (use-package helm-projectile
   :defer t
@@ -252,11 +253,12 @@
   :hook (mew-message-hook . w3m-minor-mode))
 
 (use-package spotify
-  :defer t
+  :straight (:host github :repo "danielfm/spotify.el" :branch "master")
   :config
-  (let ((spotify-info (auth-source-search :host "spotify.com")))
-    (setq spotify-oauth2-client-secret (plist-get spotify-info :password)
-	  spotify-oauth2-client-id (plist-get spotify-info :login)
+  (define-key spotify-mode-map (kbd "C-c .") 'spotify-command-map)
+  (let ((spotify-info (nth 0 (auth-source-search :host "spotify.com" :type 'netrc))))
+    (setq spotify-oauth2-client-secret (plist-get spotify-info :secret)
+	  spotify-oauth2-client-id (plist-get spotify-info :user)
 	  spotify-transport 'connect)))
 
 (defun load-init-settings ()
