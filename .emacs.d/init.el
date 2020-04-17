@@ -153,11 +153,11 @@
   :interpreter ("ruby" . enh-ruby-mode))
 
 (use-package cc-mode :defer t)
+
 (use-package rust-mode
   :defer t
   :mode (("\\.rs\\'" . rust-mode))
   :config (define-key rust-mode-map (kbd "C-c C-c") 'rust-run))
-
 
 (use-package lsp-mode
   :defer t
