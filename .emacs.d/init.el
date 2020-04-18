@@ -260,11 +260,10 @@
 (use-package spotify
   :straight (:host github :repo "danielfm/spotify.el" :branch "master")
   :config
+  (add-to-list 'load-path (straight--emacs-dir "straight" "repos" "spotify.el"))
   (define-key spotify-mode-map (kbd "C-c .") 'spotify-command-map)
-  (let ((spotify-info (nth 0 (auth-source-search :host "spotify.com" :type 'netrc))))
-    (setq spotify-oauth2-client-secret (plist-get spotify-info :secret)
-	  spotify-oauth2-client-id (plist-get spotify-info :user)
-	  spotify-transport 'connect)))
+  (setq spotify-oauth2-client-secret (auth-source-pick-first-password :host "spotify.com")
+	spotify-oauth2-client-id (plist-get (nth 0 (auth-source-search :host "spotify.com")) :user)))
 
 (use-package dap-mode
   :config
@@ -326,7 +325,7 @@
    (quote
     ("7675ffd2f5cb01a7aab53bcdd702fa019b56c764900f2eea0f74ccfc8e854386" default))))
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
+
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
