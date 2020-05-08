@@ -154,6 +154,7 @@
   :interpreter ("ruby" . enh-ruby-mode))
 
 (use-package cc-mode :defer t)
+(use-package tuareg :defer t)
 
 (use-package rust-mode
   :defer t
@@ -164,14 +165,16 @@
   :defer t
   :hook ((python-mode . lsp)
 	 (enh-ruby-mode . lsp)
-	 (c++-mode . lsp))
+	 (c++-mode . lsp)
+	 (tuareg-mode . lsp))
   :commands (lsp)
   :config
   (setq lsp-prefer-flymake nil
 	lsp-auto-guess-root t
 	lsp-enable-xref t
 	lsp-enable-snippet t
-	lsp-document-sync-method 'incremental))
+	lsp-document-sync-method 'incremental
+	lsp-ocaml-lang-server-command "ocamllsp"))
 (use-package lsp-ui
   :defer t
   :commands lsp-ui-mode
@@ -331,3 +334,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
+(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+;; ## end of OPAM user-setup addition for emacs / base ## keep this line

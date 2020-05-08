@@ -43,6 +43,10 @@ fi
 source $HOME/.aliases
 source $HOME/.functions
 which navi >/dev/null 2>&1 && source "$(navi widget zsh)"
+which opam >/dev/null 2>&1 && eval `opam env`
+which opam >/dev/null 2>&1 && eval `opam config env`
 
 export TERM=xterm-24bits
 eval `tset -s xterm-24bits`
+
+export PATH="$HOME/.poetry/bin:$PATH"
