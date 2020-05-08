@@ -261,14 +261,6 @@
 	mew-file-max-size 10000000)
   :hook (mew-message-hook . w3m-minor-mode))
 
-(use-package spotify
-  :straight (:host github :repo "danielfm/spotify.el" :branch "master")
-  :config
-  (add-to-list 'load-path (straight--emacs-dir "straight" "repos" "spotify.el"))
-  (define-key spotify-mode-map (kbd "C-c .") 'spotify-command-map)
-  (setq spotify-oauth2-client-secret (auth-source-pick-first-password :host "spotify.com")
-	spotify-oauth2-client-id (plist-get (nth 0 (auth-source-search :host "spotify.com")) :user)))
-
 (use-package dap-mode
   :config
   (autoload 'dap-python "python-mode" nil t))
