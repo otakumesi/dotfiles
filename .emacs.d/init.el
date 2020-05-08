@@ -144,7 +144,8 @@
   :defer t
   :config
   (require 'ein-notebook)
-  (require 'ein-subpackages))
+  (require 'ein-subpackages)
+  (require 'ob-ein))
 
 (use-package enh-ruby-mode
   :defer t

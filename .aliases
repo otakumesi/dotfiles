@@ -1,6 +1,6 @@
 # User
 alias mew="emacs -e mew"
-alias spotify="emacs -e spotify-my-playlists"
+alias ein="emacs -e ein:login"
 
 alias dict='open dict:://'
 alias vi='vim -u NONE --noplugin'
