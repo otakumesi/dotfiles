@@ -110,11 +110,11 @@
 (use-package company :init (global-company-mode))
 (use-package yasnippet :init (yas-global-mode 1))
 (use-package flycheck
-  :init (setq-default flycheck-disabled-checkers '(python-pylint python-flake8 python-pyflakes python-pycodestyle))
   :hook (after-init . global-flycheck-mode)
   :config
   (setq flycheck-highlighting-mode 'symbols
 	flycheck-indication-mode 'left-fringe
+	flycheck-disabled-checkers nil
 	flycheck-check-syntax-automatically '(save mode-enabled)))
 (use-package expand-region :config (define-key evil-visual-state-map (kbd "C-v") #'er/expand-region))
 (use-package popwin :init (popwin-mode 1))
@@ -131,11 +131,11 @@
 	python-indent 4
 	tab-width 4))
 
-(use-package pipenv
-  :defer t
-  :if (equal major-mode 'python-mode)
-  :hook (python-mode . pipenv-mode)
-  :custom (pipenv-projectile-after-switch-function #'pipenv-projectile-after-switch-extended))
+;; (use-package pipenv
+;;   :defer t
+;;   :if (equal major-mode 'python-mode)
+;;   :hook (python-mode . pipenv-mode)
+;;   :custom (pipenv-projectile-after-switch-function #'pipenv-projectile-after-switch-extended))
 (use-package poetry
   :defer t
   :if (equal major-mode 'python-mode))
@@ -179,6 +179,7 @@
   :defer t
   :commands lsp-ui-mode
   :config
+  (require 'lsp-ui-flycheck)
   (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
   (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
   (setq lsp-ui-doc-enable t
@@ -192,7 +193,7 @@
 	lsp-ui-doc-include-signature t
 	lsp-pyls-plugins-pycodestyle-enabled nil
 	lsp-pyls-plugins-pylint-enabled nil
-	lsp-pyls-plugins-pyflakes-enabled nil
+	lsp-pyls-plugins-pyflakes-enabled t
 	lsp-pyls-plugins-jedi-environment t
 	lsp-pyls-plugins-jedi-use-pyenv-environment t
 	lsp-pyls-plugins-preload-modules t))
@@ -210,6 +211,10 @@
 
 (use-package todoist :defer t)
 (use-package twittering-mode :defer t)
+
+(use-package scss-mode
+  :defer t
+  :config (setq css-indent-offset 2))
 
 (use-package markdown-mode
   :defer t

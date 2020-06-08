@@ -8,7 +8,7 @@ zplug 'plugins/tmux', from:oh-my-zsh
 zplug 'plugins/ssh-agent', from:oh-my-zsh
 
 zplug 'plugins/pip', from:oh-my-zsh
-zplug "darvid/zsh-poetry"
+zplug 'plugins/poetry', from:oh-my-zsh
 
 zplug 'plugins/ruby', from:oh-my-zsh
 zplug 'plugins/rails', from:oh-my-zsh
@@ -47,7 +47,6 @@ setopt no_beep
 setopt no_nomatch
 setopt prompt_subst
 setopt transient_rprompt
-setopt hist_ignore_dups
 setopt auto_cd
 setopt auto_pushd
 setopt auto_list
@@ -60,6 +59,18 @@ setopt globdots
 setopt complete_in_word
 setopt inc_append_history
 setopt share_history
+setopt hist_ignore_dups
+setopt hist_ignore_all_dups
+setopt EXTENDED_HISTORY
+setopt hist_reduce_blanks
+setopt hist_verify
+setopt hist_no_store
+setopt hist_expand
+setopt inc_append_history
+
+HISTFILE=~/.zsh_history
+export HISTSIZE=1000
+export SAVEHIST=10000
 
 if [ "$(uname)" == 'Darwin' ]; then
   eval `gdircolors ~/dotfiles/dircolors/dircolors.256dark`

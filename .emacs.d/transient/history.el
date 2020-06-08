@@ -1,1 +1,3 @@
-((poetry nil))
+((magit-blame
+  ("-w"))
+ (poetry nil))
