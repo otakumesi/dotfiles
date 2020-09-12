@@ -1,11 +1,6 @@
 (setq user-full-name "Takuro Niitsuma"
       user-mail-address "bakednt@gmail.com")
 
-(setq initial-major-mode 'org-mode
-      initial-scratch-message (format-time-string "<%Y/%m/%d> \n" (current-time))
-      inhibit-startup-screen t
-      inhibit-startup-message t)
-
 (add-hook 'emacs-startup-hook 'load-init-settings)
 (add-hook 'emacs-startup-hook 'enable-to-copy-and-paste-on-system)
 (add-hook 'emacs-startup-hook 'enable-to-move-window-with-key)
@@ -38,39 +33,74 @@
   :if (memq window-system '(mac ns))
   :config (exec-path-from-shell-initialize))
 
-(use-package helm
+(use-package ivy
   :config
-  (require 'helm-config)
-  (setq helm-ff-lynx-style-map t
-	helm-buffers-fuzzy-matching t
-	helm-recentf-fuzzy-match    t)
-  (helm-mode 1)
-  :bind
-  ("M-x" . helm-M-x)
-  ("C-x C-f" . helm-find-files)
-  ("M-y" . helm-show-kill-ring)
-  ("C-x b" . helm-mini))
-(use-package helm-tramp
-  :after helm
-  :config (setq tramp-default-method "ssh")
-  :bind ("C-x C-s" . 'helm-tramp))
-(use-package helm-gtags
-  :after helm
-  :config (setq helm-gtags-path-style 'root)
-  :hook ((python-mode . helm-gtags-mode)
-	 (enh-ruby-mode . helm-gtags-mode))
-  :bind (("M-t" . 'helm-gtags-find-tag)
-	 ("M-r" . 'helm-gtags-find-rtag)
-	 ("M-s" . 'helm-gtags-find-symbol)
-	 ("C-t" . 'helm-gtags-pop-stack)
-	 ("C-x t" . 'helm-gtags-select)))
-(use-package helm-dash :if (memq window-system '(mac)))
-
-(use-package helm-projectile
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t
+	enable-recursive-minibuffers t)
+  (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+  :bind (("C-s" . 'swiper)
+	 ("C-c C-r" . 'ivy-resume)
+	 ("C-x b" . 'ivy-switch-buffer)
+	 ("C-c v" . 'ivy-push-view)
+	 ("C-c V" . 'ivy-pop-view)))
+(use-package counsel
   :defer t
-  :config (helm-projectile-on)
-  :bind (("C-c p" . helm-projectile)
-	 ("s-p" . helm-projectile)))
+  :config
+  (setq ivy-extra-directories nil)
+  :bind
+  ("M-x" . 'counsel-M-x)
+  ("C-x C-f" . 'counsel-find-file)
+  ("<f1> f" . 'counsel-describe-function)
+  ("<f1> v" . 'counsel-describe-variable)
+  ("<f1> o" . 'counsel-describe-symbol)
+  ("<f1> l" . 'counsel-find-library)
+  ("<f2> i" . 'counsel-info-lookup-symbol)
+  ("<f2> u" . 'counsel-unicode-char)
+  ("C-c g" . 'counsel-git)
+  ("C-c j" . 'counsel-git-grep)
+  ("C-c k" . 'counsel-rg)
+  ("C-c n" . 'counsel-fzf)
+  ("C-c j" . 'counsel-file-jump)
+  ("C-x l" . 'counsel-locate)
+  ("C-S-o" . 'counsel-rhythmbox)
+  ("M-y" . 'counsel-yank-pop))
+(use-package swiper :defer t)
+(use-package counsel-projectile
+  :defer t
+  :config
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+
+(use-package counsel-gtags
+  :defer t)
+;; (use-package helm
+;;   :config
+;;   (require 'helm-config)
+;;   (setq helm-ff-lynx-style-map t
+;; 	helm-buffers-fuzzy-matching t
+;; 	helm-recentf-fuzzy-match    t)
+;;   (helm-mode 1)
+;;   :bind
+;;   ("M-x" . helm-M-x)
+;;   ("C-x C-f" . helm-find-files)
+;;   ("M-y" . helm-show-kill-ring)
+;;   ("C-x b" . helm-mini))
+;; (use-package helm-gtags
+;;   :after helm
+;;   :config (setq helm-gtags-path-style 'root)
+;;   :hook ((python-mode . helm-gtags-mode)
+;; 	 (enh-ruby-mode . helm-gtags-mode))
+;;   :bind (("M-t" . 'helm-gtags-find-tag)
+;; 	 ("M-r" . 'helm-gtags-find-rtag)
+;; 	 ("M-s" . 'helm-gtags-find-symbol)
+;; 	 ("C-t" . 'helm-gtags-pop-stack)
+;; 	 ("C-x t" . 'helm-gtags-select)))
+
+;; (use-package helm-projectile
+;;   :defer t
+;;   :config (helm-projectile-on)
+;;   :bind (("C-c p" . helm-projectile)
+;; 	 ("s-p" . helm-projectile)))
 (use-package projectile-rails
   :defer t
   :hook (projectile-mode . projectile-rails-mode)
@@ -78,9 +108,6 @@
 (use-package slim-mode
   :defer t
   :mode ("\\.slim\\'" . slim-mode))
-
-(use-package persistent-scratch
-  :config (persistent-scratch-setup-default))
 
 (use-package gtags :defer t)
 (use-package magit :defer t)
@@ -106,7 +133,8 @@
   :config (require 'smartparens-config))
 (use-package recentf
   :init (recentf-mode 1)
-  :bind ("C-x C-r" . 'helm-recentf))
+  :bind ("C-x C-r" . 'counsel-recentf))
+(use-package recentf-ext :defer t)
 (use-package company :init (global-company-mode))
 (use-package yasnippet :init (yas-global-mode 1))
 (use-package flycheck
@@ -197,12 +225,6 @@
 	lsp-pyls-plugins-jedi-environment t
 	lsp-pyls-plugins-jedi-use-pyenv-environment t
 	lsp-pyls-plugins-preload-modules t))
-(use-package helm-lsp
-  :after helm
-  :defer t
-  :commands helm-lsp-workspace-symbol
-  :bind (("C-x p w" . 'helm-lsp-workspace-symbol)
-	 ("C-x p g" . 'helm-lsp-global-workspace-symbol)))
 (use-package company-lsp
   :config (push 'company-lsp company-backends)
   :commands comapny-lsp)
@@ -232,7 +254,7 @@
   :defer t
   :mode ("\\.ya?ml\\'"))
 
-(use-package monokai-theme)
+(use-package srcery-theme)
 
 (use-package mew
   :defer t
@@ -266,9 +288,11 @@
 	mew-file-max-size 10000000)
   :hook (mew-message-hook . w3m-minor-mode))
 
-(use-package dap-mode
-  :config
-  (autoload 'dap-python "python-mode" nil t))
+(use-package symbol-overlay
+  :defer t
+  :bind ("M-i" . 'symbol-overlay-put))
+
+(use-package find-file-in-project :defer t)
 
 (defun load-init-settings ()
   (prefer-coding-system 'utf-8)
@@ -283,11 +307,13 @@
   (menu-bar-mode -1)
   (show-paren-mode 1)
 
-  (load-theme 'monokai t)
+  (load-theme 'srcery t)
   (defalias 'yes-or-no-p 'y-or-n-p)
 
   (setq display-line-numbers t)
   (setq undo-no-redo t)
+
+  (setq js-indent-level 2)
 
   (setq abbrev-file-name "~/.abbrev_defs"
 	save-abbrevs t)
