@@ -34,20 +34,22 @@
   :config (exec-path-from-shell-initialize))
 
 (use-package ivy
+  :init (ivy-mode 1)
   :config
-  (ivy-mode 1)
   (setq ivy-use-virtual-buffers t
+	ivy-use-selectable-prompt t
+	ivy-extra-directories nil
+	ivy-height 30
 	enable-recursive-minibuffers t)
   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+  (define-key ivy-minibuffer-map (kbd "C-j") #'ivy-immediate-done)
+  (define-key ivy-minibuffer-map (kbd "RET") #'ivy-alt-done)
   :bind (("C-s" . 'swiper)
 	 ("C-c C-r" . 'ivy-resume)
 	 ("C-x b" . 'ivy-switch-buffer)
 	 ("C-c v" . 'ivy-push-view)
 	 ("C-c V" . 'ivy-pop-view)))
 (use-package counsel
-  :defer t
-  :config
-  (setq ivy-extra-directories nil)
   :bind
   ("M-x" . 'counsel-M-x)
   ("C-x C-f" . 'counsel-find-file)
@@ -65,11 +67,8 @@
   ("C-x l" . 'counsel-locate)
   ("C-S-o" . 'counsel-rhythmbox)
   ("M-y" . 'counsel-yank-pop))
-(use-package swiper :defer t)
-(use-package counsel-projectile
-  :defer t
-  :config
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+(use-package swiper)
+(use-package counsel-projectile :defer t)
 
 (use-package counsel-gtags
   :defer t)
@@ -101,8 +100,14 @@
 ;;   :config (helm-projectile-on)
 ;;   :bind (("C-c p" . helm-projectile)
 ;; 	 ("s-p" . helm-projectile)))
-(use-package projectile-rails
+(use-package projectile
   :defer t
+  :init (projectile-mode +1)
+  :config
+  (setq projectile-completion-system 'ivy)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+(use-package projectile-rails
+  :after (projectile)
   :hook (projectile-mode . projectile-rails-mode)
   :bind ("C-c r" . projectile-rails-command-map))
 (use-package slim-mode
@@ -293,6 +298,13 @@
   :bind ("M-i" . 'symbol-overlay-put))
 
 (use-package find-file-in-project :defer t)
+
+(use-package dumb-jump
+  :defer t
+  :hook (xref-backend-functions . dumb-jump-xref-activate))
+
+(use-package hydra :defer t)
+(use-package ivy-hydra :after (ivy hydra))
 
 (defun load-init-settings ()
   (prefer-coding-system 'utf-8)
