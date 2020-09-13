@@ -67,39 +67,19 @@
   ("C-x l" . 'counsel-locate)
   ("C-S-o" . 'counsel-rhythmbox)
   ("M-y" . 'counsel-yank-pop))
-(use-package swiper)
+(use-package swiper
+  :config
+  (setq swiper-include-line-number-in-search t))
 (use-package counsel-projectile :defer t)
+(use-package avy :init (avy-setup-default))
+;; (use-package avy-migemo
+;;   :after (avy migemo)
+;;   :init
+;;   (avy-migemo-mode 1)
+;;   (require 'avy-migemo-e.g.swiper))
 
 (use-package counsel-gtags
   :defer t)
-;; (use-package helm
-;;   :config
-;;   (require 'helm-config)
-;;   (setq helm-ff-lynx-style-map t
-;; 	helm-buffers-fuzzy-matching t
-;; 	helm-recentf-fuzzy-match    t)
-;;   (helm-mode 1)
-;;   :bind
-;;   ("M-x" . helm-M-x)
-;;   ("C-x C-f" . helm-find-files)
-;;   ("M-y" . helm-show-kill-ring)
-;;   ("C-x b" . helm-mini))
-;; (use-package helm-gtags
-;;   :after helm
-;;   :config (setq helm-gtags-path-style 'root)
-;;   :hook ((python-mode . helm-gtags-mode)
-;; 	 (enh-ruby-mode . helm-gtags-mode))
-;;   :bind (("M-t" . 'helm-gtags-find-tag)
-;; 	 ("M-r" . 'helm-gtags-find-rtag)
-;; 	 ("M-s" . 'helm-gtags-find-symbol)
-;; 	 ("C-t" . 'helm-gtags-pop-stack)
-;; 	 ("C-x t" . 'helm-gtags-select)))
-
-;; (use-package helm-projectile
-;;   :defer t
-;;   :config (helm-projectile-on)
-;;   :bind (("C-c p" . helm-projectile)
-;; 	 ("s-p" . helm-projectile)))
 (use-package projectile
   :defer t
   :init (projectile-mode +1)
@@ -236,7 +216,9 @@
 
 (use-package scss-mode
   :defer t
-  :config (setq css-indent-offset 2))
+  :config
+  (setq css-indent-offset 2
+	indent-tabs-mode nil))
 
 (use-package markdown-mode
   :defer t
