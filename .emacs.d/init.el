@@ -164,11 +164,6 @@
 	python-indent 4
 	tab-width 4))
 
-;; (use-package pipenv
-;;   :defer t
-;;   :if (equal major-mode 'python-mode)
-;;   :hook (python-mode . pipenv-mode)
-;;   :custom (pipenv-projectile-after-switch-function #'pipenv-projectile-after-switch-extended))
 (use-package poetry
   :defer t
   :if (equal major-mode 'python-mode))
@@ -305,6 +300,24 @@
 
 (use-package hydra :defer t)
 (use-package ivy-hydra :after (ivy hydra))
+
+(use-package which-key
+  :init
+  (which-key-setup-minibuffer)
+  (which-key-mode)
+  :config
+  (setq which-key-popup-type 'minibuffer
+	which-key-use-C-h-commands t
+	which-key-idle-delay 0.7
+	which-key-sort-order 'which-key-prefix-then-key-order
+	which-key-show-remaining-keys t
+	which-key-allow-evil-operators t
+	which-key-paging-prefixes '("C-x")
+        which-key-paging-key "<f5>")
+  (add-to-list 'which-key-replacement-alist '(("TAB" . nil) . ("↹" . nil)))
+  (add-to-list 'which-key-replacement-alist '(("RET" . nil) . ("⏎" . nil)))
+  (add-to-list 'which-key-replacement-alist '(("DEL" . nil) . ("⇤" . nil)))
+  (add-to-list 'which-key-replacement-alist '(("SPC" . nil) . ("␣" . nil))))
 
 (defun load-init-settings ()
   (prefer-coding-system 'utf-8)
