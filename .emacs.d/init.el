@@ -317,7 +317,9 @@
   (add-to-list 'which-key-replacement-alist '(("TAB" . nil) . ("↹" . nil)))
   (add-to-list 'which-key-replacement-alist '(("RET" . nil) . ("⏎" . nil)))
   (add-to-list 'which-key-replacement-alist '(("DEL" . nil) . ("⇤" . nil)))
-  (add-to-list 'which-key-replacement-alist '(("SPC" . nil) . ("␣" . nil))))
+  (add-to-list 'which-key-replacement-alist '(("SPC" . nil) . ("␣" . nil)))
+  :bind (("C-h h" . 'which-key-show-top-level)
+	 ("C-h m" . which-key-show-major-mode)))
 
 (defun load-init-settings ()
   (prefer-coding-system 'utf-8)
