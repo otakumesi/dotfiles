@@ -86,10 +86,6 @@
   :config
   (setq projectile-completion-system 'ivy)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
-(use-package projectile-rails
-  :after (projectile)
-  :hook (projectile-mode . projectile-rails-mode)
-  :bind ("C-c r" . projectile-rails-command-map))
 (use-package slim-mode
   :defer t
   :mode ("\\.slim\\'" . slim-mode))
@@ -280,8 +276,7 @@
   :defer t
   :hook (xref-backend-functions . dumb-jump-xref-activate))
 
-(use-package hydra :defer t)
-(use-package ivy-hydra :after (ivy hydra))
+(use-package taskpaper-mode :defer t)
 
 (use-package which-key
   :init
@@ -316,17 +311,22 @@
   (menu-bar-mode -1)
   (show-paren-mode 1)
 
+  (add-to-list 'auto-mode-alist '("\\.machinerc\\'" . sh-mode))
+  (add-to-list 'auto-mode-alist '("\\.functions\\'" . sh-mode))
+  (add-to-list 'auto-mode-alist '("\\.aliases\\'" . sh-mode))
+  (add-to-list 'auto-mode-alist '("\\.env\\'" . sh-mode))
+  (add-to-list 'auto-mode-alist '("\\.envrc\\'" . sh-mode))
+
   (load-theme 'srcery t)
   (defalias 'yes-or-no-p 'y-or-n-p)
 
   (setq display-line-numbers t)
   (setq undo-no-redo t)
-
   (setq js-indent-level 2)
 
   (setq abbrev-file-name "~/.abbrev_defs"
 	save-abbrevs t)
-  (define-key global-map (kbd "C-x C-n") 'open-now-todo-org))
+  (define-key global-map (kbd "C-c t") 'open-taskpaper-file))
 
 (defun enable-to-move-window-with-key ()
   (windmove-default-keybindings)
@@ -335,20 +335,28 @@
   (global-set-key (kbd "C-x x")  'delete-window))
 
 (defun enable-to-copy-and-paste-on-system ()
+  "Enable to sync copy and paste between OSX and Emacs."
   (setq select-enable-clipboard t
 	interprogram-cut-function 'paste-to-osx
 	interprogram-paste-function 'copy-from-osx))
 (defun copy-from-osx ()
+  "Sync copy between OSX and Emacs."
   (shell-command-to-string "pbpaste"))
 (defun paste-to-osx (text &optional push)
+  "Sync paste between OSX and Emacs."
   (let ((process-connection-type nil))
     (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
       (process-send-string proc text)
       (process-send-eof proc))))
 
-(defun open-now-todo-org ()
+(defun open-taskpaper-file ()
+  "Open taskpaper file defined env TASKPAPER_PATH."
   (interactive)
-  (find-file-other-window (expand-file-name "~/.todo-now.org")))
+  (let (taskpaper-file (expand-file-name
+			(exec-path-from-shell-copy-env "TASKPAPER_PATH")))
+    (unless taskpaper-file
+      (error "You must define enviroment variable TASKPAPER_PATH"))
+    (find-file-other-window taskpaper-file)))
 
 (provide 'init)
 
