@@ -30,7 +30,8 @@
 (use-package evil-magit :after evil)
 
 (use-package exec-path-from-shell
-  :if (memq window-system '(mac ns))
+  :if (memq window-system '(mac ns x))
+  :init (exec-path-from-shell-copy-envs '("PATH" "PYTHONPATH" "TASKPAPER_PATH"))
   :config (exec-path-from-shell-initialize))
 
 (use-package ivy
@@ -244,7 +245,9 @@
   :defer t
   :hook (xref-backend-functions . dumb-jump-xref-activate))
 
-(use-package taskpaper-mode :defer t)
+(use-package taskpaper-mode
+  :defer t
+  :mode ("\\.taskpaper\\'"))
 
 (use-package which-key
   :init
@@ -321,11 +324,10 @@
 (defun open-taskpaper-file ()
   "Open taskpaper file defined env TASKPAPER_PATH."
   (interactive)
-  (let (taskpaper-file (expand-file-name
-			(exec-path-from-shell-copy-env "TASKPAPER_PATH")))
+  (let ((taskpaper-file (getenv "TASKPAPER_PATH")))
     (unless taskpaper-file
       (error "You must define enviroment variable TASKPAPER_PATH"))
-    (find-file-other-window taskpaper-file)))
+    (find-file taskpaper-file)))
 
 (provide 'init)
 
