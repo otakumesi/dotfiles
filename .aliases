@@ -1,7 +1,7 @@
 # User
 alias rootdir='git rev-parse --show-toplevel'
-alias mew="emacs -e mew"
 alias ein="emacs -e ein:login"
+alias taskpaper="emacs -e open-taskpaper-file"
 
 alias dict='open dict:://'
 alias vi='vim -u NONE --noplugin'

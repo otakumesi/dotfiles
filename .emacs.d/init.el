@@ -234,38 +234,6 @@
 
 (use-package srcery-theme)
 
-(use-package mew
-  :defer t
-  :config
-  (setq mew-name "Takuro Niitsuma"
-	mew-user "niitsuma.takuro.nm3"
-	mew-ssl-verify-level 0
-	mew-use-cached-passwd t
-	mew-mailbox-type "imap"
-	mew-login-domain "mailbox.naist.jp"
-	mew-proto "%"
-	mew-imap-user "takuro-n"
-	mew-imap-server "mailbox.naist.jp"
-	mew-imap-auth nil
-	mew-imap-ssl t
-	mew-imap-ssl-port 993
-	mew-smtp-user "niitsuma.takuro.nm3@is.naist.jp"
-	mew-smtp-server "mailpost.naist.jp"
-	mew-smtp-auth nil
-	mew-smtp-port "submission")
-  (evil-make-overriding-map mew-message-mode-map 'normal))
-
-(use-package w3m
-  :defer t
-  :config
-  (require 'mew-w3m)
-  (setq mew-prog-text/html 'w3m-region
-	mew-prog-text/xml 'w3m-region
-	mew-use-text/html t
-	mew-mime-multipart-alternative-list '("Text/Html" "Text/Plain" ".*")
-	mew-file-max-size 10000000)
-  :hook (mew-message-hook . w3m-minor-mode))
-
 (use-package symbol-overlay
   :defer t
   :bind ("M-i" . 'symbol-overlay-put))
@@ -311,15 +279,16 @@
   (menu-bar-mode -1)
   (show-paren-mode 1)
 
-  (add-to-list 'auto-mode-alist '("\\.machinerc\\'" . sh-mode))
-  (add-to-list 'auto-mode-alist '("\\.functions\\'" . sh-mode))
-  (add-to-list 'auto-mode-alist '("\\.aliases\\'" . sh-mode))
-  (add-to-list 'auto-mode-alist '("\\.env\\'" . sh-mode))
-  (add-to-list 'auto-mode-alist '("\\.envrc\\'" . sh-mode))
+  (add-to-list 'auto-mode-alist '("/\\.machinerc$" . sh-mode))
+  (add-to-list 'auto-mode-alist '("/\\.functions$" . sh-mode))
+  (add-to-list 'auto-mode-alist '("/\\.aliases$" . sh-mode))
+  (add-to-list 'auto-mode-alist '("/\\.env$" . sh-mode))
+  (add-to-list 'auto-mode-alist '("/\\.envrc$" . sh-mode))
 
   (load-theme 'srcery t)
   (defalias 'yes-or-no-p 'y-or-n-p)
 
+  (defvar vc-follow-symlinks t)
   (setq display-line-numbers t)
   (setq undo-no-redo t)
   (setq js-indent-level 2)
