@@ -203,7 +203,7 @@
 	lsp-pyls-plugins-jedi-use-pyenv-environment t
 	lsp-pyls-plugins-preload-modules t))
 (use-package company-lsp
-  :config (push 'company-lsp company-backends)
+  :config (push '(company-lsp :with company-dabbrev) company-backends)
   :commands comapny-lsp)
 (use-package smart-jump
   :config (smart-jump-setup-default-registers))
