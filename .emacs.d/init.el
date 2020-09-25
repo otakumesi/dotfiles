@@ -236,10 +236,6 @@
 
 (use-package srcery-theme)
 
-(use-package auto-async-byte-compile
-  :defer t
-  :hook (emacs-lisp-mode . enable-auto-async-byte-compile-mode))
-
 (use-package symbol-overlay
   :defer t
   :bind ("M-i" . 'symbol-overlay-put))
