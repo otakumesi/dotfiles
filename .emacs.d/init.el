@@ -296,6 +296,9 @@
   (load-theme 'srcery t)
   (defalias 'yes-or-no-p 'y-or-n-p)
 
+   (setq gc-cons-threshold (* 128 1024 1024) ;; 128MB
+	 garbage-collection-messages t)
+
   (defvar vc-follow-symlinks t)
   (setq display-line-numbers t)
   (setq undo-no-redo t)
