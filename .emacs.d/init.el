@@ -87,9 +87,10 @@
   :config
   (setq projectile-completion-system 'ivy)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+
 (use-package slim-mode
   :defer t
-  :mode ("\\.slim\\'" . slim-mode))
+  :mode (("\\.slim\\'" . slim-mode)))
 
 (use-package gtags :defer t)
 (use-package magit :defer t)
@@ -98,7 +99,7 @@
   :after magit)
 (use-package quickrun :defer t)
 (use-package anzu :init (global-anzu-mode +1))
-; (use-package whitespace :init (global-whitespace-mode 1))
+(use-package whitespace :init (global-whitespace-mode 1))
 (use-package migemo
   :if (executable-find "cmigemo")
   :config
@@ -234,6 +235,10 @@
   :mode ("\\.ya?ml\\'"))
 
 (use-package srcery-theme)
+
+(use-package auto-async-byte-compile
+  :defer t
+  :hook (emacs-lisp-mode . enable-auto-async-byte-compile-mode))
 
 (use-package symbol-overlay
   :defer t
