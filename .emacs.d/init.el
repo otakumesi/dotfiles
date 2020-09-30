@@ -170,7 +170,10 @@
 
 (use-package lsp-mode
   :defer t
-  :hook ((python-mode . lsp)
+  :hook ((python-mode . (lambda ()
+			  (if (executable-find "pyright")
+			      (require lsp-pyright))
+			  (lsp)))
 	 (enh-ruby-mode . lsp)
 	 (c++-mode . lsp)
 	 (tuareg-mode . lsp))
@@ -207,6 +210,10 @@
 (use-package company-lsp
   :config (push '(company-lsp :with company-dabbrev) company-backends)
   :commands comapny-lsp)
+(use-package lsp-pyright
+  :defer t
+  :straight (:host github :repo "emacs-lsp/lsp-pyright" :branch "master"))
+
 (use-package smart-jump
   :config (smart-jump-setup-default-registers))
 
