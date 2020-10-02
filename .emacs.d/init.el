@@ -163,12 +163,14 @@
   :mode (("\\.rs\\'" . rust-mode))
   :config (define-key rust-mode-map (kbd "C-c C-c") 'rust-run))
 
+(use-package lsp-pyright
+  :defer t
+  :if (and (executable-find "pyright") (equal major-mode 'python-mode))
+  :straight (:host github :repo "emacs-lsp/lsp-pyright" :branch "master"))
+
 (use-package lsp-mode
   :defer t
-  :hook ((python-mode . (lambda ()
-			  (if (executable-find "pyright")
-			      (require lsp-pyright))
-			  (lsp)))
+  :hook ((python-mode . lsp)
 	 (enh-ruby-mode . lsp)
 	 (c++-mode . lsp)
 	 (tuareg-mode . lsp))
@@ -205,9 +207,6 @@
 (use-package company-lsp
   :config (push '(company-lsp :with company-dabbrev) company-backends)
   :commands comapny-lsp)
-(use-package lsp-pyright
-  :defer t
-  :straight (:host github :repo "emacs-lsp/lsp-pyright" :branch "master"))
 
 (use-package smart-jump
   :config (smart-jump-setup-default-registers))
