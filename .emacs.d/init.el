@@ -73,11 +73,6 @@
   (setq swiper-include-line-number-in-search t))
 (use-package counsel-projectile :defer t)
 (use-package avy :init (avy-setup-default))
-;; (use-package avy-migemo
-;;   :after (avy migemo)
-;;   :init
-;;   (avy-migemo-mode 1)
-;;   (require 'avy-migemo-e.g.swiper))
 
 (use-package counsel-gtags
   :defer t)
@@ -241,6 +236,10 @@
 (use-package yaml-mode
   :defer t
   :mode ("\\.ya?ml\\'"))
+
+(use-package php-mode
+  :defer t
+  :mode ("\\.php\\'"))
 
 (use-package srcery-theme)
 
