@@ -6,17 +6,8 @@ source ~/.zplug/init.zsh
 zplug 'plugins/git', from:oh-my-zsh
 zplug 'plugins/tmux', from:oh-my-zsh
 zplug 'plugins/ssh-agent', from:oh-my-zsh
-
-zplug 'plugins/pip', from:oh-my-zsh
-zplug 'plugins/poetry', from:oh-my-zsh
-
-zplug 'plugins/ruby', from:oh-my-zsh
-zplug 'plugins/rails', from:oh-my-zsh
-zplug 'plugins/gem', from:oh-my-zsh
-
 zplug 'plugins/zsh-completions', from:oh-my-zsh
 zplug 'b4b4r07/enhancd', use:init.sh
-zplug 'mrowa44/emojify', as:command
 zplug 'zsh-users/zsh-syntax-highlighting', defer:2
 zplug 'themes/gnzh', from:oh-my-zsh, defer:2
 
@@ -76,8 +67,7 @@ if [ "$(uname)" == 'Darwin' ]; then
   eval `gdircolors ~/dotfiles/dircolors/dircolors.256dark`
 fi
 
-. /Users/200448/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# . /Users/200448/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 

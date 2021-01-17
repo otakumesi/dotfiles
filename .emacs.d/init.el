@@ -153,7 +153,9 @@
   :defer t
   :mode (("\\.rb\\'" . enh-ruby-mode)
 	 ("Gemfile" . enh-ruby-mode))
-  :interpreter ("ruby" . enh-ruby-mode))
+  :interpreter ("ruby" . enh-ruby-mode)
+  :config
+  (setq ruby-insert-encoding-magic-comment nil))
 
 (use-package cc-mode :defer t)
 (use-package tuareg :defer t)
@@ -162,6 +164,12 @@
   :defer t
   :mode (("\\.rs\\'" . rust-mode))
   :config (define-key rust-mode-map (kbd "C-c C-c") 'rust-run))
+
+(use-package go-mode
+  :defer t
+  :mode (("\\.go\\'" . go-mode))
+  :hook ((go-mode . go-eldoc-setup))
+  :config (setq gofmt-command "goimports"))
 
 (use-package lsp-pyright
   :defer t
@@ -173,10 +181,13 @@
   :hook ((python-mode . lsp)
 	 (enh-ruby-mode . lsp)
 	 (c++-mode . lsp)
-	 (tuareg-mode . lsp))
-  :commands (lsp)
+	 (tuareg-mode . lsp)
+	 (go-mode . lsp-deferred)
+	 (typescript-mode . lsp-deferred))
+  :commands (lsp lsp-deferred)
   :config
   (setq lsp-prefer-flymake nil
+	lsp-response-timeout 3
 	lsp-auto-guess-root t
 	lsp-enable-xref t
 	lsp-enable-snippet t
@@ -240,7 +251,13 @@
   :defer t
   :mode ("\\.php\\'"))
 
-(use-package srcery-theme)
+(use-package typescript-mode
+  :defer t
+  :mode ("\\.tsx?\\'")
+  :config
+  (setq typescript-indent-level 2))
+
+(use-package monokai-theme)
 
 (use-package symbol-overlay
   :defer t
@@ -295,7 +312,6 @@
   (add-to-list 'auto-mode-alist '("/\\.env$" . sh-mode))
   (add-to-list 'auto-mode-alist '("/\\.envrc$" . sh-mode))
 
-  (load-theme 'srcery t)
   (defalias 'yes-or-no-p 'y-or-n-p)
 
    (setq gc-cons-threshold (* 128 1024 1024) ;; 128MB
