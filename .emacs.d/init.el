@@ -185,8 +185,9 @@
   :init
   (setq lsp-pyls-plugins-pycodestyle-enabled nil
 	lsp-pyls-plugins-pylint-enabled nil
-	lsp-pyls-plugins-pyflakes-enabled t
+	lsp-pyls-plugins-flake8-enabled t
 	lsp-pyls-plugins-jedi-environment (vc-root-dir)
+	lsp-pyls-plugins-jedi-completion-fuzzy t
 	lsp-pyls-plugins-preload-modules t))
 
 (use-package lsp-mode
@@ -283,9 +284,13 @@
   :defer t
   :hook (xref-backend-functions . dumb-jump-xref-activate))
 
-(use-package taskpaper-mode
-  :defer t
-  :mode ("\\.taskpaper\\'"))
+;; (use-package taskpaper-mode
+;;   :defer t
+;;   :mode ("\\.taskpaper\\'"))
+
+(use-package undo-tree
+  :init (global-undo-tree-mode)
+  :config (evil-set-undo-system 'undo-tree))
 
 (use-package which-key
   :init
@@ -333,7 +338,6 @@
 
   (defvar vc-follow-symlinks t)
   (setq display-line-numbers t)
-  (setq undo-no-redo t)
   (setq js-indent-level 2)
   (setq show-trailing-whitespace t)
 
