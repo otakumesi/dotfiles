@@ -27,7 +27,7 @@
 (use-package evil-collection
   :after evil
   :init (evil-collection-init))
-(use-package evil-magit :after evil)
+;; (use-package evil-magit :after evil)
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns x))
@@ -114,7 +114,14 @@
   :init (recentf-mode 1)
   :bind ("C-x C-r" . 'counsel-recentf))
 (use-package recentf-ext :defer t)
-(use-package company :init (global-company-mode))
+(use-package company
+  :init (global-company-mode)
+  :config
+  (setq  company-selection-wrap-around t
+	 company-idle-delay 0.1
+	 company-transformers nil
+	 completion-ignore-case t
+	 company-backends '((company-files company-keywords company-capf company-yasnippet) (company-abbrev company-dabbrev))))
 (use-package yasnippet :init (yas-global-mode 1))
 (use-package flycheck
   :hook (after-init . global-flycheck-mode)
@@ -142,16 +149,18 @@
   :defer t
   :if (equal major-mode 'python-mode))
 
-(use-package ein
-  :defer t
-  :config
-  (require 'ein-notebook)
-  (require 'ein-subpackages)
-  (require 'ob-ein))
+;; (use-package ein
+;;   :defer t
+;;   :config
+;;   (require 'ein-notebook)
+;;   (require 'ein-subpackages)
+;;   (require 'ob-ein))
 
 (use-package enh-ruby-mode
   :defer t
   :mode (("\\.rb\\'" . enh-ruby-mode)
+	 ("\\.rake\\'" . enh-ruby-mode)
+	 ("Rakefile" . enh-ruby-mode)
 	 ("Gemfile" . enh-ruby-mode))
   :interpreter ("ruby" . enh-ruby-mode)
   :config
@@ -171,14 +180,18 @@
   :hook ((go-mode . go-eldoc-setup))
   :config (setq gofmt-command "goimports"))
 
-(use-package lsp-pyright
+(use-package lsp-python
   :defer t
-  :if (and (executable-find "pyright") (equal major-mode 'python-mode))
-  :straight (:host github :repo "emacs-lsp/lsp-pyright" :branch "master"))
+  :init
+  (setq lsp-pyls-plugins-pycodestyle-enabled nil
+	lsp-pyls-plugins-pylint-enabled nil
+	lsp-pyls-plugins-pyflakes-enabled t
+	lsp-pyls-plugins-jedi-environment (vc-root-dir)
+	lsp-pyls-plugins-preload-modules t))
 
 (use-package lsp-mode
   :defer t
-  :hook ((python-mode . lsp)
+  :hook ((python-mode . lsp-deferred)
 	 (enh-ruby-mode . lsp)
 	 (c++-mode . lsp)
 	 (tuareg-mode . lsp)
@@ -187,11 +200,12 @@
   :commands (lsp lsp-deferred)
   :config
   (setq lsp-prefer-flymake nil
-	lsp-response-timeout 3
+	lsp-response-timeout 5
 	lsp-auto-guess-root t
 	lsp-enable-xref t
 	lsp-enable-snippet t
-	lsp-document-sync-method 'incremental
+	lsp-document-sync-method lsp--sync-incremental
+	lsp-solargraph-library-directories '("./.bundle" "~/.rbenv/" "/usr/lib/ruby/" "~/.rvm/" "~/.gem/")
 	lsp-ocaml-lang-server-command "ocamllsp"))
 (use-package lsp-ui
   :defer t
@@ -208,15 +222,12 @@
 	lsp-ui-doc-header t
 	lsp-ui-flycheck-enable t
 	lsp-ui-sideline t
-	lsp-ui-doc-include-signature t
-	lsp-pyls-plugins-pycodestyle-enabled nil
-	lsp-pyls-plugins-pylint-enabled nil
-	lsp-pyls-plugins-pyflakes-enabled t
-	lsp-pyls-plugins-jedi-environment t
-	lsp-pyls-plugins-jedi-use-pyenv-environment t
-	lsp-pyls-plugins-preload-modules t))
+	lsp-ui-doc-include-signature t))
 (use-package company-lsp
-  :config (push '(company-lsp :with company-dabbrev) company-backends)
+  :config
+  (add-to-list 'company-lsp company-backends)
+  (setq company-lsp-async t
+	company-lsp-cache-candidates t)
   :commands comapny-lsp)
 
 (use-package smart-jump
@@ -257,7 +268,10 @@
   :config
   (setq typescript-indent-level 2))
 
-(use-package monokai-theme)
+;; (use-package molokai-theme)
+(use-package solarized-theme
+  :init (load-theme 'solarized-dark t))
+
 
 (use-package symbol-overlay
   :defer t
@@ -363,9 +377,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("7675ffd2f5cb01a7aab53bcdd702fa019b56c764900f2eea0f74ccfc8e854386" default))))
+  )
 (custom-set-faces
 
  ;; If you edit it by hand, you could mess it up, so be careful.
