@@ -220,6 +220,7 @@
 	lsp-ui-peek-peek-height 20
 	lsp-ui-peek-list-width 50
 	lsp-ui-peek-fontify 'on-demand
+	lsp-ui-flycheck--save-mode t
 	lsp-ui-doc-header t
 	lsp-ui-flycheck-enable t
 	lsp-ui-sideline t
