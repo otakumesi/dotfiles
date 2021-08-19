@@ -284,9 +284,9 @@
   :if (equal major-mode 'markdown-mode)
   :defer t)
 
-(use-package yaml-mode
-  :defer t
-  :mode ("\\.ya?ml\\'"))
+;; (use-package yaml-mode
+;;   :defer t
+;;   :mode ("\\.ya?ml\\'"))
 
 (use-package php-mode
   :defer t
@@ -394,14 +394,6 @@
     (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
       (process-send-string proc text)
       (process-send-eof proc))))
-
-(defun open-taskpaper-file ()
-  "Open taskpaper file defined env TASKPAPER_PATH."
-  (interactive)
-  (let ((taskpaper-file (getenv "TASKPAPER_PATH")))
-    (unless taskpaper-file
-      (error "You must define enviroment variable TASKPAPER_PATH"))
-    (find-file taskpaper-file)))
 
 (provide 'init)
 
