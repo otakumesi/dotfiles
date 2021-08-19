@@ -142,8 +142,8 @@
 	 company-idle-delay 0.1
 	 company-transformers nil
 	 completion-ignore-case t
-	 company-backends '((company-files company-keywords company-capf company-yasnippet) (company-abbrev company-dabbrev))))
-(use-package yasnippet :init (yas-global-mode 1))
+	 company-backends '((company-files company-keywords company-capf) (company-abbrev company-dabbrev))))
+;; (use-package yasnippet :init (yas-global-mode 1))
 (use-package flycheck
   :hook (after-init . global-flycheck-mode)
   :config
