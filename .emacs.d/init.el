@@ -106,6 +106,13 @@
 (use-package forge
   :defer t
   :after magit)
+(use-package eldoc
+  :hook (prog-mode . eldoc-mode)
+  :config
+  (defun ad:eldoc-message (f &optional string)
+    (unless (active-minibuffer-window)
+      (funcall f string)))
+  (advice-add 'eldoc-message :around #'ad:eldoc-message))
 (use-package quickrun :defer t)
 (use-package anzu :init (global-anzu-mode +1))
 ; (use-package whitespace
