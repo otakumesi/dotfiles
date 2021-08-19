@@ -315,13 +315,18 @@
   :defer t
   :hook (xref-backend-functions . dumb-jump-xref-activate))
 
-;; (use-package taskpaper-mode
-;;   :defer t
-;;   :mode ("\\.taskpaper\\'"))
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+(use-package highlight-numbers
+  :hook (prog-mode . highlight-numbers-mode))
+(use-package delsel
+  :hook (prog-mode . delete-selection-mode))
 
 (use-package undo-tree
   :init (global-undo-tree-mode)
   :config (evil-set-undo-system 'undo-tree))
+
+(use-package atomic-chrome)
 
 (use-package which-key
   :init
