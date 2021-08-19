@@ -41,6 +41,7 @@ fi
 
 source $HOME/.aliases
 source $HOME/.functions
+source $HOME/.cargo/env
 # which opam >/dev/null 2>&1 && eval `opam env`
 # which opam >/dev/null 2>&1 && eval `opam config env`
 

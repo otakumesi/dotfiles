@@ -193,7 +193,13 @@
 (use-package rust-mode
   :defer t
   :mode (("\\.rs\\'" . rust-mode))
-  :config (define-key rust-mode-map (kbd "C-c C-c") 'rust-run))
+  :config
+  (define-key rust-mode-map (kbd "C-c C-c") 'rust-run)
+  (setq rust-format-on-save t))
+
+(use-package cargo
+  :defer t
+  :if (equal major-mode 'rust-mode))
 
 (use-package go-mode
   :defer t
