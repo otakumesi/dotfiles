@@ -27,6 +27,8 @@
 (use-package evil-collection
   :after evil
   :init (evil-collection-init))
+(use-package evil-commentary
+  :init (evil-commentary-mode))
 ;; (use-package evil-magit :after evil)
 
 (use-package exec-path-from-shell
