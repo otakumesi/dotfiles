@@ -10,16 +10,16 @@ export CARGO_HOME=$HOME/.cargo
 export GOPATH=$HOME/goprojects
 export NODE_PATH=`npm root -g`
 export PYENV_ROOT=$HOME/.pyenv
-export PATH="/usr/local/bin:$HOME/.tfenv/bin:$JAVA_HOME/bin:$PATH:$HOME/.ndenv/bin:$PATH"
-export PATH="$HOME/.poetry/bin:$GOPATH/bin:$HOME/.rbenv/shims:$PYENV_ROOT/bin:$CARGO_HOME/bin:/usr/local/opt/sqlite/bin:$PATH"
+export PATH="/usr/local/bin:$HOME/.tfenv/bin:$JAVA_HOME/bin:$PATH:$HOME/.ndenv/bin:$HOME/google-cloud-sdk/bin:$PATH"
+export PATH="$HOME/.poetry/bin:$GOPATH/bin:$HOME/.rbenv/shims:$PYENV_ROOT/bin:/usr/local/opt/sqlite/bin:$PATH"
 export MANPATH="/usr/local/man:$MANPATH"
 
 export GOROOT_BOOTSTRAP=$HOME/go1.4/bin
 
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
-export OCAMLPARAM="_,bin-annot=1"
-export OPAMKEEPBUILDDIR=1
+# export OCAMLPARAM="_,bin-annot=1"
+# export OPAMKEEPBUILDDIR=1
 
 eval "$(rbenv init -)"
 eval "$(pyenv init -)"
