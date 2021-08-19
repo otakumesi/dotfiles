@@ -219,11 +219,13 @@
 
 (use-package lsp-mode
   :defer t
+  :bind ("C-c h" . lsp-describe-thing-at-point)
   :hook ((python-mode . lsp-deferred)
 	 (enh-ruby-mode . lsp)
 	 (c++-mode . lsp)
 	 (tuareg-mode . lsp)
 	 (go-mode . lsp-deferred)
+	 (rust-mode . lsp-deferred)
 	 (typescript-mode . lsp-deferred))
   :commands (lsp lsp-deferred)
   :config
@@ -234,14 +236,13 @@
 	lsp-enable-snippet t
 	lsp-document-sync-method lsp--sync-incremental
 	lsp-solargraph-library-directories '("./.bundle" "~/.rbenv/" "/usr/lib/ruby/" "~/.rvm/" "~/.gem/")
+	lsp-rust-server 'rust-analyzer
 	lsp-ocaml-lang-server-command "ocamllsp"))
 (use-package lsp-ui
   :defer t
   :commands lsp-ui-mode
   :config
   (require 'lsp-ui-flycheck)
-  (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
-  (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
   (setq lsp-ui-doc-enable t
 	lsp-ui-peek-enable t
 	lsp-ui-peek-peek-height 20
