@@ -298,6 +298,8 @@
   :config
   (setq typescript-indent-level 2))
 
+(use-package smarty-mode)
+
 ;; (use-package molokai-theme)
 (use-package solarized-theme
   :init (load-theme 'solarized-dark t))
