@@ -69,15 +69,27 @@
   ("C-c j" . 'counsel-file-jump)
   ("C-x l" . 'counsel-locate)
   ("C-S-o" . 'counsel-rhythmbox)
-  ("M-y" . 'counsel-yank-pop))
+  ("M-y" . 'counsel-yank-pop)
+  :after (ivy prescient))
 (use-package swiper
   :config
   (setq swiper-include-line-number-in-search t))
-(use-package counsel-projectile :defer t)
+(use-package counsel-projectile :defer t :after counsel)
 (use-package avy :init (avy-setup-default))
-
+(use-package prescient
+  :config
+  (setq prescient-sort-full-matches-first t)
+  :after ivy)
+(use-package ivy-prescient
+  :init (ivy-prescient-mode)
+  :config (setq ivy-prescient-enable-filtering nil)
+  :after (ivy prescient))
+(use-package company-prescient
+  :init (company-prescient-mode)
+  :after (ivy company))
 (use-package counsel-gtags
   :defer t)
+
 (use-package projectile
   :defer t
   :init (projectile-mode +1)
