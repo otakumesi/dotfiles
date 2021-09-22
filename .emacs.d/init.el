@@ -176,6 +176,19 @@
 ;;   (require 'ein-notebook)
 ;;   (require 'ein-subpackages)
 ;;   (require 'ob-ein))
+(use-package stan-mode
+  :defer t
+  :mode ("\\.stan\\'" . stan-mode)
+  :hook (stan-mode . stan-mode-setup)
+  :config
+  (setq stan-indentation-offset 2))
+(use-package company-stan
+  :hook (stan-mode . company-stan-setup))
+(use-package eldoc-stan
+  :hook (stan-mode . eldoc-stan-setup))
+(use-package flycheck-stan
+  :hook ((stan-mode . flycheck-stan-stanc2-setup)
+         (stan-mode . flycheck-stan-stanc3-setup)))
 
 (use-package enh-ruby-mode
   :defer t
@@ -297,8 +310,6 @@
   :mode ("\\.tsx?\\'")
   :config
   (setq typescript-indent-level 2))
-
-(use-package smarty-mode)
 
 ;; (use-package molokai-theme)
 (use-package solarized-theme
