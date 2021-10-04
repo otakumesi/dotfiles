@@ -168,7 +168,7 @@
 
 (use-package poetry
   :defer t
-  :if (equal major-mode 'python-mode))
+  :hook python-mode)
 
 ;; (use-package ein
 ;;   :defer t
@@ -236,6 +236,9 @@
   :hook ((python-mode . lsp-deferred)
 	 (enh-ruby-mode . lsp)
 	 (c++-mode . lsp)
+	 (rjsx-mode . lsp)
+	 (js2-mode . lsp)
+	 (js-mode . lsp)
 	 (tuareg-mode . lsp)
 	 (go-mode . lsp-deferred)
 	 (rust-mode . lsp-deferred)
@@ -301,9 +304,12 @@
 ;;   :defer t
 ;;   :mode ("\\.ya?ml\\'"))
 
-(use-package php-mode
+(use-package rjsx-mode
   :defer t
-  :mode ("\\.php\\'"))
+  :mode ("\\(components\\|pages\\)\\/.+\\.js\\'")
+  :config
+  (setq sgml-basic-offset 2
+	js-indent-level 2))
 
 (use-package typescript-mode
   :defer t
@@ -386,6 +392,7 @@
   (defvar vc-follow-symlinks t)
   (setq display-line-numbers t)
   (setq js-indent-level 2)
+  (setq css-indent-offset 2)
   (setq show-trailing-whitespace t)
 
   (setq abbrev-file-name "~/.abbrev_defs"
