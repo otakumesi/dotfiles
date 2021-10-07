@@ -242,7 +242,8 @@
 	 (tuareg-mode . lsp)
 	 (go-mode . lsp-deferred)
 	 (rust-mode . lsp-deferred)
-	 (typescript-mode . lsp-deferred))
+	 (typescript-mode . lsp-deferred)
+	 (web-mode . lsp-deferred))
   :commands (lsp lsp-deferred)
   :config
   (setq lsp-prefer-flymake nil
@@ -316,6 +317,25 @@
   :mode ("\\.tsx?\\'")
   :config
   (setq typescript-indent-level 2))
+
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (tide-hl-identifier-mode +1)
+  (setq company-tooltip-align-annotations t))
+
+(use-package tide
+  :defer t
+  :hook ((typescript-mode . setup-tide-mode)
+	 (before-save . tide-format-before-save)))
+
+(use-package web-mode
+  :defer t
+  :mode ("\\.tsx\\'")
+  :hook (web-mode . (lambda () (when string-equal "tsx" (file-name-extension buffer-file-name))
+		      (setup-tide-mode)))
+  :config
+  (flycheck-add-mode 'typescript-tslint 'web-mode))
 
 ;; (use-package molokai-theme)
 (use-package solarized-theme
