@@ -318,6 +318,12 @@
   :config
   (setq typescript-indent-level 2))
 
+(use-package docker
+  :defer t
+  :bind ("C-c d" . docker))
+(use-package dockerfile-mode
+  :defer t)
+
 (defun setup-tide-mode ()
   (interactive)
   (tide-setup)
