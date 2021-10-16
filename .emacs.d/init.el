@@ -154,10 +154,19 @@
 (use-package expand-region :config (define-key evil-visual-state-map (kbd "C-v") #'er/expand-region))
 (use-package popwin :init (popwin-mode 1))
 
+(use-package pyvenv
+  :defer t)
+(use-package poetry
+  :defer t
+  :commands (poetry poetry-venv-workon))
 (use-package python
   :defer t
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode)
+  :init
+  (let* ((prj-dir (locate-dominating-file default-directory ".git")))
+    (when (file-exists-p (concat prj-dir "/pyproject.toml"))
+      (poetry-venv-workon)))
   :config
   (setq electric-indent-local-mode 1
 	indent-tabs-mode nil
@@ -166,9 +175,6 @@
 	python-indent 4
 	tab-width 4))
 
-(use-package poetry
-  :defer t
-  :hook python-mode)
 
 ;; (use-package ein
 ;;   :defer t
@@ -254,7 +260,12 @@
 	lsp-document-sync-method lsp--sync-incremental
 	lsp-solargraph-library-directories '("./.bundle" "~/.rbenv/" "/usr/lib/ruby/" "~/.rvm/" "~/.gem/")
 	lsp-rust-server 'rust-analyzer
-	lsp-ocaml-lang-server-command "ocamllsp"))
+	lsp-ocaml-lang-server-command "ocamllsp")
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-tramp-connection "pylsp")
+		    :major-modes '(python-mode)
+		    :remote? t
+		    :server-id 'pylsp-remote)))
 (use-package lsp-ui
   :defer t
   :commands lsp-ui-mode
@@ -347,7 +358,6 @@
 (use-package solarized-theme
   :init (load-theme 'solarized-dark t))
 
-
 (use-package symbol-overlay
   :defer t
   :bind ("M-i" . 'symbol-overlay-put))
@@ -409,6 +419,10 @@
   (add-to-list 'auto-mode-alist '("/\\.aliases$" . sh-mode))
   (add-to-list 'auto-mode-alist '("/\\.env$" . sh-mode))
   (add-to-list 'auto-mode-alist '("/\\.envrc$" . sh-mode))
+  (eval-after-load 'tramp
+    '(progn
+       (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
+       (add-to-list 'tramp-remote-path "~/.pyenv/shims")))
 
   (defalias 'yes-or-no-p 'y-or-n-p)
 
@@ -437,10 +451,14 @@
 	interprogram-cut-function 'paste-to-osx
 	interprogram-paste-function 'copy-from-osx))
 (defun copy-from-osx ()
-  "Sync copy between OSX and Emacs."
-  (shell-command-to-string "pbpaste"))
+  "Handle copy/paste intelligently on osx."
+  (let ((pbpaste (purecopy "/usr/bin/pbpaste")))
+    (if (and (eq system-type 'darwin)
+             (file-exists-p pbpaste))
+        (let ((tramp-mode nil)
+              (default-directory "~"))
+          (shell-command-to-string pbpaste)))))
 (defun paste-to-osx (text &optional push)
-  "Sync paste between OSX and Emacs."
   (let ((process-connection-type nil))
     (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
       (process-send-string proc text)
