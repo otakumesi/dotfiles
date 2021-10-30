@@ -1,3 +1,5 @@
+[[ $TERM == "tramp" ]] && unsetopt zle && PS1='$ ' && return
+
 export ZSH=$HOME/.oh-my-zsh
 source $HOME/.profile
 

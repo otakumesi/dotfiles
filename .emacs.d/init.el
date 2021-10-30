@@ -97,16 +97,13 @@
   (setq projectile-completion-system 'ivy)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
-(use-package slim-mode
-  :defer t
-  :mode (("\\.slim\\'" . slim-mode)))
-
 (use-package gtags :defer t)
 (use-package magit :defer t)
 (use-package forge
   :defer t
   :after magit)
 (use-package eldoc
+  :defer t
   :hook (prog-mode . eldoc-mode)
   :config
   (defun ad:eldoc-message (f &optional string)
@@ -162,11 +159,8 @@
 (use-package python
   :defer t
   :mode ("\\.py\\'" . python-mode)
+  :hook (poetry-tracking-mode)
   :interpreter ("python" . python-mode)
-  :init
-  (let* ((prj-dir (locate-dominating-file default-directory ".git")))
-    (when (file-exists-p (concat prj-dir "/pyproject.toml"))
-      (poetry-venv-workon)))
   :config
   (setq electric-indent-local-mode 1
 	indent-tabs-mode nil
@@ -174,7 +168,10 @@
 	python-indent-offset 4
 	python-indent 4
 	tab-width 4))
-
+(use-package python-black
+  :demand t
+  :after python
+  :hook (python-mode . python-black-on-save-mode-enable-dwim))
 
 ;; (use-package ein
 ;;   :defer t
@@ -229,27 +226,29 @@
 (use-package lsp-python
   :defer t
   :init
-  (setq lsp-pyls-plugins-pycodestyle-enabled nil
-	lsp-pyls-plugins-pylint-enabled nil
-	lsp-pyls-plugins-flake8-enabled t
-	lsp-pyls-plugins-jedi-environment (vc-root-dir)
-	lsp-pyls-plugins-jedi-completion-fuzzy t
-	lsp-pyls-plugins-preload-modules t))
+  (setq lsp-pylsp-plugins-pycodestyle-enabled nil
+	lsp-pylsp-plugins-pylint-enabled nil
+	lsp-pylsp-plugins-flake8-enabled nil
+	lsp-pylsp-plugins-mccabe-enabled nil
+	lsp-pylsp-plugins-pyflakes-enabled nil
+	lsp-pylsp-plugins-pylint-enabled nil
+	lsp-pylsp-plugins-jedi-environment (vc-root-dir)
+	lsp-pylsp-plugins-jedi-completion-fuzzy t
+	lsp-pylsp-plugins-preload-modules t))
 
 (use-package lsp-mode
   :defer t
   :bind ("C-c h" . lsp-describe-thing-at-point)
-  :hook ((python-mode . lsp-deferred)
-	 (enh-ruby-mode . lsp)
+  :hook ((enh-ruby-mode . lsp)
 	 (c++-mode . lsp)
 	 (rjsx-mode . lsp)
+	 (python-mode . lsp)
 	 (js2-mode . lsp)
 	 (js-mode . lsp)
 	 (tuareg-mode . lsp)
-	 (go-mode . lsp-deferred)
-	 (rust-mode . lsp-deferred)
-	 (typescript-mode . lsp-deferred)
-	 (web-mode . lsp-deferred))
+	 (go-mode . lsp)
+	 (rust-mode . lsp)
+	 (tide-mode . lsp))
   :commands (lsp lsp-deferred)
   :config
   (setq lsp-prefer-flymake nil
@@ -257,6 +256,7 @@
 	lsp-auto-guess-root t
 	lsp-enable-xref t
 	lsp-enable-snippet t
+	lsp-log-io nil
 	lsp-document-sync-method lsp--sync-incremental
 	lsp-solargraph-library-directories '("./.bundle" "~/.rbenv/" "/usr/lib/ruby/" "~/.rvm/" "~/.gem/")
 	lsp-rust-server 'rust-analyzer
@@ -266,21 +266,24 @@
 		    :major-modes '(python-mode)
 		    :remote? t
 		    :server-id 'pylsp-remote)))
+
 (use-package lsp-ui
   :defer t
   :commands lsp-ui-mode
   :config
   (require 'lsp-ui-flycheck)
-  (setq lsp-ui-doc-enable t
-	lsp-ui-peek-enable t
+  (setq lsp-ui-peek-enable t
 	lsp-ui-peek-peek-height 20
 	lsp-ui-peek-list-width 50
 	lsp-ui-peek-fontify 'on-demand
-	lsp-ui-flycheck--save-mode t
+	lsp-ui-doc-enable t
 	lsp-ui-doc-header t
+	lsp-ui-doc-enable t
+	lsp-ui-doc-include-signature t
 	lsp-ui-flycheck-enable t
-	lsp-ui-sideline t
-	lsp-ui-doc-include-signature t))
+	lsp-ui-sideline-enable t
+	lsp-ui-sideline-show-diagnostics nil
+	lsp-ui-sideline-delay 0.5))
 (use-package company-lsp
   :config
   (add-to-list 'company-lsp company-backends)
@@ -327,13 +330,21 @@
   :defer t
   :mode ("\\.tsx?\\'")
   :config
-  (setq typescript-indent-level 2))
+  (setq typescript-indent-level 2
+	sgml-basic-offset 2))
 
 (use-package docker
   :defer t
   :bind ("C-c d" . docker))
 (use-package dockerfile-mode
   :defer t)
+(use-package docker-compose-mode
+  :defer t)
+(use-package docker-tramp
+  :defer t
+  :config
+  (require 'docker-tramp-compat)
+  (setq docker-tramp-use-names t))
 
 (defun setup-tide-mode ()
   (interactive)
@@ -349,10 +360,24 @@
 (use-package web-mode
   :defer t
   :mode ("\\.tsx\\'")
-  :hook (web-mode . (lambda () (when string-equal "tsx" (file-name-extension buffer-file-name))
-		      (setup-tide-mode)))
+  :hook (web-mode . (lambda () (when (string-equal "tsx" (file-name-extension buffer-file-name))
+		      (setup-tide-mode))))
   :config
-  (flycheck-add-mode 'typescript-tslint 'web-mode))
+  (flycheck-add-mode 'typescript-tslint 'web-mode)
+  (setq web-mode-enable-auto-closing t
+	web-mode-enable-auto-pairing t
+	web-mode-auto-close-style 2
+	web-mode-tag-auto-close-style 2
+	web-mode-markup-indent-offset 2
+	web-mode-css-indent-offset 2
+	web-mode-code-indent-offset 2
+	tab-width 2))
+
+(use-package emmet-mode
+  :defer t
+  :hook (sgml-mode css-mode)
+  :config
+  (setq emmet-indentation 2))
 
 ;; (use-package molokai-theme)
 (use-package solarized-theme
@@ -374,12 +399,17 @@
   :hook (prog-mode . highlight-numbers-mode))
 (use-package delsel
   :hook (prog-mode . delete-selection-mode))
+(use-package dash-at-point
+  :defer t
+  :bind ("C-c d" . 'dash-at-point)
+  :config
+  (add-to-list 'dash-at-point-mode-alist '(python-mode . "python"))
+  (add-to-list 'dash-at-point-mode-alist '(typescript-mode . "typescript"))
+  (add-to-list 'dash-at-point-mode-alist '(javascript-mode . "javascript")))
 
 (use-package undo-tree
   :init (global-undo-tree-mode)
   :config (evil-set-undo-system 'undo-tree))
-
-(use-package atomic-chrome)
 
 (use-package which-key
   :init
@@ -419,6 +449,16 @@
   (add-to-list 'auto-mode-alist '("/\\.aliases$" . sh-mode))
   (add-to-list 'auto-mode-alist '("/\\.env$" . sh-mode))
   (add-to-list 'auto-mode-alist '("/\\.envrc$" . sh-mode))
+
+  (defun start-file-process-shell-command@around (start-file-process-shell-command name buffer &rest args)
+    "Start a program in a subprocess.  Return the process object for it.
+Similar to `start-process-shell-command', but calls `start-file-process'."
+    ;; On remote hosts, the local `shell-file-name' might be useless.
+    (let ((command (mapconcat 'identity args " ")))
+      (funcall start-file-process-shell-command name buffer command)))
+
+  (advice-add 'start-file-process-shell-command :around #'start-file-process-shell-command@around)
+
   (eval-after-load 'tramp
     '(progn
        (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
@@ -426,10 +466,13 @@
 
   (defalias 'yes-or-no-p 'y-or-n-p)
 
-   (setq gc-cons-threshold (* 128 1024 1024) ;; 128MB
+   (setq gc-cons-threshold (* 128 1024 1024)
 	 garbage-collection-messages t)
 
-  (defvar vc-follow-symlinks t)
+  (setq inhibit-eol-conversion t)
+  (setq vc-handled-backends '())
+  (setq vc-follow-symlinks t)
+  (setq tramp-auto-save-directory "/tmp")
   (setq display-line-numbers t)
   (setq js-indent-level 2)
   (setq css-indent-offset 2)
