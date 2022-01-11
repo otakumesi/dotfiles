@@ -25,6 +25,7 @@ eval "$(rbenv init -)"
 eval "$(pyenv init -)"
 eval "$(direnv hook zsh)"
 # [[ -f $HOME/.acme.sh/.acme.sh.env ]] && . $HOME/.acme.sh/.acme.sh.env
+eval "$(jump shell)"
 
 export FZF_TMUX=1
 export FZF_DEFAULT_OPTS='--no-height --no-reverse'

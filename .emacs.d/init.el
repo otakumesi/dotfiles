@@ -256,7 +256,7 @@
 	lsp-auto-guess-root t
 	lsp-enable-xref t
 	lsp-enable-snippet t
-	lsp-log-io nil
+	lsp-log-io t
 	lsp-document-sync-method lsp--sync-incremental
 	lsp-solargraph-library-directories '("./.bundle" "~/.rbenv/" "/usr/lib/ruby/" "~/.rvm/" "~/.gem/")
 	lsp-rust-server 'rust-analyzer
@@ -265,7 +265,12 @@
    (make-lsp-client :new-connection (lsp-tramp-connection "pylsp")
 		    :major-modes '(python-mode)
 		    :remote? t
-		    :server-id 'pylsp-remote)))
+		    :server-id 'pylsp-remote))
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-tramp-connection '("typescript-language-server" "--stdio"))
+		    :major-modes '(js-mode)
+		    :remote? t
+		    :server-id 'js-remote)))
 
 (use-package lsp-ui
   :defer t
@@ -294,7 +299,11 @@
 (use-package smart-jump
   :config (smart-jump-setup-default-registers))
 
-(use-package todoist :defer t)
+(use-package todoist
+  :defer t
+  :config
+  (setq todoist-token (shell-command-to-string "echo $TODOIST_TOKEN")))
+
 (use-package twittering-mode :defer t)
 
 (use-package scss-mode
@@ -378,6 +387,8 @@
   :hook (sgml-mode css-mode)
   :config
   (setq emmet-indentation 2))
+(use-package json-mode
+  :defer t)
 
 ;; (use-package molokai-theme)
 (use-package solarized-theme
@@ -462,7 +473,8 @@ Similar to `start-process-shell-command', but calls `start-file-process'."
   (eval-after-load 'tramp
     '(progn
        (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
-       (add-to-list 'tramp-remote-path "~/.pyenv/shims")))
+       (add-to-list 'tramp-remote-path "~/.pyenv/shims")
+       (add-to-list 'tramp-remote-path "/usr/local/bin/")))
 
   (defalias 'yes-or-no-p 'y-or-n-p)
 
