@@ -168,6 +168,19 @@
 	python-indent-offset 4
 	python-indent 4
 	tab-width 4))
+(use-package js2-mode
+  :defer t
+  :mode (("\\.js\\'" . js2-mode)
+	 ("\\.jsx\\'" . js2-jsx-mode))
+  :interpreter (("node" . js2-mode)
+		("node" . js2-jsx-mode))
+  :init
+  (setq-default electric-indent-local-mode 1
+		indent-tabs-mode nil
+		js-indent-level 2
+		js2-switch-indent-offset 2
+		js2-basic-offset 2
+		js2-indent-switch-body t))
 (use-package python-black
   :demand t
   :after python
@@ -486,7 +499,6 @@ Similar to `start-process-shell-command', but calls `start-file-process'."
   (setq vc-follow-symlinks t)
   (setq tramp-auto-save-directory "/tmp")
   (setq display-line-numbers t)
-  (setq js-indent-level 2)
   (setq css-indent-offset 2)
   (setq show-trailing-whitespace t)
 
