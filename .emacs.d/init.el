@@ -388,7 +388,8 @@
   :config
   (setq emmet-indentation 2))
 (use-package json-mode
-  :defer t)
+  :defer t
+  :mode ("\\.json\\'" . jsonc-mode))
 
 ;; (use-package molokai-theme)
 (use-package solarized-theme
@@ -453,6 +454,7 @@
   (column-number-mode t)
   (size-indication-mode t)
   (menu-bar-mode -1)
+  (tool-bar-mode 0)
   (show-paren-mode 1)
 
   (add-to-list 'auto-mode-alist '("/\\.machinerc$" . sh-mode))
@@ -526,9 +528,10 @@ Similar to `start-process-shell-command', but calls `start-file-process'."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-  )
+ '(warning-suppress-log-types '((comp)))
+ '(warning-suppress-types '((comp))))
 (custom-set-faces
-
+ ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.

@@ -1,4 +1,5 @@
 # User
+alias emacs='emacs -nw'
 alias rootdir='git rev-parse --show-toplevel'
 alias ein="emacs -e ein:login"
 alias taskpaper="emacs -e open-taskpaper-file"
