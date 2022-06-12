@@ -13,6 +13,7 @@ alias tm=tmux
 which exa >/dev/null 2>&1 && alias ls=exa
 which fd >/dev/null 2>&1 && alias find=fd
 which rg >/dev/null 2>&1 && alias grep=rg
+which bat >/dev/null 2>&1 && alias cat=bat
 
 alias gpy="gtags --gtagslabel=pygments"
 alias goprj="cd $GOPATH/src/github.com/otakumesi"

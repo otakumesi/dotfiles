@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 function pjroot() {
   cd $(git rev-parse --show-toplevel)
 }
@@ -30,8 +32,12 @@ function fdema() {
   fi
 }
 
-function rgema() {
-  emacs "$(rg $1 | grep -e "!^\w:" | fzf)"
+function rgp() {
+  rg $1 -l  | fzf --preview 'bat --color=always --style=header,grid {}' --preview-window=right:60% --height 50% --border --reverse --print-query
+}
+
+function fdp() {
+  fd .  | fzf --preview 'bat --color=always --style=header,grid {}'  --preview-window=right:60%
 }
 
 function pjcd() {
