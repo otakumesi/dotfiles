@@ -1,17 +1,28 @@
 [[ $TERM == "tramp" ]] && unsetopt zle && PS1='$ ' && return
 
-export ZSH=$HOME/.oh-my-zsh
+export LANG=en_US.UTF-8
+source $ZPLUG_HOME/init.zsh
+
+# export ZSH=$HOME/.oh-my-zsh
 source $HOME/.profile
 
 source ~/.zplug/init.zsh
 
-zplug 'plugins/git', from:oh-my-zsh
-zplug 'plugins/tmux', from:oh-my-zsh
-zplug 'plugins/ssh-agent', from:oh-my-zsh
-zplug 'plugins/zsh-completions', from:oh-my-zsh
+zplug 'zsh-users/zsh-completions'
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "zsh-users/zsh-autosuggestions", use:"zsh-autosuggestions.zsh"
+zplug "zsh-users/zsh-history-substring-search", defer:3
 zplug 'b4b4r07/enhancd', use:init.sh
 zplug 'zsh-users/zsh-syntax-highlighting', defer:2
-zplug 'themes/gnzh', from:oh-my-zsh, defer:2
+zplug "lib/completion", from:oh-my-zsh
+zplug 'modules/tmux', from:prezto
+zplug 'modules/ssh-agent', from:prezto
+zplug 'modules/history', from:prezto
+zplug 'modules/git', from:prezto
+zplug 'modules/utility', from:prezto
+zplug 'modules/editor', from:prezto
+
+zstyle ':prezto:*:*' color 'yes'
 
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -74,3 +85,7 @@ fi
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 source $HOME/.machinerc
+
+[ -f ~/.resh/shellrc ] && source ~/.resh/shellrc # this line was added by RESH (Rich Enchanced Shell History)
+
+eval "$(starship init zsh)"
