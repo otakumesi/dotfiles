@@ -89,3 +89,4 @@ source $HOME/.machinerc
 [ -f ~/.resh/shellrc ] && source ~/.resh/shellrc # this line was added by RESH (Rich Enchanced Shell History)
 
 eval "$(starship init zsh)"
+eval "$(oh-my-posh init zsh)"

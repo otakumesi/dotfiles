@@ -85,13 +85,26 @@ function start-project {
   cp -R "$HOME/.project.template/$(ls $HOME/.project.template | fzf)" $1
 }
 
-function fzf-select-tmux-session()
-{
+function fzf-select-tmux-session() {
   local res
   res=$(tmux list-sessions | fzf | awk -F':' '{print $1}')
   if [ -n "$res" ]; then
     _cool-fzf-insert-command-line "tmux attach -t $res"
   fi
+}
+
+function rga-fzf() {
+	RG_PREFIX="rga --files-with-matches"
+	local file
+	file="$(
+		FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
+			fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
+				--phony -q "$1" \
+				--bind "change:reload:$RG_PREFIX {q}" \
+				--preview-window="70%:wrap"
+	)" &&
+	echo "opening $file" &&
+	xdg-open "$file"
 }
 
 function rename-tmux-session-into-repository-name()

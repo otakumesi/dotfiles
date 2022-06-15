@@ -2,6 +2,7 @@
 
 export LANG=en_US.UTF-8
 export EDITOR='emacs -nw'
+export _ZO_ECHO='1'
 
 export XDG_CONFIG_HOME=$HOME
 export PKG_CONFIG_PATH=/opt/homebrew/lib/pkgconfig/
@@ -27,6 +28,7 @@ export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 eval "$(rbenv init -)"
 eval "$(pyenv init -)"
 eval "$(direnv hook zsh)"
+# eval "$(zoxide init zsh)"
 # [[ -f $HOME/.acme.sh/.acme.sh.env ]] && . $HOME/.acme.sh/.acme.sh.env
 eval "$(jump shell)"
 
